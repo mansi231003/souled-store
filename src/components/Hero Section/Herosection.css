@@ -1,0 +1,18 @@
+.slider2{
+    display: none !important;
+}
+
+.swiper-button-lock {
+    display: flex !important;
+}
+@media screen and (max-width:1000px) {
+    .slider1{
+        display: none !important;
+    }
+
+    .slider2{
+        display: flex !important;
+    }
+
+ 
+}

@@ -1,0 +1,15 @@
+import "./FeaturesBar.css"
+export default function FeaturesBar(){
+    return(
+        <>
+          <div className="feature-bar-outer-container bg-[#e8f8f8] h-[65px] flex mt-[37px] mb-[40px] items-center justify-center text-[clamp(10px,14px,18px)] font-[640]">
+            <div className="feature-bar-container grid grid-cols-3 w-[75%] justify-between">
+                    <div className="flex feature justify-center gap-2 items-center w-[190px] pr-5"><svg className="img" xmlns="http://www.w3.org/2000/svg" height="50px" viewBox="0 -960 960 960" width="45px" fill="black"><path d="M480-40q-112 0-206-51T120-227v107H40v-240h240v80h-99q48 72 126.5 116T480-120q75 0 140.5-28.5t114-77q48.5-48.5 77-114T840-480h80q0 91-34.5 171T791-169q-60 60-140 94.5T480-40Zm-36-160v-52q-47-11-76.5-40.5T324-370l66-26q12 41 37.5 61.5T486-314q33 0 56.5-15.5T566-378q0-29-24.5-47T454-466q-59-21-86.5-50T340-592q0-41 28.5-74.5T446-710v-50h70v50q36 3 65.5 29t40.5 61l-64 26q-8-23-26-38.5T482-648q-35 0-53.5 15T410-592q0 26 23 41t83 35q72 26 96 61t24 77q0 29-10 51t-26.5 37.5Q583-274 561-264.5T514-250v50h-70ZM40-480q0-91 34.5-171T169-791q60-60 140-94.5T480-920q112 0 206 51t154 136v-107h80v240H680v-80h99q-48-72-126.5-116T480-840q-75 0-140.5 28.5t-114 77q-48.5 48.5-77 114T120-480H40Z" /></svg><span className="text-center w-[150px]">10% Cashback on all App orders</span></div>
+                    <div className="flex feature justify-center gap-1 items-center w-[190px]"><svg className="img" xmlns="http://www.w3.org/2000/svg" height="70px" viewBox="0 -960 960 960" width="45px" fill="black"><path d="M440-183v-274L200-596v274l240 139Zm80 0 240-139v-274L520-457v274Zm-80 92L160-252q-19-11-29.5-29T120-321v-318q0-22 10.5-40t29.5-29l280-161q19-11 40-11t40 11l280 161q19 11 29.5 29t10.5 40v318q0 22-10.5 40T800-252L520-91q-19 11-40 11t-40-11Zm200-528 77-44-237-137-78 45 238 136Zm-160 93 78-45-237-137-78 45 237 137Z" /></svg><span className="text-center w-[150px]">30 days Easy Returns & Exchanges</span></div>
+                    <div className="flex feature truck justify-center gap-2 items-center w-[220px]"><svg className="img" xmlns="http://www.w3.org/2000/svg" height="70px" viewBox="0 -960 960 960" width="45px" fill="black"><path d="M195-195q-35-35-35-85H60l18-80h113q17-19 40-29.5t49-10.5q26 0 49 10.5t40 29.5h167l84-360H182l4-17q6-28 27.5-45.5T264-800h456l-37 160h117l120 160-40 200h-80q0 50-35 85t-85 35q-50 0-85-35t-35-85H400q0 50-35 85t-85 35q-50 0-85-35Zm442-245h193l4-21-74-99h-95l-28 120Zm-19-273 2-7-84 360 2-7 34-146 46-200ZM20-427l20-80h220l-20 80H20Zm80-146 20-80h260l-20 80H100Zm180 333q17 0 28.5-11.5T320-280q0-17-11.5-28.5T280-320q-17 0-28.5 11.5T240-280q0 17 11.5 28.5T280-240Zm400 0q17 0 28.5-11.5T720-280q0-17-11.5-28.5T680-320q-17 0-28.5 11.5T640-280q0 17 11.5 28.5T680-240Z"/></svg><span className="text-center w-[80px]">Free & Fast Shipping</span></div>
+
+                </div>
+                </div>
+        </>
+    )
+}

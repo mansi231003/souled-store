@@ -1,0 +1,104 @@
+@media screen and (max-width:800px) {
+    .features-section{
+        flex-direction: column-reverse;
+    }
+
+    .footer-section .heading{
+        font-size: 28px;
+        height: 60px;
+    }
+    
+    .download-apps{
+        background-color: #dddddd;
+      
+    }
+
+    .social-icons{
+        justify-content: center;
+        padding: 28px;
+    }
+
+    .payments-app-container{
+        flex-direction: column;
+        height: auto;
+    }
+
+    .payments-app-container .wrapper{
+        width: 100%;
+        border: none;
+    }
+
+    .features{
+        grid-template-columns: 1fr 1fr;
+        align-items: end;
+    }
+
+    .know-more{
+        display: flex;
+    }
+}
+
+@media screen and (max-width:520px) {
+.footer-section .heading{
+    font-size: 21px;
+    height: 46px;
+}
+
+.features-wrap{
+    padding-left: 44px;
+    padding-right: 7px;
+}
+
+.features{
+    width: 100%;
+    gap: 10px;
+}
+
+.payments-app-container{
+    padding-left: 0;
+    padding-bottom: 0;
+}
+
+.payments-app-container .wrapper{
+    flex-direction: column;
+    align-items: start;
+}
+
+.payments-app-container .wrapper .app{
+    width: 80%;
+}
+
+}
+
+@media screen and (max-width:360px) {
+    .footer-section .heading{
+        font-size: 17px;
+    }
+
+    .know-more{
+        font-size: 15px;
+    }
+
+    .download-apps{
+        /* width: max-content; */
+        font-size: 14px;
+    }
+    
+.features-wrap{
+    padding-left: 13px;
+}
+
+.text-\[14px\] {
+    font-size: 13px;
+}
+
+.text-\[18px\] {
+    font-size: 16px;
+}
+
+.social-icons{
+    padding-left: 13px;
+    padding-right: 13px;
+    width: 100%;
+}
+}
