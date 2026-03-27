@@ -2,7 +2,7 @@ import "./Navbar.css"
 export default function Navbar() {
     return (
         <>
-            <div className="hidden offer-container bg-red-600 h-[60px] justify-between items-center text-white pl-9 pr-9 pt-6 pb-6">
+            <div className="hidden offer-container bg-[#e12d2d] h-[60px] justify-between items-center text-white pl-9 pr-9 pt-6 pb-6">
                 <div className="offer w-[70%]">Download Our App & Get 10% Additional Cashback On All Orders</div>
                 <div className="button border-2 rounded-[8px] border-white p-1 w-[115px] flex justify-center items-center">
                     <i className="fa-solid fa-mobile-screen"></i>
@@ -10,24 +10,24 @@ export default function Navbar() {
                 </div>
                 </div>
         
-        <div className="navbar-container flex h-[80px] justify-between w-[100%] border border-gray-300">
+        <div className="navbar-container bg-white sticky top-0 flex h-[70px] justify-between w-[100%] border border-gray-300">
             <div className="navmenu-container flex items-center gap-12 w-[38%] justify-center">
                 <div className="nav-button w-[6%] flex items-center text-gray-500 text-[17px]">
                     <i className="fa fa-bars"></i>
                 </div>
-                <ul className="nav-menu flex justify-between items-center gap-4 text-[21px] font-bold w-[60%]">
+                <ul className="nav-menu flex justify-between items-center gap-4 text-[18px] font-[700] w-[60%]">
                     <li className="nav-item">MEN</li>
                     <li className="">WOMEN</li>
                     <li className="">SNEAKERS</li>
                 </ul>
             </div>
 
-            <div className="img-container w-[100px] flex items-center"><img className="img" src="souledimg.webp"/></div>
+            <div className="img-container w-[90px] flex items-center"><img className="img" src="souledimg.webp"/></div>
 
             <div className="search-container flex items-center w-[40%] justify-center gap-10 pr-5">
-                <div className="search-box border text-gray-600 items-center justify-between border-black flex bg-white h-[40px] rounded-[20px] w-[62%] p-2">
-                    <input className="h-full bg-transparent p-2 w-[80%] rounded-[20px] outline-none" placeholder="What are you looking for?"/>
-                    <div><i class="fa-solid fa-microphone text-[20px]"></i></div>
+                <div className="search-box border text-gray-600 items-center justify-between border-black flex bg-white h-[40px] rounded-[20px] w-[60%] p-2">
+                    <input className="h-full bg-transparent p-2 w-[80%] rounded-[20px] text-[14px] outline-none" placeholder="What are you looking for?"/>
+                    <div><i className="fa-solid fa-microphone text-[20px]"></i></div>
                     <div><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="26px" fill="#4b5563"><path d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z"/></svg></div>
                 </div>
                 <div className="nav-icons flex w-[26%] justify-between items-center text-gray-600">
@@ -40,9 +40,9 @@ export default function Navbar() {
        
         </div>
         <div className="categories hidden h-[55px] w-full text-[17px] items-center justify-between">
-            <div className="nav-item w-[27%] items-center flex justify-center border-r-gray-400 border-r font-bold">MEN</div>
-            <div className="w-[27%] items-center flex justify-center border-r-gray-400 border-r">WOMEN</div>
-            <div className="w-[27%] items-center flex justify-center">SNEAKERS</div>
+            <div className="nav-item w-full items-center flex justify-center border-r-gray-400 border-r font-bold">MEN</div>
+            <div className="w-full items-center flex justify-center border-r-gray-400 border-r">WOMEN</div>
+            <div className="w-full items-center flex justify-center">SNEAKERS</div>
         </div>
         
         </>

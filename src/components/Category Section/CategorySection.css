@@ -1,0 +1,17 @@
+.category-images .card .price{
+    font-weight: 700;
+}
+/* 
+.category-images .card .price .icon{
+width: 18px;
+} */
+
+.scroll-hide{
+    scrollbar-width: none;
+}
+
+@media screen and (max-width:900px) {
+    .category-images{
+        grid-template-columns: 1fr 1fr;
+    }
+}

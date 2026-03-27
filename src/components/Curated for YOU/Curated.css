@@ -1,0 +1,7 @@
+
+
+@media screen and (max-width:500px) {
+    .curated-images{
+        grid-template-columns: 1fr;
+    }
+}

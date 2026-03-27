@@ -1,0 +1,26 @@
+.prev-button,
+.next-button {
+    position: absolute;
+    top: 45%;
+    filter: drop-shadow(2px 2px 4px rgba(12, 12, 12, 0.9));
+    z-index: 1;
+}
+
+.collections .swiper-pagination {
+    display: none !important;
+}
+
+
+@media screen and (max-width:1000px) {
+
+    .collections .swiper-pagination {
+
+        display: block !important;
+        margin-top: 10px !important;
+    }
+
+    .prev-button,
+    .next-button {
+        display: none;
+    }
+}
