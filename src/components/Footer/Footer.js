@@ -1,13 +1,24 @@
+import { useState } from "react"
 import "./Footer.css"
 
 export default function Footer() {
+    const [hide, setHide] = useState(false)
+
+    function toggleSection() {
+        if(hide){
+            setHide(false)
+        }
+        else{
+        setHide(true)
+        }
+    }
     return (
         <>
             <div className="footer-section">
                 <div className="heading w-full bg-red-600 h-[64px] text-white text-[30px] flex justify-center items-center">HOMEGROWN INDIAN BRAND</div>
                 <div className="heading w-full h-[80px] text-[30px] flex justify-center items-center">OVER<span className="font-bold pl-[10px] pr-[10px]">6 Million</span>Happy Customers</div>
-                <div className="bg-[#e6e7e8] w-full flex flex-col items-center justify-center gap-4">
-                    <div className="know-more hidden justify-between items-center w-full font-[700] text-[#58595b] p-[10px] pb-0">Know more about The Souled Store<i class="fa-solid fa-angle-up"></i></div>
+                    <div className="know-more bg-[#e6e7e8] hidden justify-between items-center w-full font-[700] text-[#58595b] p-[10px]">Know more about The Souled Store<i onClick={toggleSection} className={`${hide?"rotate-180 fa-solid fa-angle-up":"fa-solid fa-angle-up"}`}></i></div>
+                <div className={`${hide ? "hidden" : "bg-[#e6e7e8] w-full flex flex-col items-center justify-center gap-4"}`}>
                     <div className="features-section w-full justify-center flex flex-col items-center">
                         <div className="features-wrap w-[100%] pt-8 flex flex-col items-center pl-[60px]">
                             <div className="features grid grid-cols-4 pb-[17px] gap-[28px] w-[95%]">
@@ -63,15 +74,15 @@ export default function Footer() {
                     </div>
                     <div className="social-icons w-[86%] flex justify-end gap-2 p-[12px]">
                         <div className="flex justify-center items-center text-gray-600">Follow Us:</div>
-                        <div className="border rounded-[50%] w-[35px] h-[35px] flex justify-center items-center p-2 bg-[#6081c0] text-white"><i class="fa-brands fa-facebook-f"></i></div>
-                        <div className="border rounded-[50%] w-[35px] h-[35px] flex justify-center items-center p-2 bg-[#c03694] text-white"><i class="fa-brands fa-instagram"></i></div>
-                        <div className="border rounded-[50%] w-[35px] h-[35px] flex justify-center items-center p-2 bg-[#f9b927] text-white"><i class="fa-brands fa-snapchat"></i></div>
-                        <div className="border rounded-[50%] w-[35px] h-[35px] flex justify-center items-center p-2 bg-black text-white"><i class="fa-brands fa-x-twitter"></i></div>
+                        <div className="border rounded-[50%] w-[35px] h-[35px] flex justify-center items-center p-2 bg-[#6081c0] text-white"><i className="fa-brands fa-facebook-f"></i></div>
+                        <div className="border rounded-[50%] w-[35px] h-[35px] flex justify-center items-center p-2 bg-[#c03694] text-white"><i className="fa-brands fa-instagram"></i></div>
+                        <div className="border rounded-[50%] w-[35px] h-[35px] flex justify-center items-center p-2 bg-[#f9b927] text-white"><i className="fa-brands fa-snapchat"></i></div>
+                        <div className="border rounded-[50%] w-[35px] h-[35px] flex justify-center items-center p-2 bg-black text-white"><i className="fa-brands fa-x-twitter"></i></div>
 
                     </div>
                     <div className="flex border border-gray-400 w-[86%] justify-between p-5 text-red-600 font-[700]">
                         WHO WE ARE
-                        <i class="fa-solid fa-plus"></i>
+                        <i className="fa-solid fa-plus"></i>
                     </div>
                     <div className="payments-app-container flex w-[86%] items-center h-[25px] p-7">
                         <div className="wrapper flex items-center w-[70%]">
@@ -81,17 +92,17 @@ export default function Footer() {
                         <div className="wrapper flex items-center w-[60%] pl-2 gap-4 border border-l-gray-400">
                             <div className="text-[14px] text-[#58595b]">Shipping Partners:</div>
                             <div className="app w-[50%] flex justify-between">
-                            <div className="app w-[23%]"><img className="w-full" src="dtdc.png" /></div>
-                            <div className="app w-[23%]"><img className="w-full" src="delivery.png" /></div>
-                            <div className="app w-[23%]"><img className="w-full" src="ECOM-Express.png" /></div>
-                            <div className="app w-[23%]"><img className="w-full" src="XPRESS.png" /></div>
+                                <div className="app w-[23%]"><img className="w-full" src="dtdc.png" /></div>
+                                <div className="app w-[23%]"><img className="w-full" src="delivery.png" /></div>
+                                <div className="app w-[23%]"><img className="w-full" src="ECOM-Express.png" /></div>
+                                <div className="app w-[23%]"><img className="w-full" src="XPRESS.png" /></div>
                             </div>
                         </div>
                     </div>
-                        <div className="text-[#58595b] p-5">
-                            <i className="fa-regular fa-copyright"></i>
-                            <span className="font-bold text-[15px]">The Souled Store 2026-27</span>
-                        </div>
+                    <div className="text-[#58595b] p-5">
+                        <i className="fa-regular fa-copyright"></i>
+                        <span className="font-bold text-[15px]">The Souled Store 2026-27</span>
+                    </div>
 
                 </div>
 

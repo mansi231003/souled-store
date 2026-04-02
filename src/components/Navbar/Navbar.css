@@ -6,7 +6,14 @@
     background: red;
     bottom: -9px;
 }
-
+.nav-icon:hover::before{
+  position: absolute;
+    content: "";
+    width: 100%;
+    height: 4px;
+    background: red;
+    bottom: -9px;
+}
 .navbar-container {
     box-shadow: 0 2px 3px rgba(0, 0, 0, .2);
     z-index: 99;
@@ -53,10 +60,15 @@
     }
 
     .nav-menu,
-    .search-box {
+    .search-box,.profile-icon {
         display: none;
     }
 
+    .search-icon{
+        display: flex;
+        width: 30px;
+        height: 30px;
+    }
     .search-container {
         width: 120px;
     }
@@ -102,7 +114,18 @@
         width: 96px;
     }
 
+    .navbar-container .img-container {
+        width: 80px;
 
+    }
+
+    .search-icon{
+        width: 28px;
+    }
+
+    .nav-icon{
+        width: 26px;
+    }
 }
 
 @media screen and (max-width:400px) {}

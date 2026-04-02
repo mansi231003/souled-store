@@ -10,6 +10,9 @@
     display: none !important;
 }
 
+.collections .like{
+    display: none;
+}
 
 @media screen and (max-width:1000px) {
 

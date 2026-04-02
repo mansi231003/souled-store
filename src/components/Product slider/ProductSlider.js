@@ -8,7 +8,6 @@ import 'swiper/css'
 export default function ProductSlider({ products }) {
     return (
         <>
-            {/* <div className="flex justify-center p-7 font-bold text-[26px]">{children}</div> */}
             <div className="collections relative">
                 <Swiper
                        navigation={{
