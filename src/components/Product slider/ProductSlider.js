@@ -3,7 +3,7 @@ import ProductCard from "../Product card/ProductCard"
 import { Swiper, SwiperSlide } from "swiper/react"
 import 'swiper/css/navigation';
 import { Navigation, Autoplay,Pagination } from 'swiper/modules';
-import 'swiper/css'
+import 'swiper/css';
 
 export default function ProductSlider({ products }) {
     return (
@@ -30,7 +30,7 @@ export default function ProductSlider({ products }) {
                     >
                     {
                         products.map((item) => (
-                            <SwiperSlide><ProductCard  {...item} /></SwiperSlide>
+                           <SwiperSlide><ProductCard  {...item} /></SwiperSlide>
                         ))
                     }
                 </Swiper>

@@ -2,7 +2,8 @@ import { BrowserRouter as Router,Route , Routes } from "react-router-dom";
 import WomenPage from "./WomenPage";
 import MenPage from "./menPage";
 import SneakersPage from "./sneakersPage";
-import Registration from "./components/Registration Page/Registration"
+import Registration from "./components/Registration Page/Registration";
+import ProductPage from "./components/ProductPage/ProductPage";
 
 function App(){
   return(
@@ -13,6 +14,7 @@ function App(){
         <Route path ="/womenPage" element={<WomenPage/>}></Route>
         <Route path ="/sneakersPage" element={<SneakersPage/>}></Route>
         <Route path ="/registration" element={<Registration/>}></Route>
+        <Route path ="/productPage" element={<ProductPage/>}></Route>
       </Routes>
     </Router>
     </>
