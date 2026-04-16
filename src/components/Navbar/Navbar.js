@@ -28,7 +28,7 @@ export default function Navbar({ toggleSidebar }) {
                     </ul>
                 </div>
 
-                <div className="img-container w-[90px] flex items-center"><img className="img" src="souledimg.webp" /></div>
+                <div className="img-container w-[90px] flex items-center"><img className="img" src="/souledimg.webp" /></div>
 
                 <div className="search-container flex items-center w-[40%] justify-center gap-10 pr-5">
                     <div className="search-box border text-gray-600 items-center justify-between border-black flex bg-white h-[40px] rounded-[20px] w-[60%] p-2">

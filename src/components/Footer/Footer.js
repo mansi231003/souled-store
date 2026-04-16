@@ -66,8 +66,8 @@ export default function Footer() {
                         <div className="download-apps w-full flex flex-col justify-center items-center gap-2 p-[20px]">
                             <div className="text-[#58595b] font-[800] text-[14px] gap-1 flex items-center"><i className="fa fa-mobile-screen text-[12.4px]"></i>EXPERIENCE THE SOULED STORE APP</div>
                             <div className="flex gap-4">
-                                <img className="w-[125px]" src="play-store.png" />
-                                <img className="w-[125px]" src="app-store.png" />
+                                <img className="w-[125px]" src="/play-store.png" />
+                                <img className="w-[125px]" src="/app-store.png" />
                             </div>
                         </div>
 
@@ -87,15 +87,15 @@ export default function Footer() {
                     <div className="payments-app-container flex w-[86%] items-center h-[25px] p-7">
                         <div className="wrapper flex items-center w-[70%]">
                             <div className="app w-[34%] text-[14px] text-[#58595b]">100% Secure Payment:</div>
-                            <div className="app w-[95%] "><img className="w-full" src="payments-icon.png" /></div>
+                            <div className="app w-[95%] "><img className="w-full" src="/payments-icon.png" /></div>
                         </div>
                         <div className="wrapper flex items-center w-[60%] pl-2 gap-4 border border-l-gray-400">
                             <div className="text-[14px] text-[#58595b]">Shipping Partners:</div>
                             <div className="app w-[50%] flex justify-between">
-                                <div className="app w-[23%]"><img className="w-full" src="dtdc.png" /></div>
-                                <div className="app w-[23%]"><img className="w-full" src="delivery.png" /></div>
-                                <div className="app w-[23%]"><img className="w-full" src="ECOM-Express.png" /></div>
-                                <div className="app w-[23%]"><img className="w-full" src="XPRESS.png" /></div>
+                                <div className="app w-[23%]"><img className="w-full" src="/dtdc.png" /></div>
+                                <div className="app w-[23%]"><img className="w-full" src="/delivery.png" /></div>
+                                <div className="app w-[23%]"><img className="w-full" src="/ECOM-Express.png" /></div>
+                                <div className="app w-[23%]"><img className="w-full" src="/XPRESS.png" /></div>
                             </div>
                         </div>
                     </div>

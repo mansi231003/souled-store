@@ -1,202 +1,84 @@
 import Navbar from "../Navbar/Navbar";
 import Footer from "../Footer/Footer";
+import { products } from "../../menPage";
+import { useParams } from "react-router-dom";
+import { useState } from "react";
 
 export default function ProductPage() {
+    const { id } = useParams();
+    const product = products.find(p => p.product_id === id);
+    const [selectedSize, setSelectedSize] = useState("");
+    const [selectedColor, setSelectedColor] = useState("");
+    const variantData = product.variant_values[0];
 
-    // const products = [
-    //     {
-    //         "product_id": "1",
-    //         "title": "Peanuts:Works Out",
-    //         "price_range": { "min": "700", "max": "900" },
-    //         "stock": "80",
-    //         "image_url": "newArrival-img1.png",
-    //         "number_of_variants": "3",
-    //         "variant_options": ["size", "color"],
-    //         "variant_values": [
-    //             {
-    //                 "size": {
-    //                 "label": "Select Size",
-    //                 "values": [
-    //                         {
-    //                             "1": { "label": "S", "key": "small" },
-    //                             "2": { "label": "M", "key": "medium" },
-    //                             "3": { "label": "L", "key": "large" }
-    //                         }
-    //                     ]
-    //                 },
-    //                 "color": {
-    //                 "label": "Select Color",
-    //                 "values": [
-    //                         {
-    //                             "1": { "label": "Red", "key": "red", "color_code": "#ff0000" },
-    //                             "2": { "label": "Blue"," key": "blue", "color_code": "#0000ff" }
-    //                         }
-    //                     ]
-    //                 }
-    //             }
-    //         ],
-    //         "variants": [
-    //             { "id": "1a", "size": "medium","color": "red", "price": "800", "image_url": "newArrival-img2.png", "stock": "20" },
-    //             { "id": "1b", "size": "small", "color": "blue", "price": "850", "image_url": "newArrival-img3.png", "stock": "40" },
-    //             { "id": "1c", "size": "large", "color": "blue", "price": "750", "image_url": "newArrival-img4.png", "stock": "20" }
-    //         ]
-    //     },
+    const selectedVariant = product.variants.find(
+        v =>
+            v.size === selectedSize &&
+            v.color === selectedColor
+    );
 
-    //     {
-    //         "product_id": "2",
-    //         "title": "Casual T-Shirt",
-    //         "price_range": { "min": null, "max": "500" },
-    //         "stock": "120", // 50 + 70
-    //         "image_url": "newArrival-img2.png",
-    //         "number_of_variants": "2",
-    //         "variant_options": ["size"],
-    //         "variant_values": [
-    //             {
-    //                 "size": {
-    //                     "label": "Select Size",
-    //                     "values": [
-    //                         {
-    //                             "1": { "label": "M", "key": "medium" },
-    //                             "2": { "label": "L", "key": "large" }
-    //                         }
-    //                     ]
-    //                 }
-    //             }
-    //         ],
-    //         "variants": [
-    //             { "id": "2a", "size": "medium"," price": "500"," stock": "50" },
-    //             { "id": "2b", "size": "large", "price": "500", "stock": "70" }
-    //         ]
-    //     },
+    const availableColors = selectedSize
+        ? product.variants
+            .filter(v => v.size === selectedSize)
+            .map(v => v.color)
+        : [];
 
-    //     {
-    //         "product_id": "3",
-    //         "title": "Sports Hoodie",
-    //         "price_range": { "min": "1200", "max": "1500" },
-    //         "stock": "50", // 20 + 30
-    //         "image_url": "newArrival-img3.png",
-    //         "number_of_variants": "2",
-    //         "variant_options": ["size", "color"],
-    //         "variant_values": [
-    //             {
-    //                 "size": {
-    //                     "label": "Select Size",
-    //                     "values": [
-    //                         {
-    //                             "1": { "label": "S", "key": "small" },
-    //                             "2": { "label": "M", "key": "medium" }
-    //                         }
-    //                     ]
-    //                 },
-    //                 "color": {
-    //                 "    label": "Select Color",
-    //                 "    values": [
-    //                         {
-    //                             "1": { "label": "Black"," key": "black", "color_code": "#000000" },
-    //                             "2": { "label": "Grey", "key": "grey", "color_code": "#808080" }
-    //                         }
-    //                     ]
-    //                 }
-    //             }
-    //         ],
-    //         "variants": [
-    //             { "id": "3a", "size": "small", "color": "black", "price": "1200", "image_url": "newArrival-img1.png", "stock": "20" },
-    //             { "id": "3b", "size": "medium"," color": "grey", "price": "1500", "image_url": "newArrival-img2.png", "stock": "30" }
-    //         ]
-    //     },
+    let displayPrice = "";
 
-    //     {
-    //         "product_id": "4",
-    //         "title": "Denim Jeans",
-    //         "price_range": { "min": "1000", "max": "1300" },
-    //         "stock": "40", // 15 + 25
-    //         "image_url": "newArrival-img4.png",
-    //         "number_of_variants": "2",
-    //         "variant_options": ["size"],
-    //         "variant_values": [
-    //             {
-    //                 "size": {
-    //                     "label": "Select Size",
-    //                     "values": [
-    //                         {
-    //                             "1": { "label": "30", "key": "30" },
-    //                             "2": { "label": "32", "key": "32" }
-    //                         }
-    //                     ]
-    //                 }
-    //             }
-    //         ],
-    //         "variants": [
-    //             { "id": "4a", "size": "30", "price": "1000", "stock": "15" },
-    //             { "id": "4b", "size": "32", "price": "1300", "stock": "25" }
-    //         ]
-    //     },
+    if (selectedVariant) {
+        displayPrice = `$${selectedVariant.price}`;
+    } else if (product.price_range.min) {
+        displayPrice = `$${product.price_range.min} - $${product.price_range.max}`;
+    } else {
+        displayPrice = `$${product.price_range.max}`;
+    }
 
-    //     {
-    //         "product_id": "5",
-    //         "title": "Summer Shirt",
-    //         "price_range": { "min": null, "max": "750" },
-    //         "stock": "70", // 20 + 30
-    //         "image_url": "newArrival-img5.png",
-    //         "number_of_variants": "3",
-    //         "variant_options": ["size", "color"],
-    //         "variant_values": [
-    //             {
-    //                 "size": {
-    //                     "label": "Select Size",
-    //                     "values": [
-    //                         {
-    //                             "1": { "label": "S", "key": "small" },
-    //                             "2": { "label": "M", "key": "medium" },
-    //                             "3": { "label": "XL", "key": "xl" }
-    //                         }
-    //                     ]
-    //                 },
-    //                 "color": {
-    //                     "label": "Select Color",
-    //                     "values": [
-    //                         {
-    //                             "1": { "label": "Green", "key": "green", "color_code": "#00ff00" },
-    //                             "2": { "label": "Yellow"," key": "yellow", "color_code": "#ffff00" }
-    //                         }
-    //                     ]
-    //                 }
-    //             }
-    //         ],
-    //         "variants": [
-    //             { "id": "5a", "size": "small", "color": "green", "price": "750", "image_url": "newArrival-img1.png", "stock": "20" },
-    //             { "id": "5b", "size": "medium"," color": "yellow", "price": "750", "image_url": "newArrival-img4.png", "stock": "30" },
-    //             { "id": "5c", "size": "xl"," color": "yellow", "price": "750", "image_url": "newArrival-img3.png", "stock": "20" },
-    //         ]
-    //     }
-    // ];
+
 
     return (
+
         <>
             <Navbar />
             <div className="pl-10">
                 <div className="pt-[15px] pb-[15px] text-[12px] text-[#a7a9ac] gap-1 flex">Home /<span>T-Shirts /</span><span>The Souled Store /</span><span className="text-[#58595b]">Peanuts:Works Out</span></div>
                 <div className="flex gap-4">
                     <div className="grid grid-cols-2 gap-2 w-[57%]">
-                        <div><img src="newArrival-img1.png" /></div>
-                        <div><img src="newArrival-img1.png" /></div>
-                        <div><img src="newArrival-img1.png" /></div>
-                        <div><img src="newArrival-img1.png" /></div>
+                        <img src={selectedVariant ? selectedVariant.image_url : `/${product.image_url}`} alt={product.title} />
+                        <img src={selectedVariant ? selectedVariant.image_url : `/${product.image_url}`} alt={product.title} />
+                        <img src={selectedVariant ? selectedVariant.image_url : `/${product.image_url}`} alt={product.title} />
+                        <img src={selectedVariant ? selectedVariant.image_url : `/${product.image_url}`} alt={product.title} />
+                   
                     </div>
                     <div className="pl-8 w-[40%]">
                         <div className="flex flex-col border-b pb-3">
-                            <span className="font-[700] text-[25px] text-[#58595b] h-[32px]">Peanuts:Works Out</span><span className="text-[14px] font-[500] text-[#a7a9ac]">T-Shirts</span>
+                            <span className="font-[700] text-[25px] text-[#58595b] h-[32px]">{product.title}</span><span className="text-[14px] font-[500] text-[#a7a9ac]">T-Shirts</span>
                         </div>
-                        <div className="pt-5 font-[700] text-[20px] text-[#58595b]">$ 799</div>
+
+                        <div className="pt-5 font-[700] text-[20px] text-[#58595b]">{displayPrice}</div>
                         <div className="text-[#888] text-[14px]">Price incl. of all taxes</div>
-                        <div className="pt-3 pb-3 gap-2 flex font-[700] text-[16px] text-[#58595b]">Please select a size.<u className="text-[#117a7a] font-normal">SIZE CHART</u></div>
-                        <div className="flex gap-2 pb-8">
-                            <div className="rounded-[5px] text-[#58595b] border-[2px] border-[#ccc] flex justify-center items-center p-1 w-[45px]">XS</div>
-                            <div className="rounded-[5px] text-[#58595b] border-[2px] border-[#ccc] flex justify-center items-center p-1 w-[45px]">S</div>
-                            <div className="rounded-[5px] text-[#58595b] border-[2px] border-[#ccc] flex justify-center items-center p-1 w-[45px]">M</div>
-                            <div className="rounded-[5px] text-[#58595b] border-[2px] border-[#ccc] flex justify-center items-center p-1 w-[45px]">XL</div>
-                            <div className="rounded-[5px] text-[#58595b] border-[2px] border-[#ccc] flex justify-center items-center p-1 w-[45px]">XXL</div>
+
+                        <div className="pt-3 pb-3 gap-2 flex font-[700] text-[16px] text-[#58595b]">{variantData.size.label}<u className="text-[#117a7a] font-normal">SIZE CHART</u></div>
+
+                        <div className="flex gap-2 pb-2">
+                            {Object.values(variantData.size.values[0]).map((val) => (
+                                <div key={val.key} onClick={() => { setSelectedSize(val.key); setSelectedColor("") }} className={`${selectedSize === val.key ? "bg-black text-white" : "bg-white text-[#58595b]"} rounded-[5px] text-[#58595b] border-[2px] border-[#ccc] flex justify-center items-center p-1 w-[45px] }`}> {val.label}</div>
+                            ))}
                         </div>
+                        {variantData.color && (
+                            <>
+                                <div className="pt-3 pb-3 gap-2 flex font-[700] text-[16px] text-[#58595b]">{variantData.color.label}</div>
+                                <div className="flex gap-2 pb-8">
+                                    {Object.values(variantData.color.values[0]).map((val) => {
+                                        const isAvailable = selectedSize ? availableColors.includes(val.key) : true;
+
+                                        return (
+                                            <div key={val.key} onClick={() => isAvailable && setSelectedColor(val.key)} style={{ backgroundColor: val.color_code }} className={`rounded-full flex justify-center items-center w-[35px] h-[35px]   ${isAvailable ? "cursor-pointer" : "opacity-30"} ${selectedColor === val.key ? "border-2 border-black" : ""}`}></div>
+                                        );
+                                    })}
+                                </div>
+                            </>
+                        )}
+
                         <div className="flex gap-3 items-center pb-3">
                             <div className="text-[#58595b] text-[14px]">Quantity</div>
                             <select className="border border-[#ccc] rounded-[5px] p-[4px] text-[15px]">
@@ -211,13 +93,13 @@ export default function ProductPage() {
                         </div>
                         <div className="flex items-center gap-[4px] text-[#58595b] text-[22px] mt-[18px] mb-[18px]">
                             <div className="text-[#58595b] text-[14px] pr-4">Share</div>
-                            <i class="fa-brands fa-whatsapp"></i>
-                            <i class="fa-brands fa-square-facebook"></i>
-                            <i class="fa-brands fa-twitter"></i>
-                            <i class="fa-brands fa-instagram"></i>
+                            <i className="fa-brands fa-whatsapp"></i>
+                            <i className="fa-brands fa-square-facebook"></i>
+                            <i className="fa-brands fa-twitter"></i>
+                            <i className="fa-brands fa-instagram"></i>
                         </div>
                         <div className="text-[15px] font-[700] text-[#282d3f]">Delivery Details</div>
-                        <div className="border border-[] flex justify-between rounded-[6px] p-[6px] pl-[10px] pr-[10px] mt-[10px] mb-[14px]">
+                        <div className="border flex justify-between rounded-[6px] p-[6px] pl-[10px] pr-[10px] mt-[10px] mb-[14px]">
                             <input className="w-full outline-none text-[#58595b] font-[200] text-[15px]" placeholder="Enter Pincode" />
                             <div className="cursor-pointer text-[15px] text-[#148c8d] font-[700]">CHECK</div>
                         </div>
@@ -237,4 +119,4 @@ export default function ProductPage() {
             <Footer />
         </>
     )
-}
+};
