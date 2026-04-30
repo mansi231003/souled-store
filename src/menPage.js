@@ -11,7 +11,7 @@ import Footer from './components/Footer/Footer';
 import './App.css';
 import FeaturesBar from './components/Features bar/FeaturesBar';
 import { useState } from 'react';
-
+import CartSidebar from './components/CartSidbar/CartSidebar';
 function MenPage() {
 
 
@@ -159,8 +159,9 @@ function MenPage() {
 
   ]
 
-  const [sidebar,setSidebar]=useState(false)
-
+ 
+ const [sidebar,setSidebar]=useState(false)
+  const [cartSidebar,setcartSidebar]=useState(false)
   return (
     
     <div className='men-page'>
@@ -170,8 +171,8 @@ function MenPage() {
          <ProductSlider products={menSidebarProducts}/>
 
       </Sidebar>
-     
-      <Navbar toggleSidebar={()=>setSidebar(true)}/>
+     <CartSidebar sidebarOpen={cartSidebar} close={()=>setcartSidebar(false)} />
+      <Navbar toggleSidebar={()=>setSidebar(true)} cartSidebar={()=>setcartSidebar(true)}/>
       <Slider className="slider1" slides={menSlides1} />
       <Slider className="slider2" slides={menSlides2} />
       <FeaturesBar />
@@ -294,8 +295,8 @@ export const products=[
                 }
             ],
             "variants": [
-                { "id": "3a", "size": "small", "color": "black", "price": "1200", "image_url": "newArrival-img1.png", "stock": "20" },
-                { "id": "3b", "size": "medium","color": "grey", "price": "1500", "image_url": "newArrival-img2.png", "stock": "30" }
+                { "id": "3a", "size": "small", "color": "black", "price": "1200", "image_url": "/newArrival-img1.png", "stock": "20" },
+                { "id": "3b", "size": "medium","color": "grey", "price": "1500", "image_url": "/newArrival-img2.png", "stock": "30" }
             ]
         },
 
@@ -358,9 +359,9 @@ export const products=[
                 }
             ],
             "variants": [
-                { "id": "5a", "size": "small", "color": "green", "price": "750", "image_url": "newArrival-img1.png", "stock": "20" },
-                { "id": "5b", "size": "medium","color": "yellow", "price": "800", "image_url": "newArrival-img4.png", "stock": "30" },
-                { "id": "5c", "size": "xl","color": "yellow", "price": "950", "image_url": "newArrival-img3.png", "stock": "20" },
+                { "id": "5a", "size": "small", "color": "green", "price": "750", "image_url": "/newArrival-img1.png", "stock": "20" },
+                { "id": "5b", "size": "medium","color": "yellow", "price": "800", "image_url": "/newArrival-img4.png", "stock": "30" },
+                { "id": "5c", "size": "xl","color": "yellow", "price": "950", "image_url": "/newArrival-img3.png", "stock": "20" },
             ]
         }
     ];

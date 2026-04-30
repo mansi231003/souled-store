@@ -1,0 +1,19 @@
+@media screen and (max-width:950px) {
+    .product-page .hero-section{
+        flex-direction: column;
+    }
+
+    .display-none{
+        display: none;
+    }
+
+    .left-container{
+        width: 90%;
+    }
+
+    .right-container{
+        width: 100%;
+        padding-left: 14px;
+        padding-right: 14px;
+    }
+}

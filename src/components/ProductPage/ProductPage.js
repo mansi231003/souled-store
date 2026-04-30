@@ -6,6 +6,9 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../Redux/CartSlice/cartSlice";
 import { useNavigate } from "react-router-dom";
+import CartSidebar from "../CartSidbar/CartSidebar";
+import Sidebar from "../Sidebar/Sidebar";
+import "./ProductPage.css"
 
 export default function ProductPage() {
     const { id } = useParams();
@@ -19,15 +22,12 @@ export default function ProductPage() {
     const selectedVariant = product.variants.find(v => v.size === selectedSize &&
         v.color === selectedColor
     );
+    const [cartStatus, setCartStatus] = useState("idle");
 
-    const availableColors = selectedSize
-        ? product.variants
-            .filter(v => v.size === selectedSize)
-            .map(v => v.color)
+    const availableColors = selectedSize ? product.variants.filter(v => v.size === selectedSize).map(v => v.color)
         : [];
 
     let displayPrice = "";
-
     if (selectedVariant) {
         displayPrice = `$${selectedVariant.price}`;
     } else if (product.price_range.min) {
@@ -51,38 +51,47 @@ export default function ProductPage() {
             setError("Please select a color");
             return;
         }
-
+        setCartStatus("adding");
         setError("");
 
-      
-        dispatch(addToCart({
-            product_id: product.product_id,
-            title: product.title,
-            image: selectedVariant?.image_url || product.image_url,
-            price: selectedVariant?.price || product.price_range.max,
-            size: selectedSize,
-            color: selectedColor,
-            quantity: quantity
-        }));
+        setTimeout(() => {
+            dispatch(addToCart({
+                id: crypto.randomUUID(),
+                product_id: product.product_id,
+                title: product.title,
+                image: selectedVariant?.image_url || product.image_url,
+                price: selectedVariant?.price || product.price_range.max,
+                size: selectedSize,
+                color: selectedColor,
+                quantity: quantity
+            }));
+            setCartStatus("added");
+            setTimeout(() => {
+                setCartStatus("idle");
+            }, 1000);
 
-        setAdded(true);
+        }, 2000);
     };
+    
+    const [sidebar, setSidebar] = useState(false)
+    const [cartSidebar, setcartSidebar] = useState(false)
 
     return (
 
         <>
-            <Navbar />
-            <div className="pl-10">
-                <div className="pt-[15px] pb-[15px] text-[12px] text-[#a7a9ac] gap-1 flex">Home /<span>T-Shirts /</span><span>The Souled Store /</span><span className="text-[#58595b]">{product.title}</span></div>
-                <div className="flex gap-4">
-                    <div className="grid grid-cols-2 gap-2 w-[57%]">
+            <Navbar toggleSidebar={() => setSidebar(true)} cartSidebar={() => setcartSidebar(true)} />
+            <CartSidebar sidebarOpen={cartSidebar} close={() => setcartSidebar(false)} />
+            <div className="pl-5 flex flex-col justify-center items-center product-page">
+                <div className="w-full pt-[15px] pb-[15px] text-[12px] text-[#a7a9ac] gap-1 flex">Home /<span>T-Shirts /</span><span>The Souled Store /</span><span className="text-[#58595b]">{product.title}</span></div>
+                <div className="flex gap-4 pb-6 hero-section">
+                    <div className="grid grid-cols-2 gap-2 w-[57%] h-max left-container">
                         <img src={selectedVariant ? selectedVariant.image_url : `/${product.image_url}`} alt={product.title} />
                         <img src={selectedVariant ? selectedVariant.image_url : `/${product.image_url}`} alt={product.title} />
-                        <img src={selectedVariant ? selectedVariant.image_url : `/${product.image_url}`} alt={product.title} />
-                        <img src={selectedVariant ? selectedVariant.image_url : `/${product.image_url}`} alt={product.title} />
+                        <img className="display-none" src={selectedVariant ? selectedVariant.image_url : `/${product.image_url}`} alt={product.title} />
+                        <img className="display-none" src={selectedVariant ? selectedVariant.image_url : `/${product.image_url}`} alt={product.title} />
 
                     </div>
-                    <div className="pl-8 w-[40%]">
+                    <div className="pl-8 w-[40%] right-container">
                         <div className="flex flex-col border-b pb-3">
                             <span className="font-[700] text-[25px] text-[#58595b] h-[32px]">{product.title}</span><span className="text-[14px] font-[500] text-[#a7a9ac]">T-Shirts</span>
                         </div>
@@ -92,9 +101,9 @@ export default function ProductPage() {
 
                         <div className="pt-3 pb-3 gap-2 flex font-[700] text-[16px] text-[#58595b]">{variantData.size.label}<u className="text-[#117a7a] font-normal">SIZE CHART</u></div>
 
-                        <div className="flex gap-2 pb-2">
+                        <div className="flex gap-2 pb-3">
                             {Object.values(variantData.size.values[0]).map((val) => (
-                                <div key={val.key} onClick={() => { setSelectedSize(val.key); setSelectedColor("") }} className={`${selectedSize === val.key ? "bg-black text-white" : "bg-white text-[#58595b]"} rounded-[5px] text-[#58595b] border-[2px] border-[#ccc] flex justify-center items-center p-1 w-[45px] }`}> {val.label}</div>
+                                <div key={val.key} onClick={() => { setSelectedSize(val.key); setSelectedColor("") }} className={`${selectedSize === val.key ? "bg-black text-white" : "bg-white text-[#58595b]"} rounded-[5px] text-[#58595b] border-[2px] border-[#ccc] flex justify-center items-center p-1 w-[45px] cursor-pointer }`}> {val.label}</div>
                             ))}
                         </div>
                         {variantData.color && (
@@ -105,7 +114,8 @@ export default function ProductPage() {
                                         const isAvailable = selectedSize ? availableColors.includes(val.key) : true;
 
                                         return (
-                                            <div key={val.key} onClick={() => isAvailable && setSelectedColor(val.key)} style={{ backgroundColor: val.color_code }} className={`rounded-full flex justify-center items-center w-[35px] h-[35px]   ${isAvailable ? "cursor-pointer" : "opacity-30"} ${selectedColor === val.key ? "border-2 border-black" : ""}`}></div>
+                                        <div className={`rounded-full p-[4px] border-2  ${selectedColor === val.key ? "border-black" : "border-white"}`}><div key={val.key} onClick={() => isAvailable && setSelectedColor(val.key)} style={{ backgroundColor: val.color_code }} className={`rounded-full flex justify-center items-center w-[25px] h-[25px]   ${isAvailable ? "cursor-pointer" : "opacity-30"}`}></div>
+                                        </div>
                                         );
                                     })}
                                 </div>
@@ -114,31 +124,36 @@ export default function ProductPage() {
 
                         <div className="flex gap-3 items-center pb-3">
                             <div className="text-[#58595b] text-[14px]">Quantity</div>
-                            <select
-                                value={quantity}
-                                onChange={(e) => setQuantity(Number(e.target.value))}
-                                className="border border-[#ccc] rounded-[5px] p-[4px] text-[15px]"
-                            >
+                            <select value={quantity} onChange={(e) => setQuantity(Number(e.target.value))}
+                                className="border border-[#ccc] rounded-[5px] p-[4px] text-[15px]">
                                 <option value={1}>01</option>
                                 <option value={2}>02</option>
                                 <option value={3}>03</option>
                             </select>
                         </div>
                         {error && (
-                            <div className="text-[#a94442] bg-[#f2dede] rounded-[6px] p-3 mb-4 text-[14px]">{error}</div>
+                            <div className="text-[#a94442] bg-[rgb(242,222,222)] rounded-[6px] p-3 mb-4 text-[14px]">{error}</div>
                         )}
                         <div className="flex gap-2">
-                            {!added ? (
-                                <div onClick={handleAddToCart} className="bg-[#ec3d25] w-[229px] text-white pt-[8px] pb-[8px] flex justify-center items-center rounded-[3px] font-[700] text-[14px] cursor-pointer">
+                            {cartStatus === "idle" && (
+                                <div onClick={handleAddToCart}
+                                    className="bg-[#ec3d25] w-[229px] text-white pt-[8px] pb-[8px] flex justify-center items-center rounded-[3px] font-[700] text-[14px] cursor-pointer">
                                     ADD TO CART
                                 </div>
-                            ) : (
-                                <div onClick={() => navigate("/cart")} className="bg-green-600 w-[229px] text-white pt-[8px] pb-[8px] flex justify-center items-center rounded-[3px] font-[700] text-[14px] cursor-pointer">
-                                    GO TO CART
+                            )}
+
+                            {cartStatus === "adding" && (
+                                <div className="bg-gray-500 w-[229px] text-white pt-[8px] pb-[8px] flex justify-center items-center rounded-[3px] font-[700] text-[14px]">
+                                    ADDING TO CART...
                                 </div>
                             )}
-                            <div className="flex justify-center items-center text-[14px] pt-[5px] pb-[5px] font-[400] text-[#148c8d] border border-[#148c8d] rounded-[2px] w-[147px] gap-[1px]"><svg xmlns="http://www.w3.org/2000/svg" height="22px" viewBox="0 -960 960 960" width="22px" fill="#148c8d"><path d="m480-120-58-52q-101-91-167-157T150-447.5Q111-500 95.5-544T80-634q0-94 63-157t157-63q52 0 99 22t81 62q34-40 81-62t99-22q94 0 157 63t63 157q0 46-15.5 90T810-447.5Q771-395 705-329T538-172l-58 52Zm0-108q96-86 158-147.5t98-107q36-45.5 50-81t14-70.5q0-60-40-100t-100-40q-47 0-87 26.5T518-680h-76q-15-41-55-67.5T300-774q-60 0-100 40t-40 100q0 35 14 70.5t50 81q36 45.5 98 107T480-228Zm0-273Z" /></svg>ADD TO WISHLIST</div>
 
+                            {cartStatus === "added" && (
+                                <div className="bg-green-600 w-[229px] text-white pt-[8px] pb-[8px] flex justify-center items-center rounded-[3px] font-[700] text-[14px]">
+                                    ADDED
+                                </div>
+                            )}
+                            <div className="text-[#148c8d] flex items-center w-[170px] justify-center border border-[#148c8d] h-[39px] text-[14px]"><svg xmlns="http://www.w3.org/2000/svg" height="21px" viewBox="0 -960 960 960" width="20px" fill="#148c8d"><path d="m480-120-58-52q-101-91-167-157T150-447.5Q111-500 95.5-544T80-634q0-94 63-157t157-63q52 0 99 22t81 62q34-40 81-62t99-22q94 0 157 63t63 157q0 46-15.5 90T810-447.5Q771-395 705-329T538-172l-58 52Zm0-108q96-86 158-147.5t98-107q36-45.5 50-81t14-70.5q0-60-40-100t-100-40q-47 0-87 26.5T518-680h-76q-15-41-55-67.5T300-774q-60 0-100 40t-40 100q0 35 14 70.5t50 81q36 45.5 98 107T480-228Zm0-273Z" /></svg>ADD TO WISHLIST</div>
                         </div>
 
                         <div className="flex items-center gap-[4px] text-[#58595b] text-[22px] mt-[18px] mb-[18px]">
