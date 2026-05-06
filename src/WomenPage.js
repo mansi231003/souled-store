@@ -1,21 +1,20 @@
 import Navbar from './components/Navbar/Navbar';
 import Sidebar from './components/Sidebar/Sidebar';
-// import Herosection from './components/Hero Section/Herosection';
-import Collections from './components/Collections/Collections';
+import Heading from './components/Heading/Heading';
 import ProductSlider from './components/Product slider/ProductSlider';
 import Slider from './components/Slider/Slider';
 import Categories from './components/Categories/Categories';
 import Curated from './components/Curated for YOU/Curated';
-// import Button from './components/Button/Button';
 import CategorySection from './components/Category Section/CategorySection';
 import Footer from './components/Footer/Footer';
 import './App.css';
 import FeaturesBar from './components/Features bar/FeaturesBar';
 import { useState } from 'react';
+import { womenProducts } from './data/womenProducts';
 
 function WomenPage() {
 
-  const womenProducts = [
+  const womeProducts = [
     {
       image: "women-arr1.png",
       title: "Peanuts:Works Out",
@@ -176,14 +175,14 @@ function WomenPage() {
       <FeaturesBar />
 
       <div className='collections'>
-        <Collections>NEW IN:COLLLECTIONS</Collections>
+        <Heading>NEW IN:COLLLECTIONS</Heading>
         <Slider slides={newCollections} />
       </div>
-      <Collections>NEW ARRIVALS</Collections>
+      <Heading>NEW ARRIVALS</Heading>
       <ProductSlider products={womenProducts} />
-      <Collections>CATEGORIES</Collections>
-      <Categories cards={womenCategoriesImg} />
-      <Collections>CURATED FOR YOU</Collections>
+      <Heading>CATEGORIES</Heading>
+      <Categories cards={womenCategoriesImg} tag="women" />
+      <Heading>CURATED FOR YOU</Heading>
       <Curated images={womenCuratedImages} />
       <CategorySection products={womenProducts} buttons={womenCategories}/>
         

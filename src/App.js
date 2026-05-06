@@ -5,6 +5,7 @@ import SneakersPage from "./sneakersPage";
 import Registration from "./components/Registration Page/Registration";
 import ProductPage from "./components/ProductPage/ProductPage";
 import AddToCart from "./components/Add To cart/AddToCart";
+import FilterCollections from "./components/FilterCollections/FilterCollections";
 
 function App(){
   return(
@@ -17,6 +18,7 @@ function App(){
         <Route path ="/registration" element={<Registration/>}></Route>
         <Route path="/product/:id" element={<ProductPage/>}></Route>
         <Route path="/cart" element={<AddToCart/>}></Route>
+        <Route path="/filter" element={<FilterCollections/>}></Route>
       </Routes>
     </Router>
     </>

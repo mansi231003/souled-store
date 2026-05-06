@@ -1,7 +1,6 @@
 import Navbar from './components/Navbar/Navbar';
 import Sidebar from './components/Sidebar/Sidebar';
-// import Herosection from './components/Hero Section/Herosection';
-import Collections from './components/Collections/Collections';
+import Heading from './components/Heading/Heading';
 import ProductSlider from './components/Product slider/ProductSlider';
 import Slider from './components/Slider/Slider';
 import Categories from './components/Categories/Categories';
@@ -173,14 +172,14 @@ function SneakersPage() {
       <FeaturesBar />
 
       <div className='collections'>
-        <Collections>DROP ZONE</Collections>
+        <Heading>DROP ZONE</Heading>
         <Slider slides={dropZone} />
       </div>
-      <Collections>FRESH OUT THE LAB</Collections>
+      <Heading>FRESH OUT THE LAB</Heading>
       <ProductSlider products={sneakers} />
-      <Collections>CATEGORIES</Collections>
+      <Heading>CATEGORIES</Heading>
       <Categories cards={sneakersCategoryImg} />
-      <Collections>CURATED FOR YOU</Collections>
+      <Heading>CURATED FOR YOU</Heading>
       <Curated images={curatedImages} />
       <CategorySection products={sneakers} buttons={sneakersCategory}/>
 

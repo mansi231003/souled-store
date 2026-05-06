@@ -4,9 +4,9 @@ import { Swiper, SwiperSlide } from "swiper/react"
 import 'swiper/css/navigation';
 import { Navigation, Autoplay,Pagination } from 'swiper/modules';
 import 'swiper/css';
-import { products } from "../../menPage";
 
-export default function ProductSlider() {
+
+export default function ProductSlider({products}) {
     return (
         <>
             <div className="collections relative">

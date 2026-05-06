@@ -1,23 +1,28 @@
 import Navbar from "../Navbar/Navbar";
 import Footer from "../Footer/Footer";
-import { products } from "../../menPage";
-import { useParams } from "react-router-dom";
+import { useParams, useLocation } from "react-router-dom";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../Redux/CartSlice/cartSlice";
-import { useNavigate } from "react-router-dom";
 import CartSidebar from "../CartSidbar/CartSidebar";
-import Sidebar from "../Sidebar/Sidebar";
+// import Sidebar from "../Sidebar/Sidebar";
 import "./ProductPage.css"
+import { allProducts } from "../../data/allProducts"
 
 export default function ProductPage() {
     const { id } = useParams();
-    const product = products.find(p => p.product_id === id);
+    const { state } = useLocation();
+    let product = state?.product
+    if (!product) {
+        product = allProducts.find(p => p.product_id === id);
+    }
+
     const [selectedSize, setSelectedSize] = useState("");
     const [selectedColor, setSelectedColor] = useState("");
     const [error, setError] = useState("");
     const [quantity, setQuantity] = useState(1);
     const variantData = product.variant_values[0];
+
 
     const selectedVariant = product.variants.find(v => v.size === selectedSize &&
         v.color === selectedColor
@@ -36,11 +41,8 @@ export default function ProductPage() {
         displayPrice = `$${product.price_range.max}`;
     }
 
-
     const dispatch = useDispatch();
-    const navigate = useNavigate();
-    const [added, setAdded] = useState(false);
-
+  
     const handleAddToCart = () => {
         if (!selectedSize) {
             setError("Please select a size");
@@ -72,7 +74,7 @@ export default function ProductPage() {
 
         }, 2000);
     };
-    
+
     const [sidebar, setSidebar] = useState(false)
     const [cartSidebar, setcartSidebar] = useState(false)
 
@@ -114,8 +116,8 @@ export default function ProductPage() {
                                         const isAvailable = selectedSize ? availableColors.includes(val.key) : true;
 
                                         return (
-                                        <div className={`rounded-full p-[4px] border-2  ${selectedColor === val.key ? "border-black" : "border-white"}`}><div key={val.key} onClick={() => isAvailable && setSelectedColor(val.key)} style={{ backgroundColor: val.color_code }} className={`rounded-full flex justify-center items-center w-[25px] h-[25px]   ${isAvailable ? "cursor-pointer" : "opacity-30"}`}></div>
-                                        </div>
+                                            <div className={`rounded-full p-[4px] border-2  ${selectedColor === val.key ? "border-black" : "border-white"}`}><div key={val.key} onClick={() => isAvailable && setSelectedColor(val.key)} style={{ backgroundColor: val.color_code }} className={`rounded-full flex justify-center items-center w-[25px] h-[25px]   ${isAvailable ? "cursor-pointer" : "opacity-30"}`}></div>
+                                            </div>
                                         );
                                     })}
                                 </div>
