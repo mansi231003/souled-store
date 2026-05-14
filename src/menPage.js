@@ -13,7 +13,7 @@ import { useState } from 'react';
 import CartSidebar from './components/CartSidbar/CartSidebar';
 import { menProducts } from './data/menProducts';
 
-function MenPage() {
+function MenPage({openCart}) {
 
   const menSlides1 = [
     { image: "man-img1.png" },
@@ -109,7 +109,7 @@ function MenPage() {
 
  
  const [sidebar,setSidebar]=useState(false)
-  const [cartSidebar,setcartSidebar]=useState(false)
+
   return (
     
     <div className='men-page'>
@@ -119,8 +119,7 @@ function MenPage() {
          <ProductSlider products={menSidebarProducts}/>
 
       </Sidebar>
-     <CartSidebar sidebarOpen={cartSidebar} close={()=>setcartSidebar(false)} />
-      <Navbar toggleSidebar={()=>setSidebar(true)} cartSidebar={()=>setcartSidebar(true)}/>
+      <Navbar toggleSidebar={()=>setSidebar(true)} cartSidebar={openCart}/>
       <Slider className="slider1" slides={menSlides1} />
       <Slider className="slider2" slides={menSlides2} />
       <FeaturesBar />

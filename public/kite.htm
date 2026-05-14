@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en" data-theme="default">
+	<head>
+		<base href="/" />
+		<meta charset="utf-8" />
+		<meta http-equiv="x-ua-compatible" content="ie=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="description" content="Log in to Kite, Zerodha's fast trading platform designed for speed, simplicity, and a user-friendly experience" />
+		<meta name="keywords" content="Kite, Zerodha, trading platform, best trading platform, fast trading platform, free trading platform" />
+		<title>Login to Kite by Zerodha - Fast, easy trading and investment platform</title>
+
+		<!-- Touch Icons - iOS and Android 2.1+ 180x180 pixels in size. -->
+		<link rel="apple-touch-icon-precomposed" sizes="57x57" href="/static/images/browser-icons/apple-touch-icon-57x57.png"/>
+		<link rel="apple-touch-icon-precomposed" sizes="114x114" href="/static/images/browser-icons/apple-touch-icon-114x114.png"/>
+		<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/static/images/browser-icons/apple-touch-icon-72x72.png"/>
+		<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/static/images/browser-icons/apple-touch-icon-144x144.png"/>
+		<link rel="apple-touch-icon-precomposed" sizes="60x60" href="/static/images/browser-icons/apple-touch-icon-60x60.png"/>
+		<link rel="apple-touch-icon-precomposed" sizes="120x120" href="/static/images/browser-icons/apple-touch-icon-120x120.png"/>
+		<link rel="apple-touch-icon-precomposed" sizes="76x76" href="/static/images/browser-icons/apple-touch-icon-76x76.png"/>
+		<link rel="apple-touch-icon-precomposed" sizes="152x152" href="/static/images/browser-icons/apple-touch-icon-152x152.png"/>
+		<link rel="icon" type="image/png" href="/static/images/browser-icons/favicon-196x196.png" sizes="196x196"/>
+		<link rel="icon" type="image/png" href="/static/images/browser-icons/favicon-96x96.png" sizes="96x96"/>
+		<link rel="icon" type="image/png" href="/static/images/browser-icons/favicon-32x32.png" sizes="32x32"/>
+		<link rel="icon" type="image/png" href="/static/images/browser-icons/favicon-16x16.png" sizes="16x16"/>
+		<link rel="icon" type="image/png" href="/static/images/browser-icons/favicon-128.png" sizes="128x128"/>
+		<meta name="application-name" content="&nbsp;"/>
+		<meta name="msapplication-TileColor" content="#FFFFFF" />
+		<meta name="msapplication-TileImage" content="/static/images/browser-icons/mstile-144x144.png" />
+		<meta name="msapplication-square70x70logo" content="/static/images/browser-icons/mstile-70x70.png" />
+		<meta name="msapplication-square150x150logo" content="/static/images/browser-icons/mstile-150x150.png" />
+		<meta name="msapplication-wide310x150logo" content="/static/images/browser-icons/mstile-310x150.png" />
+		<meta name="msapplication-square310x310logo" content="/static/images/browser-icons/mstile-310x310.png" />
+
+		<!-- For IE 9 and below -->
+		<!--[if IE]><link rel="shortcut icon" href="/static/images/browser-icons/favicon.ico"><![endif]-->
+		<!-- Firefox, Chrome, Safari, IE 11+ and Opera. 196x196 pixels in size. -->
+		<link rel="icon" href="/static/images/browser-icons/favicon-32x32.png">
+
+		<!-- Style sheets -->
+		<link href="//fonts.googleapis.com/css?family=Open+Sans:300,400,600" rel="stylesheet" type="text/css">
+		<style>
+			[data-theme="dark"] body {
+				background-color: #111111;
+			}
+		</style>
+	<link rel="preconnect" href="https://kite.zerodha.com"><script defer src="/static/js/lib-polyfill.7e248131.js"></script><script defer src="/static/js/lib-axios.2a2094f3.js"></script><script defer src="/static/js/lib-vue.e07d34c4.js"></script><script defer src="/static/js/lib-router.f7c1c8ae.js"></script><script defer src="/static/js/404.e3d8ad5d.js"></script><script defer src="/static/js/index.6955bc9c.js"></script><link href="/static/css/index.f65a1abd.css" rel="stylesheet"></head>
+	<body>
+		<noscript>
+		<strong>We're sorry but kite doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
+		</noscript>
+		<div id="app"></div>
+		<!-- built files will be auto injected -->
+		<!-- Check current theme and set the background early to avoid the flickering when JS is not loaded. -->
+		<script type="text/javascript" async>
+			// Add `maximum-scale=1` in iOS devices to disable auto zoom on input focus.
+			try {
+				if (navigator.platform && /iPad|iPhone|iPod/.test(navigator.platform)) {
+					document.head.querySelector('meta[name="viewport"]').content = "width=device-width, initial-scale=1, maximum-scale=1";
+				}
+			} catch (_) {}
+
+			// Set theme.
+			try {
+				var queryParams = new URLSearchParams(window.location.search)
+				var theme = queryParams.get("theme")
+				if (!theme) {
+					theme = JSON.parse(localStorage.__storejs_kite_theme);
+				}
+				document.documentElement.setAttribute("data-theme", theme);
+			} catch (_) {}
+		</script>
+	</body>
+</html>

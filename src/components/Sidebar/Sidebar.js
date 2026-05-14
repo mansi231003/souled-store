@@ -1,7 +1,8 @@
 import { useState } from "react"
 import "./Sidebar.css"
 import { Link} from "react-router-dom";
-export default function Sidebar({ children, isOpen,closeSidebar }) {
+
+export default function Sidebar({ children,isOpen,closeSidebar }) {
 
     if (isOpen) {
         document.body.style.overflow = 'hidden';

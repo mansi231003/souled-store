@@ -4,12 +4,12 @@ import { useParams, useLocation } from "react-router-dom";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../Redux/CartSlice/cartSlice";
-import CartSidebar from "../CartSidbar/CartSidebar";
-// import Sidebar from "../Sidebar/Sidebar";
+import { addToWishlist, removeFromWishlist } from "../../Redux/WishlistSlice/WishlistSlice";
+import { useSelector } from "react-redux";
 import "./ProductPage.css"
 import { allProducts } from "../../data/allProducts"
 
-export default function ProductPage() {
+export default function ProductPage({ openCart }) {
     const { id } = useParams();
     const { state } = useLocation();
     let product = state?.product
@@ -27,7 +27,6 @@ export default function ProductPage() {
     const selectedVariant = product.variants.find(v => v.size === selectedSize &&
         v.color === selectedColor
     );
-    const [cartStatus, setCartStatus] = useState("idle");
 
     const availableColors = selectedSize ? product.variants.filter(v => v.size === selectedSize).map(v => v.color)
         : [];
@@ -42,7 +41,15 @@ export default function ProductPage() {
     }
 
     const dispatch = useDispatch();
-  
+
+    const wishlistItems = useSelector(state => state.wishlist.items);
+    const isWishlisted = wishlistItems.some(
+        item => item.product_id === product.product_id
+    );
+    console.log(wishlistItems)
+    const [cartStatus, setCartStatus] = useState("idle");
+    const [wishStatus, setWishStatus] = useState("");
+
     const handleAddToCart = () => {
         if (!selectedSize) {
             setError("Please select a size");
@@ -75,22 +82,44 @@ export default function ProductPage() {
         }, 2000);
     };
 
-    const [sidebar, setSidebar] = useState(false)
-    const [cartSidebar, setcartSidebar] = useState(false)
+    const handleWishlist = () => {
+
+        const exists = wishlistItems.find(
+            item => item.product_id === product.product_id
+        );
+
+        if (exists) {
+            dispatch(removeFromWishlist(exists.id));
+
+        }
+        else {
+            dispatch(addToWishlist({
+                id: crypto.randomUUID(),
+                product_id: product.product_id,
+                title: product.title,
+                image: selectedVariant?.image_url || product.image_url,
+                price: selectedVariant?.price || product.price_range.max,
+                size: selectedSize,
+                color: selectedColor
+            }));
+   
+        }
+
+    };
+
 
     return (
 
         <>
-            <Navbar toggleSidebar={() => setSidebar(true)} cartSidebar={() => setcartSidebar(true)} />
-            <CartSidebar sidebarOpen={cartSidebar} close={() => setcartSidebar(false)} />
+            <Navbar cartSidebar={openCart} />
             <div className="pl-5 flex flex-col justify-center items-center product-page">
                 <div className="w-full pt-[15px] pb-[15px] text-[12px] text-[#a7a9ac] gap-1 flex">Home /<span>T-Shirts /</span><span>The Souled Store /</span><span className="text-[#58595b]">{product.title}</span></div>
                 <div className="flex gap-4 pb-6 hero-section">
                     <div className="grid grid-cols-2 gap-2 w-[57%] h-max left-container">
-                        <img src={selectedVariant ? selectedVariant.image_url : `/${product.image_url}`} alt={product.title} />
-                        <img src={selectedVariant ? selectedVariant.image_url : `/${product.image_url}`} alt={product.title} />
-                        <img className="display-none" src={selectedVariant ? selectedVariant.image_url : `/${product.image_url}`} alt={product.title} />
-                        <img className="display-none" src={selectedVariant ? selectedVariant.image_url : `/${product.image_url}`} alt={product.title} />
+                        <img src={selectedVariant ? selectedVariant.image_url : `${product.image_url}`} alt={product.title} />
+                        <img src={selectedVariant ? selectedVariant.image_url : `${product.image_url}`} alt={product.title} />
+                        <img className="display-none" src={selectedVariant ? selectedVariant.image_url : `${product.image_url}`} alt={product.title} />
+                        <img className="display-none" src={selectedVariant ? selectedVariant.image_url : `${product.image_url}`} alt={product.title} />
 
                     </div>
                     <div className="pl-8 w-[40%] right-container">
@@ -139,23 +168,37 @@ export default function ProductPage() {
                         <div className="flex gap-2">
                             {cartStatus === "idle" && (
                                 <div onClick={handleAddToCart}
-                                    className="bg-[#ec3d25] w-[229px] text-white pt-[8px] pb-[8px] flex justify-center items-center rounded-[3px] font-[700] text-[14px] cursor-pointer">
+                                    className="cart-button bg-[#ec3d25] w-[229px] text-white pt-[8px] pb-[8px] flex justify-center items-center rounded-[3px] font-[700] text-[14px] cursor-pointer">
                                     ADD TO CART
                                 </div>
                             )}
 
                             {cartStatus === "adding" && (
-                                <div className="bg-gray-500 w-[229px] text-white pt-[8px] pb-[8px] flex justify-center items-center rounded-[3px] font-[700] text-[14px]">
-                                    ADDING TO CART...
-                                </div>
+                                <div className="cart-button bg-gray-500 w-[229px] text-white pt-[8px] pb-[8px] flex justify-center items-center rounded-[3px] font-[700] text-[14px]">
+                                    ADDING TO CART...</div>
                             )}
 
                             {cartStatus === "added" && (
-                                <div className="bg-green-600 w-[229px] text-white pt-[8px] pb-[8px] flex justify-center items-center rounded-[3px] font-[700] text-[14px]">
-                                    ADDED
-                                </div>
+                                <div className="cart-button bg-green-600 w-[229px] text-white pt-[8px] pb-[8px] flex justify-center items-center rounded-[3px] font-[700] text-[14px]">
+                                    ADDED</div>
                             )}
-                            <div className="text-[#148c8d] flex items-center w-[170px] justify-center border border-[#148c8d] h-[39px] text-[14px]"><svg xmlns="http://www.w3.org/2000/svg" height="21px" viewBox="0 -960 960 960" width="20px" fill="#148c8d"><path d="m480-120-58-52q-101-91-167-157T150-447.5Q111-500 95.5-544T80-634q0-94 63-157t157-63q52 0 99 22t81 62q34-40 81-62t99-22q94 0 157 63t63 157q0 46-15.5 90T810-447.5Q771-395 705-329T538-172l-58 52Zm0-108q96-86 158-147.5t98-107q36-45.5 50-81t14-70.5q0-60-40-100t-100-40q-47 0-87 26.5T518-680h-76q-15-41-55-67.5T300-774q-60 0-100 40t-40 100q0 35 14 70.5t50 81q36 45.5 98 107T480-228Zm0-273Z" /></svg>ADD TO WISHLIST</div>
+
+                            <div onClick={handleWishlist} className="cart-button text-[#148c8d] flex items-center w-[170px] justify-center border border-[#148c8d] h-[39px] text-[14px] cursor-pointer">
+                                {
+                                    isWishlisted ?
+                                        <>
+                                            <svg xmlns="http://www.w3.org/2000/svg" height="21px" viewBox="0 -960 960 960" width="20px" fill="#148c8d">
+                                                <path d="m480-120-58-52q-101-91-167-157T150-447.5Q111-500 95.5-544T80-634q0-94 63-157t157-63q52 0 99 22t81 62q34-40 81-62t99-22q94 0 157 63t63 157q0 46-15.5 90T810-447.5Q771-395 705-329T538-172l-58 52Z" />
+                                            </svg>ADDED TO WISHLIST
+                                        </> :
+                                        <>
+                                            <svg xmlns="http://www.w3.org/2000/svg" height="21px" viewBox="0 -960 960 960" width="20px" fill="#148c8d"><path d="m480-120-58-52q-101-91-167-157T150-447.5Q111-500 95.5-544T80-634q0-94 63-157t157-63q52 0 99 22t81 62q34-40 81-62t99-22q94 0 157 63t63 157q0 46-15.5 90T810-447.5Q771-395 705-329T538-172l-58 52Zm0-108q96-86 158-147.5t98-107q36-45.5 50-81t14-70.5q0-60-40-100t-100-40q-47 0-87 26.5T518-680h-76q-15-41-55-67.5T300-774q-60 0-100 40t-40 100q0 35 14 70.5t50 81q36 45.5 98 107T480-228Zm0-273Z" /></svg>
+                                            ADD TO WISHLIST
+                                        </>
+                                }
+
+                            </div>
+
                         </div>
 
                         <div className="flex items-center gap-[4px] text-[#58595b] text-[22px] mt-[18px] mb-[18px]">

@@ -11,60 +11,10 @@ import './App.css';
 import FeaturesBar from './components/Features bar/FeaturesBar';
 import { useState } from 'react';
 import { womenProducts } from './data/womenProducts';
+import CartSidebar from './components/CartSidbar/CartSidebar';
 
-function WomenPage() {
+function WomenPage({openCart}) {
 
-  const womeProducts = [
-    {
-      image: "women-arr1.png",
-      title: "Peanuts:Works Out",
-      category: "T-Shirts",
-      price: 799
-    },
-    {
-      image: "women-arr2.png",
-      title: "Ben10:Tennyson",
-      category: "Oversized Jerseys",
-      price: 1199
-    },
-    {
-      image: "women-arr3.png",
-      title: "Relaxed-Fit Shirt:Champagne",
-      category: "Cotton Linen Shirts",
-      price: 1799
-    },
-    {
-      image: "women-arr4.png",
-      title: "Oversized T-Shirt:Wan Blue",
-      category: "Oversized T-Shirts",
-      price: 1099
-    },
-     {
-      image: "women-arr3.png",
-      title: "Relaxed-Fit Shirt:Champagne",
-      category: "Cotton Linen Shirts",
-      price: 1799
-    },
-    {
-      image: "women-arr1.png",
-      title: "Peanuts:Works Out",
-      category: "T-Shirts",
-      price: 799
-    },
-      {
-      image: "women-arr4.png",
-      title: "Oversized T-Shirt:Wan Blue",
-      category: "Oversized T-Shirts",
-      price: 1099
-    },
-     {
-      image: "women-arr2.png",
-      title: "Ben10:Tennyson",
-      category: "Oversized Jerseys",
-      price: 1199
-    },
-
-  ]
 
   const womenSlides1 = [
     { image: "woman-img1.png" },
@@ -169,7 +119,7 @@ function WomenPage() {
 
       </Sidebar>
      
-      <Navbar toggleSidebar={()=>setSidebar(true)}/>
+      <Navbar toggleSidebar={()=>setSidebar(true)} cartSidebar={openCart}/>
       <Slider className="slider1" slides={womenSlides1} />
       <Slider className="slider2" slides={womenSlides2} />
       <FeaturesBar />

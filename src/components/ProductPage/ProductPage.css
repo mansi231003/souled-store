@@ -17,6 +17,22 @@
         padding-right: 14px;
     }
 }
-@media screen and (max-width:500px) {
 
+@media screen and (max-width:500px) {
+.cart-button{
+    width: 150px;
+
+}
+.right-container{
+    padding: 0;
+}
+}
+
+@media screen and (max-width:350px) {
+.cart-button{
+    width:max-content;
+    padding-left: 11px;
+    padding-right: 11px;
+
+}
 }

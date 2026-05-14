@@ -11,7 +11,7 @@ export default function Categories({cards=[],tag}){
               
                 {cards.map((item,index)=>(
                     <img key={index}  onClick={() =>
-                            navigate("/filter", { state: { tag } })} src={item.img}/>
+                            navigate(`/filter/${tag}`, { state: { tag } })} src={item.img}/>
                 ))}
             
             </div>

@@ -34,7 +34,7 @@ export default function AddToCart() {
                     : (
                         <div className="flex p-5 justify-center gap-4" >
 
-                            {cartItems.length > 0 && (
+                            {/* {cartItems.length > 0 && (
                                 <div className="border border-[#eee] w-[58%] flex flex-col items-center h-max" >
                                     <div className="flex justify-between border-b-[1.5px] border-b-[#eee] items-center p-4 w-full">
                                         <div className="flex text-[13px] font-[700] gap-3">
@@ -91,8 +91,8 @@ export default function AddToCart() {
                                     ))
                                     }
                                 </div>
-                            )}
-                            <div className="w-[29%] flex flex-col gap-3">
+                            )} */}
+                            <div className="w-[430px] flex flex-col gap-3">
                                 <div className="border border-[rgba(0,0,0,0.15)]">
                                     <div className="flex justify-center items-center text-[16.5px] h-[45px] font-[600] bg-[linear-gradient(90deg,_#f4e9fd,_#d8c0e9,_#d6f1fe,_#f2f1fe,_#d9c1ea,_#f8def4)] ">YOU ARE MISSING OUT ON!</div>
                                     <div className="flex justify-between p-3 items-center border-dashed border-b border-b-[#dfdfdf]">
@@ -114,7 +114,7 @@ export default function AddToCart() {
                                 <div className="border border-[rgba(0,0,0,0.15)]">
                                     <div className="border-b border-b-[rgba(0,0,0,0.15)] p-2 flex justify-between text-[#787878] text-[14px]">
                                         <div className="">Cart Total<span className="text-[12px]">  (Incl. all taxes)</span></div>
-                                        <div className="font-[700]">$1299.00</div>
+                                        <div className="font-[700]">${cartTotal.toFixed(2)}</div>
                                     </div>
                                     <div className="p-2 border-b border-b-[rgba(0,0,0,0.15)] flex justify-between text-[#787878] text-[14.5px]">
                                         <div>Shipping Charges</div>

@@ -1,0 +1,11 @@
+@media screen and (max-width:850px) {
+    .wishlist-section{
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media screen and (max-width:500px) {
+    .wishlist-section{
+        grid-template-columns: 1fr ;
+    }
+}

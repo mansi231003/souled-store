@@ -12,7 +12,7 @@ import './App.css';
 import FeaturesBar from './components/Features bar/FeaturesBar';
 import { useState } from 'react';
 
-function SneakersPage() {
+function SneakersPage({openCart}) {
 
   const sneakers = [
     {
@@ -166,7 +166,7 @@ function SneakersPage() {
 
       </Sidebar>
      
-      <Navbar toggleSidebar={()=>setSidebar(true)}/>
+      <Navbar toggleSidebar={()=>setSidebar(true)} cartSidebar={openCart}/>
       <Slider className="slider1" slides={sneakerSlides1} />
       <Slider className="slider2" slides={sneakerSlides2} />
       <FeaturesBar />

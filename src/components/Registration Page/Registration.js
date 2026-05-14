@@ -1,10 +1,10 @@
 import Navbar from "../Navbar/Navbar";
 import Footer from "../Footer/Footer";
 
-export default function Registration() {
+export default function Registration({openCart}) {
     return (
         <>
-            <Navbar />
+            <Navbar cartSidebar={openCart}/>
             <div className="bg-[#e6e7e8] w-full flex justify-center items-center pt-10 pb-10">
 
                 <div className="bg-white w-[450px] flex flex-col justify-center items-center p-8">
