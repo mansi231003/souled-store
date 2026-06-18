@@ -1,13 +1,13 @@
 
-export const menProducts = [
+export const sneakers = [
     {
-        "product_id": "1",
-        "title": "Peanuts:Works Out",
+        "product_id": "12",
+        "title": "Sneakers:Works Out",
         "price_range": { "min": "700", "max": "900" },
         "stock": "80",
-        "tags": ["men"],
-        "category": "Cotton Linen Shirts",
-        "image_url": "/newArrival-img1.png",
+        "tags": ["sneaker"],
+        "category": "Men Sliders",
+        "image_url": "/sneaker1.png",
         "number_of_variants": "3",
         "variant_options": ["size", "color"],
         "variant_values":
@@ -35,20 +35,20 @@ export const menProducts = [
                 }
             ],
         "variants": [
-            { "id": "1a", "size": "medium", "color": "red", "price": "850", "image_url": "/newArrival-img2.png", "stock": "20" },
-            { "id": "1b", "size": "small", "color": "blue", "price": "800", "image_url": "/newArrival-img3.png", "stock": "40" },
-            { "id": "1c", "size": "large", "color": "blue", "price": "900", "image_url": "/newArrival-img4.png", "stock": "20" }
+            { "id": "1a", "size": "medium", "color": "red", "price": "850", "image_url": "/sneaker2.png", "stock": "20" },
+            { "id": "1b", "size": "small", "color": "blue", "price": "800", "image_url": "/sneaker3.png", "stock": "40" },
+            { "id": "1c", "size": "large", "color": "blue", "price": "900", "image_url": "/sneaker4.png", "stock": "20" }
         ]
     },
 
     {
-        "product_id": "2",
+        "product_id": "13",
         "title": "Casual T-Shirt",
-        "tags": ["men"],
+        "tags": ["sneaker"],
         "category": "Drop Cut T-Shirts",
         "price_range": { "min": null, "max": "500" },
         "stock": "120",
-        "image_url": "/newArrival-img2.png",
+        "image_url": "/sneaker2.png",
         "number_of_variants": "2",
         "variant_options": ["size"],
         "variant_values": [
@@ -65,19 +65,19 @@ export const menProducts = [
             }
         ],
         "variants": [
-            { "id": "2a", "size": "medium", "price": "500", " stock": "50", "image_url": "/newArrival-img2.png" },
-            { "id": "2b", "size": "large", "price": "500", "stock": "70", "image_url": "/newArrival-img2.png" }
+            { "id": "2a", "size": "medium", "price": "500", " stock": "50", "image_url": "/sneaker2.png" },
+            { "id": "2b", "size": "large", "price": "500", "stock": "70", "image_url": "/sneaker2.png" }
         ]
     },
 
     {
-        "product_id": "3",
+        "product_id": "14",
         "title": "Sports Hoodie",
-        "tags": ["men"],
+        "tags": ["sneaker"],
         "category": "Drop Cut T-Shirts",
         "price_range": { "min": "1200", "max": "1500" },
         "stock": "50", // 20 + 30
-        "image_url": "/newArrival-img3.png",
+        "image_url": "/sneaker3.png",
         "number_of_variants": "2",
         "variant_options": ["size", "color"],
         "variant_values": [
@@ -103,19 +103,19 @@ export const menProducts = [
             }
         ],
         "variants": [
-            { "id": "3a", "size": "small", "color": "black", "price": "1200", "image_url": "/newArrival-img1.png", "stock": "20" },
-            { "id": "3b", "size": "medium", "color": "grey", "price": "1500", "image_url": "/newArrival-img2.png", "stock": "30" }
+            { "id": "3a", "size": "small", "color": "black", "price": "1200", "image_url": "/sneaker1.png", "stock": "20" },
+            { "id": "3b", "size": "medium", "color": "grey", "price": "1500", "image_url": "/sneaker2.png", "stock": "30" }
         ]
     },
 
     {
-        "product_id": "4",
+        "product_id": "15",
         "title": "Denim Jeans",
-        "tags": ["men"],
+        "tags": ["sneaker"],
         "category": "Hooded T-Shirts",
         "price_range": { "min": null, "max": "1300" },
-        "stock": "40",
-        "image_url": "/newArrival-img4.png",
+        "stock": "40", // 15 + 25
+        "image_url": "/sneaker4.png",
         "number_of_variants": "2",
         "variant_options": ["size"],
         "variant_values": [
@@ -124,27 +124,27 @@ export const menProducts = [
                     "label": "Select Size",
                     "values": [
                         {
-                            "1": { "label": "S", "key": "small" },
-                            "2": { "label": "M", "key": "medium" }
+                            "1": { "label": "30", "key": "30" },
+                            "2": { "label": "32", "key": "32" }
                         }
                     ]
                 }
             }
         ],
         "variants": [
-            { "id": "4a", "size": "small", "price": "1000", "stock": "15", "image_url": "/newArrival-img4.png" },
-            { "id": "4b", "size": "medium", "price": "1300", "stock": "25", "image_url": "/newArrival-img4.png" }
+            { "id": "4a", "size": "30", "price": "1000", "stock": "15", "image_url": "/sneaker4.png" },
+            { "id": "4b", "size": "32", "price": "1300", "stock": "25", "image_url": "/sneaker4.png" }
         ]
     },
 
     {
-        "product_id": "5",
+        "product_id": "16",
         "title": "Summer Shirt",
-        "tags": ["men"],
+        "tags": ["sneaker"],
         "category": "Drop Cut T-Shirts",
         "price_range": { "min": "750", "max": "950" },
         "stock": "70", // 20 + 30
-        "image_url": "/newArrival-img2.png",
+        "image_url": "/sneaker5.png",
         "number_of_variants": "3",
         "variant_options": ["size", "color"],
         "variant_values": [
@@ -171,19 +171,19 @@ export const menProducts = [
             }
         ],
         "variants": [
-            { "id": "5a", "size": "small", "color": "green", "price": "750", "image_url": "/newArrival-img1.png", "stock": "20" },
-            { "id": "5b", "size": "medium", "color": "yellow", "price": "800", "image_url": "/newArrival-img4.png", "stock": "30" },
-            { "id": "5c", "size": "xl", "color": "yellow", "price": "950", "image_url": "/newArrival-img3.png", "stock": "20" },
+            { "id": "5a", "size": "small", "color": "green", "price": "750", "image_url": "/sneaker1.png", "stock": "20" },
+            { "id": "5b", "size": "medium", "color": "yellow", "price": "800", "image_url": "/sneaker4.png", "stock": "30" },
+            { "id": "5c", "size": "xl", "color": "yellow", "price": "950", "image_url": "/sneaker3.png", "stock": "20" },
         ]
     },
     {
-        "product_id": "6",
+        "product_id": "17",
         "title": "Peanuts:Works Out",
-        "tags": ["men"],
+        "tags": ["sneaker"],
         "category": "Easy Fit Vests",
         "price_range": { "min": "700", "max": "900" },
         "stock": "80",
-        "image_url": "/newArrival-img1.png",
+        "image_url": "/sneaker1.png",
         "number_of_variants": "3",
         "variant_options": ["size", "color"],
         "variant_values":
@@ -211,9 +211,9 @@ export const menProducts = [
                 }
             ],
         "variants": [
-            { "id": "1a", "size": "medium", "color": "red", "price": "850", "image_url": "/newArrival-img2.png", "stock": "20" },
-            { "id": "1b", "size": "small", "color": "blue", "price": "800", "image_url": "/newArrival-img3.png", "stock": "40" },
-            { "id": "1c", "size": "large", "color": "blue", "price": "900", "image_url": "/newArrival-img4.png", "stock": "20" }
+            { "id": "1a", "size": "medium", "color": "red", "price": "850", "image_url": "/sneaker2.png", "stock": "20" },
+            { "id": "1b", "size": "small", "color": "blue", "price": "800", "image_url": "/sneaker3.png", "stock": "40" },
+            { "id": "1c", "size": "large", "color": "blue", "price": "900", "image_url": "/sneaker4.png", "stock": "20" }
         ]
     }
 ];

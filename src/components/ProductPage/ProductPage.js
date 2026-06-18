@@ -48,7 +48,7 @@ export default function ProductPage({ openCart }) {
     );
     console.log(wishlistItems)
     const [cartStatus, setCartStatus] = useState("idle");
-    const [wishStatus, setWishStatus] = useState("");
+    // const [wishStatus, setWishStatus] = useState("");
 
     const handleAddToCart = () => {
         if (!selectedSize) {

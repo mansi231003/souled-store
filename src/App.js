@@ -29,7 +29,7 @@ function App(){
         <Route path="/product/:id" element={<ProductPage openCart={() => setCartSidebar(true)}/>}></Route>
         <Route path="/cart" element={<AddToCart openCart={() => setCartSidebar(true)}/>}></Route>
         <Route path="/filter/:type" element={<FilterCollections openCart={() => setCartSidebar(true)}/>}></Route>
-        <Route path="/wishlist" element={<Wishlist />} />
+        <Route path="/wishlist" element={<Wishlist openCart={() => setCartSidebar(true)}/>} />
         
       </Routes>
     </Router>

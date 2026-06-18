@@ -8,63 +8,63 @@ import Curated from './components/Curated for YOU/Curated';
 import CategorySection from './components/Category Section/CategorySection';
 import Footer from './components/Footer/Footer';
 import './App.css';
-
+import { sneakers } from './data/sneakersProduct';
 import FeaturesBar from './components/Features bar/FeaturesBar';
 import { useState } from 'react';
 
 function SneakersPage({openCart}) {
 
-  const sneakers = [
-    {
-      image: "sneaker1.png",
-      title: "Peanuts:Works Out",
-      category: "T-Shirts",
-      price: 799
-    },
-    {
-      image: "sneaker2.png",
-      title: "Ben10:Tennyson",
-      category: "Oversized Jerseys",
-      price: 1199
-    },
-    {
-      image: "sneaker3.png",
-      title: "Relaxed-Fit Shirt:Champagne",
-      category: "Cotton Linen Shirts",
-      price: 1799
-    },
-    {
-      image: "sneaker4.png",
-      title: "Oversized T-Shirt:Wan Blue",
-      category: "Oversized T-Shirts",
-      price: 1099
-    },
-    {
-      image: "sneaker3.png",
-      title: "Peanuts:Works Out",
-      category: "T-Shirts",
-      price: 799
-    },
-    {
-      image: "sneaker4.png",
-      title: "Ben10:Tennyson",
-      category: "Oversized Jerseys",
-      price: 1199
-    },
-    {
-      image: "sneaker1.png",
-      title: "Relaxed-Fit Shirt:Champagne",
-      category: "Cotton Linen Shirts",
-      price: 1799
-    },
-    {
-      image: "sneaker2.png",
-      title: "Oversized T-Shirt:Wan Blue",
-      category: "Oversized T-Shirts",
-      price: 1099
-    },
+  // const sneakers = [
+  //   {
+  //     image: "sneaker1.png",
+  //     title: "Peanuts:Works Out",
+  //     category: "T-Shirts",
+  //     price: 799
+  //   },
+  //   {
+  //     image: "sneaker2.png",
+  //     title: "Ben10:Tennyson",
+  //     category: "Oversized Jerseys",
+  //     price: 1199
+  //   },
+  //   {
+  //     image: "sneaker3.png",
+  //     title: "Relaxed-Fit Shirt:Champagne",
+  //     category: "Cotton Linen Shirts",
+  //     price: 1799
+  //   },
+  //   {
+  //     image: "sneaker4.png",
+  //     title: "Oversized T-Shirt:Wan Blue",
+  //     category: "Oversized T-Shirts",
+  //     price: 1099
+  //   },
+  //   {
+  //     image: "sneaker3.png",
+  //     title: "Peanuts:Works Out",
+  //     category: "T-Shirts",
+  //     price: 799
+  //   },
+  //   {
+  //     image: "sneaker4.png",
+  //     title: "Ben10:Tennyson",
+  //     category: "Oversized Jerseys",
+  //     price: 1199
+  //   },
+  //   {
+  //     image: "sneaker1.png",
+  //     title: "Relaxed-Fit Shirt:Champagne",
+  //     category: "Cotton Linen Shirts",
+  //     price: 1799
+  //   },
+  //   {
+  //     image: "sneaker2.png",
+  //     title: "Oversized T-Shirt:Wan Blue",
+  //     category: "Oversized T-Shirts",
+  //     price: 1099
+  //   },
 
-  ]
+  // ]
 
   const sneakerSlides1 = [
     { image: "sneaker-img1.png" },
@@ -107,38 +107,38 @@ function SneakersPage({openCart}) {
 
   const menSidebarProducts=[
      {
-      image: "newArrival-img1.png",
+      image_url: "newArrival-img1.png",
       title: "Summer Home",
 
     },
     {
-      image: "newArrival-img2.png",
+      image_url: "newArrival-img2.png",
       title: "Hot Merch",
     },
     {
-      image: "newArrival-img3.png",
+      image_url: "newArrival-img3.png",
       title: "Collab Kicks",
 
     },
     {
-      image: "newArrival-img4.png",
+      image_url: "newArrival-img4.png",
       title: "Culture Code",
     },
     {
-      image: "newArrival-img3.png",
+      image_url: "newArrival-img3.png",
       title: "T-Shirts",
     },
     {
-      image: "newArrival-img4.png",
+      image_url: "newArrival-img4.png",
       title: "Marvel",
     },
     {
-      image: "newArrival-img1.png",
+      image_url: "newArrival-img1.png",
       title: "Relaxed-Fit",
     
     },
     {
-      image: "newArrival-img2.png",
+      image_url: "newArrival-img2.png",
       title: "Socks",
     },
 
@@ -178,7 +178,7 @@ function SneakersPage({openCart}) {
       <Heading>FRESH OUT THE LAB</Heading>
       <ProductSlider products={sneakers} />
       <Heading>CATEGORIES</Heading>
-      <Categories cards={sneakersCategoryImg} />
+      <Categories cards={sneakersCategoryImg} tag="sneaker" />
       <Heading>CURATED FOR YOU</Heading>
       <Curated images={curatedImages} />
       <CategorySection products={sneakers} buttons={sneakersCategory}/>

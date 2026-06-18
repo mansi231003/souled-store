@@ -1,9 +1,9 @@
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
-import { removeFromCart, updateQuantity, updateSize } from "../../Redux/CartSlice/cartSlice";
-import AddToCart from "../Add To cart/AddToCart";
+import { removeFromCart, updateQuantity } from "../../Redux/CartSlice/cartSlice";
+// import AddToCart from "../Add To cart/AddToCart";
 import { Link } from "react-router-dom";
 
 export default function CartSidebar({ sidebarOpen, close }) {
@@ -14,7 +14,7 @@ export default function CartSidebar({ sidebarOpen, close }) {
 
     const totalProducts = cartItems.length;
     const dispatch = useDispatch();
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
     const [removingId, setRemovingId] = useState(null);
 
     if (sidebarOpen) {
@@ -34,7 +34,7 @@ export default function CartSidebar({ sidebarOpen, close }) {
                         <>
                         <div className="flex justify-center items-center h-full flex-col">
                             <div>
-                                <img src="/emptyCart.avif"/>
+                                <img src="/emptyCart.avif" alt="emptyCart"/>
                             </div>
                         <p className="flex justify-center text-[20px] font-[600] h-[60px] items-center">Your cart is empty!</p>
                             
@@ -61,7 +61,7 @@ export default function CartSidebar({ sidebarOpen, close }) {
                                                     <div className="bg-[#168D8F] w-[19px] h-[19px] rounded-[2px] flex justify-center items-center"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="white"><path d="M382-240 154-468l57-57 171 171 367-367 57 57-424 424Z" /></svg></div>
                                                     <div className="w-[110px] rounded-[6px]">
                                                         {/* <img className="rounded-[6px]" src={item.image} /> */}
-                                                        <img className="rounded-[6px]" src={item.image.includes("/") ? item.image : `/${item.image}`}/>
+                                                        <img className="rounded-[6px]" src={item.image.includes("/") ? item.image : `/${item.image}`} alt="productimage"/>
                                                     </div>
                                                     <div className="text-[14px] flex flex-col">
                                                         <div className="font-[600]">{item.title}</div>

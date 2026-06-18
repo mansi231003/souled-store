@@ -27,7 +27,7 @@ export default function Slider({ slides = [], className }) {
                 >
                     {slides.map((item) => (
                         <SwiperSlide>
-                            <img className="w-full" src={item.image} />
+                            <img className="w-full" src={item.image} alt=""/>
                         </SwiperSlide>
                     ))}
 

@@ -2,18 +2,19 @@ import "./FilterCollections.css"
 import Navbar from "../Navbar/Navbar";
 import Footer from "../Footer/Footer";
 import ProductCard from "../Product card/ProductCard";
-import { useLocation } from "react-router-dom";
-import { allProducts } from "../../data/allProducts";
+// import { useLocation } from "react-router-dom";
+// import { allProducts } from "../../data/allProducts";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { menProducts } from "../../data/menProducts";
 import { womenProducts } from "../../data/womenProducts";
+import { sneakers } from "../../data/sneakersProduct";
 
 export default function FilterCollections({ openCart }) {
     const { type } = useParams();
-    const { state } = useLocation();
-    const tag = state?.tag;
-    const collection = state?.collection;
+    // const { state } = useLocation();
+    // const tag = state?.tag;
+    // const collection = state?.collection;
     const [selectedSizes, setSelectedSizes] = useState([]);
     const [priceRange, setPriceRange] = useState(null);
     const [selectedCategory, setSelectedCategory] = useState([]);
@@ -36,6 +37,14 @@ export default function FilterCollections({ openCart }) {
         { name: "women Full Sleeve T-Shirts", count: 3 },
         { name: "women Hooded T-Shirts", count: 1 },
     ];
+    const sneakerCategories = [
+        { name: "men Cotton Linen Sneakers", count: 1 },
+        { name: "men Drop Cut Sneakers", count: 16 },
+        { name: "men Easy Fit Vests", count: 6 },
+        { name: "men Exclusive", count: 1 },
+        { name: "men Hooded T-Shirts", count: 22 },
+        
+    ];
 
     let categories = [];
 
@@ -44,6 +53,9 @@ export default function FilterCollections({ openCart }) {
     }
     else if (type === "women") {
         categories = womenCategories;
+    }
+    else if (type === "sneaker"){
+        categories = sneakerCategories;
     }
 
     const handleChange = (item) => {
@@ -61,11 +73,9 @@ export default function FilterCollections({ openCart }) {
     else if (type === "women") {
         baseProducts = womenProducts;
     }
-    // const baseProducts = tag
-    //     ? allProducts.filter(product =>
-    //         product.tags?.includes(tag)
-    //     )
-    //     : allProducts;
+    else if (type === "sneaker") {
+        baseProducts = sneakers;
+    }
 
     const products = baseProducts.filter(product => {
         const categoryMatch =

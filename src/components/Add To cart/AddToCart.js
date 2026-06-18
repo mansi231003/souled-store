@@ -2,9 +2,9 @@ import Footer from "../Footer/Footer";
 import Navbar from "../Navbar/Navbar";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { useState } from "react";
-import { removeFromCart, updateQuantity, updateSize } from "../../Redux/CartSlice/cartSlice";
+// import { useDispatch } from "react-redux";
+// import { useState } from "react";
+// import { removeFromCart, updateQuantity, updateSize } from "../../Redux/CartSlice/cartSlice";
 
 export default function AddToCart() {
     const cartItems = useSelector(state => state.cart.items);
@@ -12,10 +12,10 @@ export default function AddToCart() {
         return total + Number(item.price) * item.quantity;
     }, 0);
 
-    const totalProducts = cartItems.length;
-    const dispatch = useDispatch();
+    // const totalProducts = cartItems.length;
+    // const dispatch = useDispatch();
     const navigate = useNavigate();
-    const [removingId, setRemovingId] = useState(null);
+    // const [removingId, setRemovingId] = useState(null);
 
     return (
         <>

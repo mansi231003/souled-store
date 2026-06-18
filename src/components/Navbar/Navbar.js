@@ -1,5 +1,5 @@
 import "./Navbar.css";
-import { useState } from "react";
+// import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -27,7 +27,7 @@ export default function Navbar({ toggleSidebar, cartSidebar }) {
 
             <div className="navbar-container bg-white flex h-[70px] justify-between w-[100%] border border-gray-300">
                 <div className="navmenu-container flex items-center gap-12 w-[38%] justify-center">
-                    <div className="nav-button w-[6%] flex items-center text-gray-500 text-[17px] " onClick={toggleSidebar}>
+                    <div className="nav-button w-[6%] flex items-center text-gray-500 text-[17px] cursor-pointer" onClick={toggleSidebar}>
                         <i className="fa fa-bars"></i>
                     </div>
                     <ul className="nav-menu flex justify-between items-center gap-4 text-[18px] font-[700] w-[60%]">
@@ -37,7 +37,7 @@ export default function Navbar({ toggleSidebar, cartSidebar }) {
                     </ul>
                 </div>
 
-                <div className="img-container w-[90px] flex items-center"><img className="img" src="/souledimg.webp" /></div>
+                <div className="img-container w-[90px] flex items-center"><img className="img" src="/souledimg.webp" alt="souled"/></div>
 
                 <div className="search-container flex items-center w-[40%] justify-center gap-10 pr-5">
                     <div className="search-box border text-gray-600 items-center justify-between border-black flex bg-white h-[40px] rounded-[20px] w-[60%] p-2">

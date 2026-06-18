@@ -10,7 +10,6 @@ import Footer from './components/Footer/Footer';
 import './App.css';
 import FeaturesBar from './components/Features bar/FeaturesBar';
 import { useState } from 'react';
-import CartSidebar from './components/CartSidbar/CartSidebar';
 import { menProducts } from './data/menProducts';
 
 function MenPage({openCart}) {
@@ -70,38 +69,38 @@ function MenPage({openCart}) {
 
   const menSidebarProducts=[
      {
-      image: "sidebar-img1.png",
+      image_url: "sidebar-img1.png",
       title: "Summer Home",
 
     },
     {
-      image: "sidebar-img2.png",
+      image_url: "sidebar-img2.png",
       title: "Hot Merch",
     },
     {
-      image: "sidebar-img3.png",
+      image_url: "sidebar-img3.png",
       title: "Collab Kicks",
 
     },
     {
-      image: "sidebar-img4.png",
+      image_url: "sidebar-img4.png",
       title: "Culture Code",
     },
     {
-      image: "sidebar-img3.png",
+      image_url: "sidebar-img3.png",
       title: "T-Shirts",
     },
     {
-      image: "sidebar-img4.png",
+      image_url: "sidebar-img4.png",
       title: "Marvel",
     },
     {
-      image: "sidebar-img1.png",
+      image_url: "sidebar-img1.png",
       title: "Relaxed-Fit",
     
     },
     {
-      image: "sidebar-img2.png",
+      image_url: "sidebar-img2.png",
       title: "Socks",
     },
 
@@ -115,7 +114,7 @@ function MenPage({openCart}) {
     <div className='men-page'>
       <Sidebar isOpen={sidebar} closeSidebar={()=>setSidebar(false)}>
          <ProductSlider products={menSidebarProducts}/>
-         <Categories cards={menCategoriesImg}/>
+         <Categories cards={menCategoriesImg}  tag="men"/>
          <ProductSlider products={menSidebarProducts}/>
 
       </Sidebar>

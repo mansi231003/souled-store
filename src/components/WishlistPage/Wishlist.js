@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { addToCart } from "../../Redux/CartSlice/cartSlice";
 import "./Wishlist.css"
 
-export default function Wishlist() {
+export default function Wishlist({openCart}) {
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
@@ -16,7 +16,7 @@ export default function Wishlist() {
 
     return (
         <>
-            <Navbar />
+            <Navbar cartSidebar={openCart}/>
             <div className="p-5 flex flex-col items-center">
                 <h1 className="text-[24px] text-[#58595b] font-bold pt-2 mb-5 w-[92%]">My Wishlist</h1>
 

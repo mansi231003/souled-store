@@ -1,6 +1,5 @@
-import { useState } from "react"
+// import { useState } from "react"
 import "./Sidebar.css"
-import { Link} from "react-router-dom";
 
 export default function Sidebar({ children,isOpen,closeSidebar }) {
 
@@ -20,13 +19,13 @@ export default function Sidebar({ children,isOpen,closeSidebar }) {
                 <div className="w-[500px] bg-white z-[9999] overflow-y-auto sidebar">
 
                     <div className="flex gap-8 pt-[17px] pl-[14px] pb-[13px]">
-                        <div className="img-container w-[80px] flex items-center"><img className="img" src="souledimg.webp" /></div>
+                        <div className="img-container w-[80px] flex items-center"><img className="img" src="souledimg.webp" alt=""/></div>
                         <div className="border border-[#158b8d] rounded-[6px] w-[200px] flex justify-center items-center pt-[13px] pb-[13px] pl-[11px] pr-[11px]">Log In/Register</div>
                     </div>
                     <div className="bg-[#148c8d] text-white flex justify-center items-center pt-[9px] pb-[10px] pl-[31px] pr-[29px] rounded-br-[16px] rounded-bl-[16px] gap-3">
                         <span className="text-[16px]">Earn 10% Cashback on Every App Order</span>
-                        <div className="w-[24px] h-[24px] rounded-[5px] border-[#18a7a8] border shadow-[0px_1px_2px_0px_#0b0b0b]"><img src="play-strore.png" /></div>
-                        <div className="w-[24px] h-[24px] rounded-[5px] border-[#18a7a8] border shadow-[0px_1px_2px_0px_#0b0b0b]"><img src="appstore.png" /></div>
+                        <div className="w-[24px] h-[24px] rounded-[5px] border-[#18a7a8] border shadow-[0px_1px_2px_0px_#0b0b0b]"><img src="play-strore.png" alt=""/></div>
+                        <div className="w-[24px] h-[24px] rounded-[5px] border-[#18a7a8] border shadow-[0px_1px_2px_0px_#0b0b0b]"><img src="appstore.png" alt=""/></div>
 
                     </div>
                     <div className="flex justify-between p-4 shadow-[0px_4px_4px_0px_#dce9ea]">

@@ -11,7 +11,6 @@ import './App.css';
 import FeaturesBar from './components/Features bar/FeaturesBar';
 import { useState } from 'react';
 import { womenProducts } from './data/womenProducts';
-import CartSidebar from './components/CartSidbar/CartSidebar';
 
 function WomenPage({openCart}) {
 
@@ -57,38 +56,38 @@ function WomenPage({openCart}) {
 
   const womenSidebarProducts=[
      {
-      image: "w-sidebar-img.png",
+      image_url: "w-sidebar-img.png",
       title: "Summer Home",
 
     },
     {
-      image: "w-sidebar-img2.png",
+      image_url: "w-sidebar-img2.png",
       title: "Hot Merch",
     },
     {
-      image: "w-sidebar-img3.png",
+      image_url: "w-sidebar-img3.png",
       title: "Collab Kicks",
 
     },
     {
-      image: "w-sidebar-img4.png",
+      image_url: "w-sidebar-img4.png",
       title: "Culture Code",
     },
     {
-      image: "w-sidebar-img3.png",
+      image_url: "w-sidebar-img3.png",
       title: "T-Shirts",
     },
     {
-      image: "w-sidebar-img.png",
+      image_url: "w-sidebar-img.png",
       title: "Marvel",
     },
     {
-      image: "w-sidebar-img4.png",
+      image_url: "w-sidebar-img4.png",
       title: "Relaxed-Fit",
     
     },
     {
-      image: "w-sidebar-img2.png",
+      image_url: "w-sidebar-img2.png",
       title: "Socks",
     },
 
@@ -114,7 +113,7 @@ function WomenPage({openCart}) {
     <div className='women-page'>
       <Sidebar isOpen={sidebar} closeSidebar={()=>setSidebar(false)}>
          <ProductSlider products={womenSidebarProducts}/>
-         <Categories cards={womenCategoriesImg}/>
+         <Categories cards={womenCategoriesImg} tag="women"/>
          <ProductSlider products={womenSidebarProducts}/>
 
       </Sidebar>
