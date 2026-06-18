@@ -73,6 +73,7 @@ export default function Navbar({ toggleSidebar, cartSidebar }) {
                 <div className="nav-item w-full items-center flex justify-center border-r-gray-400 border-r font-bold"><Link to="/">MEN</Link></div>
                 <div className="w-full items-center flex justify-center border-r-gray-400 border-r"><Link to="/womenPage">WOMEN</Link></div>
                 <div className="w-full items-center flex justify-center"><Link to="/sneakersPage">SNEAKERS</Link></div>
+                
             </div>
         </>
     )
