@@ -9,10 +9,10 @@ import CategorySection from './components/Category Section/CategorySection';
 import Footer from './components/Footer/Footer';
 import './App.css';
 import FeaturesBar from './components/Features bar/FeaturesBar';
-import { useState } from 'react';
+// import { useState } from 'react';
 import { womenProducts } from './data/womenProducts';
 
-function WomenPage({openCart}) {
+function WomenPage({openCart,sidebarOpen,setSidebarOpen}) {
 
 
   const womenSlides1 = [
@@ -107,18 +107,18 @@ function WomenPage({openCart}) {
         "Women Low Top Sneakers"
   ]
 
-  const [sidebar,setSidebar]=useState(false);
+  // const [sidebar,setSidebar]=useState(false);
 
   return (
     <div className='women-page'>
-      <Sidebar isOpen={sidebar} closeSidebar={()=>setSidebar(false)}>
-         <ProductSlider products={womenSidebarProducts}/>
+      <Sidebar isOpen={sidebarOpen} closeSidebar={()=>setSidebarOpen(false)}>
+         <ProductSlider products={womenSidebarProducts} sidebar={true}/>
          <Categories cards={womenCategoriesImg} tag="women"/>
          <ProductSlider products={womenSidebarProducts}/>
 
       </Sidebar>
      
-      <Navbar toggleSidebar={()=>setSidebar(true)} cartSidebar={openCart}/>
+      <Navbar toggleSidebar={()=>setSidebarOpen(true)} cartSidebar={openCart}/>
       <Slider className="slider1" slides={womenSlides1} />
       <Slider className="slider2" slides={womenSlides2} />
       <FeaturesBar />

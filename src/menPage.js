@@ -9,10 +9,10 @@ import CategorySection from './components/Category Section/CategorySection';
 import Footer from './components/Footer/Footer';
 import './App.css';
 import FeaturesBar from './components/Features bar/FeaturesBar';
-import { useState } from 'react';
+// import { useState } from 'react';
 import { menProducts } from './data/menProducts';
 
-function MenPage({openCart}) {
+function MenPage({openCart,sidebarOpen,setSidebarOpen}) {
 
   const menSlides1 = [
     { image: "man-img1.png" },
@@ -107,18 +107,18 @@ function MenPage({openCart}) {
   ]
 
  
- const [sidebar,setSidebar]=useState(false)
+//  const [sidebar,setSidebar]=useState(false)
 
   return (
     
     <div className='men-page'>
-      <Sidebar isOpen={sidebar} closeSidebar={()=>setSidebar(false)}>
-         <ProductSlider products={menSidebarProducts}/>
+      <Sidebar isOpen={sidebarOpen} closeSidebar={()=>setSidebarOpen(false)}>
+         <ProductSlider products={menSidebarProducts} sidebar={true}/>
          <Categories cards={menCategoriesImg}  tag="men"/>
          <ProductSlider products={menSidebarProducts}/>
 
       </Sidebar>
-      <Navbar toggleSidebar={()=>setSidebar(true)} cartSidebar={openCart}/>
+      <Navbar toggleSidebar={()=>setSidebarOpen(true)} cartSidebar={openCart}/>
       <Slider className="slider1" slides={menSlides1} />
       <Slider className="slider2" slides={menSlides2} />
       <FeaturesBar />

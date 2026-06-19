@@ -20,7 +20,7 @@
 
 @media screen and (max-width:500px) {
 .cart-button{
-    width: 150px;
+    width: 165px;
 
 }
 .right-container{
@@ -28,11 +28,12 @@
 }
 }
 
-@media screen and (max-width:350px) {
+@media screen and (max-width:380px) {
 .cart-button{
     width:max-content;
     padding-left: 11px;
     padding-right: 11px;
+    font-size: 12px;
 
 }
 }

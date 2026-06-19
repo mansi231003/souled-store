@@ -6,7 +6,7 @@ import { Navigation,Pagination } from 'swiper/modules';
 import 'swiper/css';
 
 
-export default function ProductSlider({products}) {
+export default function ProductSlider({products,sidebar=false}) {
     return (
         <>
             <div className="collections relative">
@@ -23,7 +23,13 @@ export default function ProductSlider({products}) {
                     slidesPerView={4}
                     slidesPerGroup={4}
                     spaceBetween={10}
-                    breakpoints={{
+                    breakpoints={
+                        sidebar?{
+                            0:{slidesPerView:2},
+                            380:{slidesPerView:3},
+                            500:{slidesPerView:4}
+                        }:
+                        {
                         0:{slidesPerView:2,slidesPerGroup:2},
                         800:{slidesPerView:4}
                     }}

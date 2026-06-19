@@ -10,61 +10,10 @@ import Footer from './components/Footer/Footer';
 import './App.css';
 import { sneakers } from './data/sneakersProduct';
 import FeaturesBar from './components/Features bar/FeaturesBar';
-import { useState } from 'react';
+// import { useState } from 'react';
 
-function SneakersPage({openCart}) {
+function SneakersPage({openCart,sidebarOpen,setSidebarOpen}) {
 
-  // const sneakers = [
-  //   {
-  //     image: "sneaker1.png",
-  //     title: "Peanuts:Works Out",
-  //     category: "T-Shirts",
-  //     price: 799
-  //   },
-  //   {
-  //     image: "sneaker2.png",
-  //     title: "Ben10:Tennyson",
-  //     category: "Oversized Jerseys",
-  //     price: 1199
-  //   },
-  //   {
-  //     image: "sneaker3.png",
-  //     title: "Relaxed-Fit Shirt:Champagne",
-  //     category: "Cotton Linen Shirts",
-  //     price: 1799
-  //   },
-  //   {
-  //     image: "sneaker4.png",
-  //     title: "Oversized T-Shirt:Wan Blue",
-  //     category: "Oversized T-Shirts",
-  //     price: 1099
-  //   },
-  //   {
-  //     image: "sneaker3.png",
-  //     title: "Peanuts:Works Out",
-  //     category: "T-Shirts",
-  //     price: 799
-  //   },
-  //   {
-  //     image: "sneaker4.png",
-  //     title: "Ben10:Tennyson",
-  //     category: "Oversized Jerseys",
-  //     price: 1199
-  //   },
-  //   {
-  //     image: "sneaker1.png",
-  //     title: "Relaxed-Fit Shirt:Champagne",
-  //     category: "Cotton Linen Shirts",
-  //     price: 1799
-  //   },
-  //   {
-  //     image: "sneaker2.png",
-  //     title: "Oversized T-Shirt:Wan Blue",
-  //     category: "Oversized T-Shirts",
-  //     price: 1099
-  //   },
-
-  // ]
 
   const sneakerSlides1 = [
     { image: "sneaker-img1.png" },
@@ -154,19 +103,19 @@ function SneakersPage({openCart}) {
       'Socks'
   ]
 
-  const [sidebar,setSidebar]=useState(false)
+  // const [sidebar,setSidebar]=useState(false)
 
   return (
     
     <div className='sneaker-page'>
-      <Sidebar isOpen={sidebar} closeSidebar={()=>setSidebar(false)}>
-         <ProductSlider products={menSidebarProducts}/>
+      <Sidebar isOpen={sidebarOpen} closeSidebar={()=>setSidebarOpen(false)}>
+         <ProductSlider products={menSidebarProducts} sidebar={true}/>
          <Categories cards={sneakersCategoryImg}/>
          <ProductSlider products={menSidebarProducts}/>
 
       </Sidebar>
      
-      <Navbar toggleSidebar={()=>setSidebar(true)} cartSidebar={openCart}/>
+      <Navbar toggleSidebar={()=>setSidebarOpen(true)} cartSidebar={openCart}/>
       <Slider className="slider1" slides={sneakerSlides1} />
       <Slider className="slider2" slides={sneakerSlides2} />
       <FeaturesBar />

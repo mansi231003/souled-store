@@ -27,3 +27,10 @@
         display: none;
     }
 }
+
+@media screen and (max-width:500px) {
+    .collections{
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+}

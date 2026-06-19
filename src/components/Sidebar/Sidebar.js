@@ -1,7 +1,15 @@
 // import { useState } from "react"
 import "./Sidebar.css"
+import { useLocation, useNavigate } from "react-router-dom";
 
 export default function Sidebar({ children,isOpen,closeSidebar }) {
+ const location = useLocation();
+ const navigate =useNavigate();
+
+ const handleNavigate = (path) => {
+  navigate(path);
+  // don't close sidebar
+};
 
     if (isOpen) {
         document.body.style.overflow = 'hidden';
@@ -18,9 +26,12 @@ export default function Sidebar({ children,isOpen,closeSidebar }) {
                 <div onClick={closeSidebar} className="fixed w-full top-0 h-full bg-[rgba(0,0,0,0.4)]"></div>
                 <div className="w-[500px] bg-white z-[9999] overflow-y-auto sidebar">
 
-                    <div className="flex gap-8 pt-[17px] pl-[14px] pb-[13px]">
+                    <div className="flex justify-between pt-[17px] pl-[14px] pr-[15px] pb-[13px]">
                         <div className="img-container w-[80px] flex items-center"><img className="img" src="souledimg.webp" alt=""/></div>
                         <div className="border border-[#158b8d] rounded-[6px] w-[200px] flex justify-center items-center pt-[13px] pb-[13px] pl-[11px] pr-[11px]">Log In/Register</div>
+                        <div onClick={closeSidebar} className="flex justify-center items-center cursor-pointer">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="black"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg>
+</div>
                     </div>
                     <div className="bg-[#148c8d] text-white flex justify-center items-center pt-[9px] pb-[10px] pl-[31px] pr-[29px] rounded-br-[16px] rounded-bl-[16px] gap-3">
                         <span className="text-[16px]">Earn 10% Cashback on Every App Order</span>
@@ -29,9 +40,9 @@ export default function Sidebar({ children,isOpen,closeSidebar }) {
 
                     </div>
                     <div className="flex justify-between p-4 shadow-[0px_4px_4px_0px_#dce9ea]">
-                        <div className="w-full font-[700] text-[17px] text-[#148c8d] flex justify-center items-center">MEN</div>
-                        <div className="w-full font-[400] text-[17px] text-[#8a8a8a] flex justify-center items-center">WOMEN</div>
-                        <div className="w-full font-[400] text-[17px] text-[#8a8a8a] flex justify-center items-center">SNEAKERS</div>
+                        <div onClick={() => handleNavigate("/")} className={`${location.pathname === "/" ? " text-[#148c8d] font-[700]" : "text-[#8a8a8a] font-[400]"} w-full text-[17px] flex justify-center items-center cursor-pointer`}>MEN</div>
+                        <div onClick={() => handleNavigate("/womenPage")} className={`${location.pathname === "/womenPage" ? " text-[#148c8d] font-[700]" : "text-[#8a8a8a] font-[400]"} w-full text-[17px] flex justify-center items-center cursor-pointer`}>WOMEN</div>
+                        <div onClick={() => handleNavigate("/sneakersPage")} className={`${location.pathname === "/sneakersPage"? " text-[#148c8d] font-[700]" : "text-[#8a8a8a] font-[400]"} w-full text-[17px] flex justify-center items-center cursor-pointer`}>SNEAKERS</div>
                     </div>
 
                     <div className="p-[16px] pb-0 slider ">{children[0]}</div>

@@ -45,8 +45,12 @@
     padding-bottom: 25px;
 }
 
-
   .category-section .category-img{
     grid-template-columns: 1fr 1fr 1fr 1fr;
     width: 77%;
+}
+
+.sidebar .slider .collections .swiper{
+    /* display: grid; */
+    grid-template-columns: 1fr 1fr 1fr 1fr;
 }

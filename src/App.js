@@ -11,7 +11,7 @@ import Wishlist from "./components/WishlistPage/Wishlist";
 import { useState } from "react";
 
 function App(){
-
+  const [sidebarOpen, setSidebarOpen] = useState(false);
   const [cartSidebar, setCartSidebar] = useState(false);
   
   return(
@@ -22,9 +22,12 @@ function App(){
         close={() => setCartSidebar(false)}
       />
       <Routes>
-        <Route path="/" element={<MenPage openCart={() => setCartSidebar(true)}/>}></Route>
-        <Route path ="/womenPage" element={<WomenPage openCart={() => setCartSidebar(true)}/>}></Route>
-        <Route path ="/sneakersPage" element={<SneakersPage openCart={() => setCartSidebar(true)}/>}></Route>
+        <Route path="/" element={<MenPage  sidebarOpen={sidebarOpen}
+            setSidebarOpen={setSidebarOpen} openCart={() => setCartSidebar(true)}/>}></Route>
+        <Route path ="/womenPage" element={<WomenPage  sidebarOpen={sidebarOpen}
+            setSidebarOpen={setSidebarOpen} openCart={() => setCartSidebar(true)}/>}></Route>
+        <Route path ="/sneakersPage" element={<SneakersPage  sidebarOpen={sidebarOpen}
+            setSidebarOpen={setSidebarOpen} openCart={() => setCartSidebar(true)}/>}></Route>
         <Route path ="/registration" element={<Registration openCart={() => setCartSidebar(true)}/>}></Route>
         <Route path="/product/:id" element={<ProductPage openCart={() => setCartSidebar(true)}/>}></Route>
         <Route path="/cart" element={<AddToCart openCart={() => setCartSidebar(true)}/>}></Route>

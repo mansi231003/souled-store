@@ -1,0 +1,21 @@
+.sidebar{
+    scrollbar-width: none;
+}
+@media screen and (max-width:500px) {
+    .cart-sidebar{
+        width: 100%;
+    }
+
+    .cart-sidebar .image{
+        width: 70px;
+    }
+
+    .cart-sidebar .size-btn{
+        width: 80px;
+    }
+
+    .cart-sidebar .button{
+        padding: 10px;
+    }
+    
+}

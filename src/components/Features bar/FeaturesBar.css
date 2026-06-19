@@ -19,7 +19,8 @@
 
 @media screen and (max-width:700px) {
 .feature-bar-container{
-    width: 85%;
+    width: 100%;
+    padding-left: 50px;
 }
 
 .feature-bar-container .feature{
@@ -42,20 +43,36 @@
         width: 32px;
     }
 
+    .feature-bar-container .feature .text{
+        width: 80%;
+        text-align: start;
+        /* padding-left: 15px; */
+    }
+
     .feature-bar-outer-container{
-        height: 48px;
-        font-size: 8px;
+        font-size: 15px;
+        height: 100px;
+        margin-bottom: 50px;
     }
 
     .feature-bar-container .feature{
-        width: 120px;
+        width: 100%;
+        padding-bottom: 18px;
+        gap: 13px;
     }
 
     .feature-bar-container .feature.truck{
-        width: 85px;
+        width: 100%;
+        padding-bottom: 0;
     }
 
     .feature-bar-container{
-        /* grid-template-columns: 1fr 1fr; */
+        grid-template-columns: 1fr;
+        padding-left: 4px;
+        padding-top: 14px;
+        padding-bottom: 14px;
+        margin-top: 40px;
     }
+  
+
 }
