@@ -95,19 +95,15 @@ function WomenPage({openCart,sidebarOpen,setSidebarOpen}) {
 
   const womenCategories=[
         "Trending",
-        "Women T-Shirts",
-        "Women Shirts",
-        "Women Jeans",
-        "Women Pants",
-        "Women Cropped Tops",
-        "Women Shorts",
-        "Women Dresses",
-        "Women Winter Wear",
-        "Women High Top Sneakers",
-        "Women Low Top Sneakers"
+       "women Cotton Linen Shirts",
+       "women Drop Cut T-Shirts",
+       "women Easy Fit Vests",
+       "women Exclusive",
+       "women Hooded T-Shirts",
+       "women Full Sleeve T-Shirts",
+    
   ]
 
-  // const [sidebar,setSidebar]=useState(false);
 
   return (
     <div className='women-page'>

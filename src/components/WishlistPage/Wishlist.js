@@ -43,18 +43,25 @@ export default function Wishlist({openCart}) {
                                 <p className="p-2 pt-0 font-[600] text-gray-600">${item.price}</p>
                             
                                 <button
-                                    onClick={() =>
-                                        dispatch(addToCart({
-                                            id: crypto.randomUUID(),
-                                            product_id: item.product_id,
-                                            title: item.title,
-                                            image: item.image,
-                                            price: item.price,
-                                            size: item.size,
-                                            color: item.color,
-                                            quantity: 1
-                                        }))
-                                    }
+                                 onClick={() => {
+        if (!item.size) {
+            navigate(`/product/${item.product_id}`);
+            return;
+        }
+
+        dispatch(addToCart({
+            id: crypto.randomUUID(),
+            product_id: item.product_id,
+            title: item.title,
+            image: item.image,
+            price: item.price,
+            size: item.size,
+            color: item.color,
+            quantity: 1
+        }));
+
+        dispatch(removeFromWishlist(item.id));
+    }}
                                     className="text-[#148c8d] font-[500] border-t pt-2 pb-2 w-full"
                                 >
                                     Move to Cart

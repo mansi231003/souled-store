@@ -12,7 +12,7 @@ import FeaturesBar from './components/Features bar/FeaturesBar';
 // import { useState } from 'react';
 import { menProducts } from './data/menProducts';
 
-function MenPage({openCart,sidebarOpen,setSidebarOpen}) {
+function MenPage({ openCart, sidebarOpen, setSidebarOpen }) {
 
   const menSlides1 = [
     { image: "man-img1.png" },
@@ -53,22 +53,19 @@ function MenPage({openCart,sidebarOpen,setSidebarOpen}) {
 
   ]
 
-  const menCategories=[
+  const menCategories = [
     "Trending",
-    "Oversized T-shirts",
-    "Shirts",
-    "Polos",
-    "Hoodies",
-    "Jackets",
-    "Men Pants",
-    "Men Joggers",
-    "Men Jackets",
-    "Men High Top Sneakers",
-    "Men Low Top Sneakers",
+    "Cotton Linen Shirts",
+    "Drop Cut T-Shirts",
+    "Easy Fit Vests",
+    "Exclusive",
+    "Hooded T-Shirts",
+    "Men Full Sleeve T-Shirts",
+    "Men Hooded T-Shirts",
   ]
 
-  const menSidebarProducts=[
-     {
+  const menSidebarProducts = [
+    {
       image_url: "sidebar-img1.png",
       title: "Summer Home",
 
@@ -97,7 +94,7 @@ function MenPage({openCart,sidebarOpen,setSidebarOpen}) {
     {
       image_url: "sidebar-img1.png",
       title: "Relaxed-Fit",
-    
+
     },
     {
       image_url: "sidebar-img2.png",
@@ -106,19 +103,16 @@ function MenPage({openCart,sidebarOpen,setSidebarOpen}) {
 
   ]
 
- 
-//  const [sidebar,setSidebar]=useState(false)
-
   return (
-    
+
     <div className='men-page'>
-      <Sidebar isOpen={sidebarOpen} closeSidebar={()=>setSidebarOpen(false)}>
-         <ProductSlider products={menSidebarProducts} sidebar={true}/>
-         <Categories cards={menCategoriesImg}  tag="men"/>
-         <ProductSlider products={menSidebarProducts}/>
+      <Sidebar isOpen={sidebarOpen} closeSidebar={() => setSidebarOpen(false)}>
+        <ProductSlider products={menSidebarProducts} sidebar={true} />
+        <Categories cards={menCategoriesImg} tag="men" />
+        <ProductSlider products={menSidebarProducts} />
 
       </Sidebar>
-      <Navbar toggleSidebar={()=>setSidebarOpen(true)} cartSidebar={openCart}/>
+      <Navbar toggleSidebar={() => setSidebarOpen(true)} cartSidebar={openCart} />
       <Slider className="slider1" slides={menSlides1} />
       <Slider className="slider2" slides={menSlides2} />
       <FeaturesBar />
@@ -128,12 +122,12 @@ function MenPage({openCart,sidebarOpen,setSidebarOpen}) {
         <Slider slides={latestDrops} />
       </div>
       <Heading>NEW ARRIVALS</Heading>
-       <ProductSlider products={menProducts} />
+      <ProductSlider products={menProducts} />
       <Heading>CATEGORIES</Heading>
       <Categories cards={menCategoriesImg} tag="men" />
       <Heading>CURATED FOR YOU</Heading>
       <Curated images={curatedImages} />
-      <CategorySection products={menProducts} buttons={menCategories}/>
+      <CategorySection products={menProducts} buttons={menCategories} />
 
       <Footer />
     </div>

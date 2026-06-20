@@ -2,6 +2,7 @@ import { useSelector } from "react-redux";
 // import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
+import { addToWishlist } from "../../Redux/WishlistSlice/WishlistSlice";
 import { removeFromCart, updateQuantity } from "../../Redux/CartSlice/cartSlice";
 import { Link } from "react-router-dom";
 import "./CartSidebar.css"
@@ -14,7 +15,6 @@ export default function CartSidebar({ sidebarOpen, close }) {
 
     const totalProducts = cartItems.length;
     const dispatch = useDispatch();
-    // const navigate = useNavigate();
     const [removingId, setRemovingId] = useState(null);
 
     if (sidebarOpen) {
@@ -32,13 +32,17 @@ export default function CartSidebar({ sidebarOpen, close }) {
                 <div className="w-[500px] cart-sidebar bg-white z-[9999] overflow-y-auto right-0 absolute h-full sidebar flex flex-col items-center">
                     {cartItems.length === 0 ? (
                         <>
-                        <div className="flex justify-center items-center h-full flex-col">
-                            <div>
-                                <img src="/emptyCart.avif" alt="emptyCart"/>
+                            <div className="flex justify-center items-center h-full flex-col">
+                                <div>
+                                    <img src="/emptyCart.avif" alt="emptyCart" />
+                                </div>
+                                <p className="flex justify-center text-[20px] font-[600] h-[60px] items-center">Your cart is empty!</p>
+                             <div onClick={close} className="text-white bg-[#168D8F] font-[600] flex justify-center items-center pt-[10px] pb-[10px] pl-[26px] pr-[26px] rounded-[4px] text-[15px] w-max mt-4 mb-4 cursor-pointer">
+                                Continue Shopping...
                             </div>
-                        <p className="flex justify-center text-[20px] font-[600] h-[60px] items-center">Your cart is empty!</p>
                             
-                        </div>
+
+                            </div>
                         </>
                     )
                         : (<div className="w-full flex flex-col items-center">
@@ -50,7 +54,7 @@ export default function CartSidebar({ sidebarOpen, close }) {
                                             <div >{totalProducts}/{totalProducts} ITEM{totalProducts > 1 ? "S" : ""} SELECTED</div>
                                             <div className="text-[#117a7a]">(${cartTotal})</div>
                                         </div>
-                                                             <div onClick={close} className=" cursor-pointer"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="black"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg></div>
+                                        <div onClick={close} className=" cursor-pointer"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="black"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" /></svg></div>
                                     </div>
 
                                     {cartItems.map((item, index) => (
@@ -60,8 +64,7 @@ export default function CartSidebar({ sidebarOpen, close }) {
                                                 <div className="flex justify-between gap-2">
                                                     <div className="bg-[#168D8F] w-[19px] h-[19px] rounded-[2px] flex justify-center items-center"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="white"><path d="M382-240 154-468l57-57 171 171 367-367 57 57-424 424Z" /></svg></div>
                                                     <div className="image w-[110px] rounded-[6px]">
-                                                        {/* <img className="rounded-[6px]" src={item.image} /> */}
-                                                        <img className="rounded-[6px]" src={item.image.includes("/") ? item.image : `/${item.image}`} alt="productimage"/>
+                                                        <img className="rounded-[6px]" src={item.image.includes("/") ? item.image : `/${item.image}`} alt="productimage" />
                                                     </div>
                                                     <div className="text-[14px] flex flex-col">
                                                         <div className="font-[600]">{item.title}</div>
@@ -69,7 +72,7 @@ export default function CartSidebar({ sidebarOpen, close }) {
                                                         <div className="flex gap-2 pt-3">
                                                             <div className="size-btn font-[700] text-[13px] border border-[#e3e3e3] pl-2 rounded-[4px] text-[#58595b] w-[100px] h-[35px] flex justify-between items-center">Size: {item.size} </div>
                                                             <div className="size-btn font-[700] text-[13px] border border-[#e3e3e3] pl-2 rounded-[4px] text-[#58595b] w-[80px] h-[35px] flex justify-between items-center">Qty:
-                                                                <select value={item.quantity} onChange={(e) => dispatch(updateQuantity({ id: item.id, quantity: Number(e.target.value) }))} className="outline-none">
+                                                                <select value={item.quantity} onChange={(e) => dispatch(updateQuantity({ id: item.id, quantity: Number(e.target.value) }))} className="outline-none bg-white">
                                                                     {[1, 2, 3, 4, 5].map(q => (
                                                                         <option key={q} value={q}>{q}</option>
                                                                     ))}
@@ -96,11 +99,22 @@ export default function CartSidebar({ sidebarOpen, close }) {
                         ${removingId === item.id ? "bg-gray-400 text-white cursor-not-allowed" : "cursor-pointer"}`} >
                                                     {removingId === item.id ? "REMOVING..." : "REMOVE"}
                                                 </div>
-                                                <div className="rounded-[12px] button cursor-pointer border border-[#e3e3e3] pl-[26px] pr-[26px] pt-[8px] pb-[8px]">MOVE TO WISHLIST</div>
+                                                <div onClick={() => {
+                                                    dispatch(addToWishlist({
+                                                        id: crypto.randomUUID(),
+                                                        product_id: item.product_id,
+                                                        title: item.title,
+                                                        image: item.image,
+                                                        price: item.price,
+                                                        size: item.size,
+                                                        color: item.color,
+                                                    }));
+
+                                                    dispatch(removeFromCart(item.id));
+                                                }} className="rounded-[12px] button cursor-pointer border border-[#e3e3e3] pl-[26px] pr-[26px] pt-[8px] pb-[8px]">MOVE TO WISHLIST</div>
                                             </div>
                                         </div>
-                                    ))
-                                    }
+                                    ))}
                                 </div>
                             )}
                             <Link to='/cart'><div onClick={close} className="text-white bg-[#168D8F] font-[600] flex justify-center items-center pt-[10px] pb-[10px] pl-[26px] pr-[26px] rounded-[4px] text-[15px] w-max mt-4 mb-4 cursor-pointer">

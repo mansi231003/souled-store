@@ -2,8 +2,6 @@ import "./FilterCollections.css"
 import Navbar from "../Navbar/Navbar";
 import Footer from "../Footer/Footer";
 import ProductCard from "../Product card/ProductCard";
-// import { useLocation } from "react-router-dom";
-// import { allProducts } from "../../data/allProducts";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { menProducts } from "../../data/menProducts";
@@ -12,9 +10,6 @@ import { sneakers } from "../../data/sneakersProduct";
 
 export default function FilterCollections({ openCart }) {
     const { type } = useParams();
-    // const { state } = useLocation();
-    // const tag = state?.tag;
-    // const collection = state?.collection;
     const [selectedSizes, setSelectedSizes] = useState([]);
     const [priceRange, setPriceRange] = useState(null);
     const [selectedCategory, setSelectedCategory] = useState([]);
@@ -35,7 +30,6 @@ export default function FilterCollections({ openCart }) {
         { name: "women Exclusive", count: 1 },
         { name: "women Hooded T-Shirts", count: 22 },
         { name: "women Full Sleeve T-Shirts", count: 3 },
-        { name: "women Hooded T-Shirts", count: 1 },
     ];
     const sneakerCategories = [
         { name: "men Cotton Linen Sneakers", count: 1 },
@@ -84,11 +78,9 @@ export default function FilterCollections({ openCart }) {
 
         const variantMatch = product.variants?.some(variant => {
 
-
             const sizeMatch =
                 selectedSizes.length === 0 ||
                 selectedSizes.includes(variant.size);
-
 
             const price = Number(variant.price);
 
@@ -115,9 +107,9 @@ export default function FilterCollections({ openCart }) {
             <Navbar cartSidebar={openCart} />
 
             <div className={`${filterSidebar ? "hidden" : "w-full border p-2 sticky z-10 bg-white top-0 justify-between hidden filter-button"}`}>
-                <div onClick={() => setfilterSidebar(true)} className="p-3 h-[36px] w-[120px] flex justify-center items-center rounded-[4px] top-0 cursor-pointer">Filter</div>
+                <div onClick={() => setfilterSidebar(true)} className="p-3 h-[36px] w-[120px] flex justify-center items-center bg-black text-white rounded-[4px] top-0 cursor-pointer">Filter</div>
             </div>
-            <div className="flex p-2">
+            <div className="flex">
                 {filterSidebar && (
                     <div className="fixed filter-overlay w-full top-0 h-full bg-[rgba(0,0,0,0.4)] z-40" onClick={() => setfilterSidebar(false)} ></div>
 
@@ -180,48 +172,34 @@ export default function FilterCollections({ openCart }) {
                         <div className="w-full p-2 flex flex-col gap-2">
 
                             <label className="flex items-center gap-3">
-                                <input
-                                    type="radio"
-                                    name="price"
-                                    onChange={() =>
-                                        setPriceRange({ min: 0, max: 500 })
-                                    }
-                                />
+                                <input type="radio" name="price"
+                                    onChange={() =>setPriceRange({ min: 0, max: 500 })}/>
                                 Rs.0 - Rs.500
                             </label>
 
                             <label className="flex items-center gap-3">
-                                <input
-                                    type="radio"
-                                    name="price"
-                                    onChange={() =>
-                                        setPriceRange({ min: 500, max: 1000 })
-                                    }
-                                />
+                                <input type="radio" name="price"
+                                    onChange={() =>setPriceRange({ min: 500, max: 1000 })}/>
                                 Rs.500 - Rs.1000
                             </label>
 
                             <label className="flex items-center gap-3">
-                                <input
-                                    type="radio"
-                                    name="price"
-                                    onChange={() =>
-                                        setPriceRange({ min: 1000, max: 2000 })
-                                    }
-                                />
+                                <input type="radio" name="price"
+                                    onChange={() => setPriceRange({ min: 1000, max: 2000 })}/>
                                 Rs.1000+
                             </label>
 
                         </div>
                     </div>
+                    {/* <div  onClick={() => setfilterSidebar(false)} className="p-3 h-[36px] w-[140px] flex justify-center items-center bg-black absolute bottom-[-10px] left-[92px] text-white rounded-[4px] cursor-pointer">Apply</div> */}
 
                 </div>
                 <div className="flex flex-col w-[100%] filter-collection-right-section">
                     <div className="w-full pt-[15px] text-[12px] text-[#a7a9ac] gap-1 flex">Home /<span>T-Shirts /</span></div>
                     <div className="flex justify-between items-center pb-6">
-                        <div className="text-black text-[14px]">Men T-Shirts<span className="text-[#58595b]">-1414 items</span></div>
+                        <div className="text-black text-[14px]">Men T-Shirts</div>
                         <div className="flex border border-[#ccc] p-[8px] rounded-[5px] text-[#58595b] text-[14.5px]">
-                            <select className="outline-none w-[220px]">
+                            <select className="outline-none w-[220px] bg-white">
                                 <option>Selecting Sorting options</option>
                                 <option>e</option>
                                 <option>e</option>

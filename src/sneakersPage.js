@@ -94,16 +94,15 @@ function SneakersPage({openCart,sidebarOpen,setSidebarOpen}) {
   ]
 
   const sneakersCategory=[
-     'Trending',
-      'Men High Top Sneakers',
-      'Men Low Top Sneakers',
-      'Men Mid Top Sneakers',
-      'Women Mid Top Sneakers',
-      'Women Low Top Sneakers',
-      'Socks'
+     "Trending",
+    "men Cotton Linen Sneakers",
+    "men Drop Cut Sneakers",
+    "men Easy Fit Vests",
+    "men Exclusive",
+    "men Hooded T-Shirts",
+    "Men Sliders"
   ]
 
-  // const [sidebar,setSidebar]=useState(false)
 
   return (
     

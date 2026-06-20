@@ -29,6 +29,9 @@
 
     }
 
-  
+  .filter-collection-right-section .category-images{
+    padding-left: 0;
+    padding-right: 0;
+  }
     
 }

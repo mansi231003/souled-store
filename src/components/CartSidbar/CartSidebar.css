@@ -11,7 +11,8 @@
     }
 
     .cart-sidebar .size-btn{
-        width: 80px;
+        width: max-content;
+        padding-right: 4px;
     }
 
     .cart-sidebar .button{

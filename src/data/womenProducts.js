@@ -4,7 +4,7 @@ export const womenProducts = [
         "product_id": "7",
         "title": "women flower shirt",
         "tags": ["women"],
-        "category": "women Hooded T-Shirts",
+        "category": ["Trending","women Hooded T-Shirts"],
         "price_range": { "min": "700", "max": "900" },
         "stock": "80",
         "image_url": "/women-arr1.png",
@@ -45,7 +45,7 @@ export const womenProducts = [
         "product_id": "8",
         "title": "women Casual T-Shirt",
         "tags": ["women"],
-        "category": "women Hooded T-Shirts",
+        "category":["Trending", "women Hooded T-Shirts"],
         "price_range": { "min": null, "max": "500" },
         "stock": "120", // 50 + 70
         "image_url": "/women-arr2.png",
@@ -74,7 +74,7 @@ export const womenProducts = [
         "product_id": "9",
         "title": "women Sports Hoodie",
         "tags": ["women"],
-        "category": "women Easy Fit Vests",
+        "category":["Trending","women Easy Fit Vests"],
         "price_range": { "min": "1200", "max": "1500" },
         "stock": "50", // 20 + 30
         "image_url": "/women-arr3.png",
@@ -112,7 +112,7 @@ export const womenProducts = [
         "product_id": "10",
         "title": "Denim Jeans",
         "tags": ["women"],
-        "category": "women Easy Fit Vests",
+        "category": ["Trending","women Easy Fit Vests"],
         "price_range": { "min": null, "max": "1300" },
         "stock": "40", // 15 + 25
         "image_url": "/women-arr4.png",
@@ -141,7 +141,7 @@ export const womenProducts = [
         "product_id": "11",
         "title": "Summer Shirt",
         "tags": ["women"],
-        "category": "women Hooded T-Shirts",
+        "category": ["Trending","women Hooded T-Shirts"],
         "price_range": { "min": "750", "max": "950" },
         "stock": "70", // 20 + 30
         "image_url": "/women-arr1.png",
