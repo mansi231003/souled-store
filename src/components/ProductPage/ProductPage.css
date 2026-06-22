@@ -1,14 +1,15 @@
+.product-slider{
+    display: none;
+}
+
 @media screen and (max-width:950px) {
+
     .product-page .hero-section{
         flex-direction: column;
     }
 
-    .display-none{
-        display: none;
-    }
-
     .left-container{
-        width: 90%;
+        width: 98%;
     }
 
     .right-container{
@@ -19,6 +20,13 @@
 }
 
 @media screen and (max-width:500px) {
+     .product-slider{
+        display: flex;
+    }
+
+    .product-images{
+        display: none;
+    }
 .cart-button{
     width: 165px;
 

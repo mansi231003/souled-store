@@ -113,7 +113,7 @@ export const menProducts = [
         "title": "Denim Jeans",
         "tags": ["men"],
         "category": ["Trending", "Hooded T-Shirts"],
-        "price_range": { "min": null, "max": "1300" },
+        "price_range": {"min": null,"max": "1300"},
         "stock": "40",
         "image_url": "/newArrival-img4.png",
         "number_of_variants": "2",
@@ -141,12 +141,12 @@ export const menProducts = [
         "product_id": "5",
         "title": "Summer Shirt",
         "tags": ["men"],
-        "category":  ["Trending", "Hooded T-Shirts"],
+        "category":  ["Trending","Hooded T-Shirts"],
         "price_range": { "min": "750", "max": "950" },
         "stock": "70", // 20 + 30
         "image_url": "/newArrival-img2.png",
         "number_of_variants": "3",
-        "variant_options": ["size", "color"],
+        "variant_options": ["size","color"],
         "variant_values": [
             {
                 "size": {

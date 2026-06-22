@@ -8,6 +8,10 @@ import { addToWishlist, removeFromWishlist } from "../../Redux/WishlistSlice/Wis
 import { useSelector } from "react-redux";
 import "./ProductPage.css"
 import { allProducts } from "../../data/allProducts"
+import { Swiper, SwiperSlide } from "swiper/react"
+import {Pagination } from 'swiper/modules';
+import 'swiper/css';
+
 
 export default function ProductPage({ openCart }) {
     const { id } = useParams();
@@ -114,12 +118,30 @@ export default function ProductPage({ openCart }) {
             <Navbar cartSidebar={openCart} />
             <div className="pl-5 flex flex-col justify-center items-center product-page">
                 <div className="w-full pt-[15px] pb-[15px] text-[12px] text-[#a7a9ac] gap-1 flex">Home /<span>T-Shirts /</span><span>The Souled Store /</span><span className="text-[#58595b]">{product.title}</span></div>
-                <div className="flex gap-4 pb-6 hero-section">
-                    <div className="grid grid-cols-2 gap-2 w-[57%] h-max left-container">
+                <div className="flex gap-4 pb-6 hero-section w-full">
+                    <div className="product-slider flex w-[94%]">
+                        <Swiper
+                      pagination={{
+                        clickable: true
+                    }}
+                    modules={[Pagination]}
+                    slidesPerView={1}
+                    spaceBetween={10}   
+                    loop={true}
+                    >
+                    {
+                        [1,2,3,4].map((item) => (
+                           <SwiperSlide  key={item.product_id}> <img src={selectedVariant ? selectedVariant.image_url : `${product.image_url}`} alt={product.title} /></SwiperSlide>
+                        ))
+                    }
+                </Swiper>
+
+                    </div>
+                    <div className="product-images grid grid-cols-2 gap-2 w-[57%] h-max left-container">
                         <img src={selectedVariant ? selectedVariant.image_url : `${product.image_url}`} alt={product.title} />
                         <img src={selectedVariant ? selectedVariant.image_url : `${product.image_url}`} alt={product.title} />
-                        <img className="display-none" src={selectedVariant ? selectedVariant.image_url : `${product.image_url}`} alt={product.title} />
-                        <img className="display-none" src={selectedVariant ? selectedVariant.image_url : `${product.image_url}`} alt={product.title} />
+                        <img src={selectedVariant ? selectedVariant.image_url : `${product.image_url}`} alt={product.title} />
+                        <img src={selectedVariant ? selectedVariant.image_url : `${product.image_url}`} alt={product.title} />
 
                     </div>
                     <div className="pl-8 w-[40%] right-container">

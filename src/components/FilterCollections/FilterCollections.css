@@ -1,8 +1,14 @@
 .filter-section{
     scrollbar-width: none;
 }
+.apply-btn{
+    display: none;
+}
 
 @media screen and (max-width:750px){
+    .apply-btn{
+        display: flex;
+    }
     .filter-section{
         transform: translateX(-153%);
        width: 0;

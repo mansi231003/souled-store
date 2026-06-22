@@ -72,26 +72,28 @@ export default function FilterCollections({ openCart }) {
     }
 
     const products = baseProducts.filter(product => {
-        const categoryMatch =
-            selectedCategory.length === 0 ||
-            selectedCategory.includes(product.category);
+    const categoryMatch =
+        selectedCategory.length === 0 ||
+        product.category.some(cat =>
+            selectedCategory.includes(cat)
+        );
 
-        const variantMatch = product.variants?.some(variant => {
+    const variantMatch = product.variants?.some(variant => {
+        const sizeMatch =
+            selectedSizes.length === 0 ||
+            selectedSizes.includes(variant.size);
 
-            const sizeMatch =
-                selectedSizes.length === 0 ||
-                selectedSizes.includes(variant.size);
+        const price = Number(variant.price);
 
-            const price = Number(variant.price);
+        const priceMatch =
+            !priceRange ||
+            (price >= priceRange.min && price <= priceRange.max);
 
-            const priceMatch =
-                !priceRange ||
-                (price >= priceRange.min && price <= priceRange.max);
-
-            return sizeMatch && priceMatch;
-        });
-           return categoryMatch && variantMatch;
+        return sizeMatch && priceMatch;
     });
+
+    return categoryMatch && variantMatch;
+});
 
     const [filterSidebar, setfilterSidebar] = useState(false)
     useEffect(() => {
@@ -114,20 +116,18 @@ export default function FilterCollections({ openCart }) {
                     <div className="fixed filter-overlay w-full top-0 h-full bg-[rgba(0,0,0,0.4)] z-40" onClick={() => setfilterSidebar(false)} ></div>
 
                 )}
-                <div className={`${filterSidebar ? "active" : ""} filter-section p-2 w-[400px] sticky top-[160px] bg-white h-[85vh] overflow-y-auto translate-x-0 z-50`}>
+                <div className={`${filterSidebar ? "active" : ""} filter-section p-2 w-[400px] sticky top-[150px] bg-white h-[85vh] overflow-y-auto translate-x-0 z-50`}>
                     <div>
                         <h2 className="text-[14.5px] text-[#59595b] font-[700] pt-[12px] pb-[12px] pr-[3px] pl-[3px] border-t-[1px]">CATEGORIES</h2>
-                        <input className="outline-none border border-rgba(0,0,0,0.15) p-[6px] w-[95%] text-[#59595b] font-[300] text-[15px] rounded-[5px]" placeholder="Search for Categories" />
+                        {/* <input className="outline-none border border-rgba(0,0,0,0.15) p-[6px] w-[95%] text-[#59595b] font-[300] text-[15px] rounded-[5px]" placeholder="Search for Categories" /> */}
                         <div className="w-full p-2">
                             {categories.map((item, index) => (
                                 <label key={index} className="flex items-center justify-between p-1 cursor-pointer" >
                                     <div className="flex items-center gap-3">
-                                        <input
-                                            type="checkbox"
+                                        <input type="checkbox"
                                             checked={selectedCategory.includes(item.name)}
                                             onChange={() => handleChange(item.name)}
-                                            className="w-[16px] h-[16px]"
-                                        />
+                                            className="w-[16px] h-[16px]"/>
                                         <span className="text-gray-700 ">
                                             {item.name}
                                         </span>
@@ -142,7 +142,7 @@ export default function FilterCollections({ openCart }) {
 
                     <div>
                         <h2 className="text-[14.5px] text-[#59595b] font-[700] pt-[12px] pb-[12px] pr-[3px] pl-[3px] border-t-[1px]">SIZE</h2>
-                        <input className="outline-none border border-rgba(0,0,0,0.15) p-[6px] w-[95%] text-[#59595b] font-[300] text-[15px] rounded-[5px]" placeholder="Search for Size" />
+                        {/* <input className="outline-none border border-rgba(0,0,0,0.15) p-[6px] w-[95%] text-[#59595b] font-[300] text-[15px] rounded-[5px]" placeholder="Search for Size" /> */}
                         <div className="w-full p-2 pt-4 flex flex-wrap gap-3">
 
                             {["XS", "small", "medium", "large", "XL"].map(size => (
@@ -191,7 +191,7 @@ export default function FilterCollections({ openCart }) {
 
                         </div>
                     </div>
-                    {/* <div  onClick={() => setfilterSidebar(false)} className="p-3 h-[36px] w-[140px] flex justify-center items-center bg-black absolute bottom-[-10px] left-[92px] text-white rounded-[4px] cursor-pointer">Apply</div> */}
+                    <div  onClick={() => setfilterSidebar(false)} className="apply-btn p-3 h-[36px] w-[140px] flex justify-center items-center bg-black absolute bottom-[-10px] left-[92px] text-white rounded-[4px] cursor-pointer">Apply</div>
 
                 </div>
                 <div className="flex flex-col w-[100%] filter-collection-right-section">

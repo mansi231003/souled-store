@@ -70,7 +70,7 @@ export default function Navbar({ toggleSidebar, cartSidebar }) {
 
             </div>
             <div className="categories hidden h-[55px] w-full text-[17px] items-center justify-between">
-                <div className={`${location.pathname === "/" ? "nav-item" : "nav-link"} w-full items-center flex justify-center border-r-gray-400 border-r font-bold`}><Link to="/">MEN</Link></div>
+                <div className={`${location.pathname === "/" ? "nav-item" : "nav-link"} w-full items-center flex justify-center border-r-gray-400 border-r`}><Link to="/">MEN</Link></div>
                 <div className={`${location.pathname === "/womenPage" ? "nav-item" : "nav-link"} w-full items-center flex justify-center border-r-gray-400 border-r`}><Link to="/womenPage">WOMEN</Link></div>
                 <div className={`${location.pathname === "/sneakersPage" ? "nav-item" : "nav-link"} w-full items-center flex justify-center`}><Link to="/sneakersPage">SNEAKERS</Link></div>
                 
