@@ -177,3 +177,52 @@ export const womenProducts = [
         ]
     }
 ];
+
+export const womenCategoriesImg = [
+    { img: "women-category1.png" },
+    { img: "women-category2.png" },
+    { img: "women-category3.png" },
+    { img: "women-category4.png" },
+    { img: "women-category1.png" },
+    { img: "women-category2.png" },
+
+  ]
+
+  export const womenSidebarProducts=[
+     {
+      image_url: "w-sidebar-img.png",
+      title: "Summer Home",
+
+    },
+    {
+      image_url: "w-sidebar-img2.png",
+      title: "Hot Merch",
+    },
+    {
+      image_url: "w-sidebar-img3.png",
+      title: "Collab Kicks",
+
+    },
+    {
+      image_url: "w-sidebar-img4.png",
+      title: "Culture Code",
+    },
+    {
+      image_url: "w-sidebar-img3.png",
+      title: "T-Shirts",
+    },
+    {
+      image_url: "w-sidebar-img.png",
+      title: "Marvel",
+    },
+    {
+      image_url: "w-sidebar-img4.png",
+      title: "Relaxed-Fit",
+    
+    },
+    {
+      image_url: "w-sidebar-img2.png",
+      title: "Socks",
+    },
+
+  ]

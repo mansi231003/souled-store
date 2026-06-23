@@ -1,5 +1,4 @@
 import Navbar from './components/Navbar/Navbar';
-import Sidebar from './components/Sidebar/Sidebar';
 import Heading from './components/Heading/Heading';
 import ProductSlider from './components/Product slider/ProductSlider';
 import Slider from './components/Slider/Slider';
@@ -9,10 +8,9 @@ import CategorySection from './components/Category Section/CategorySection';
 import Footer from './components/Footer/Footer';
 import './App.css';
 import FeaturesBar from './components/Features bar/FeaturesBar';
-// import { useState } from 'react';
 import { womenProducts } from './data/womenProducts';
 
-function WomenPage({openCart,sidebarOpen,setSidebarOpen}) {
+function WomenPage({sidebarOpen,setSidebarOpen}) {
 
 
   const womenSlides1 = [
@@ -54,44 +52,45 @@ function WomenPage({openCart,sidebarOpen,setSidebarOpen}) {
 
   ]
 
-  const womenSidebarProducts=[
-     {
-      image_url: "w-sidebar-img.png",
-      title: "Summer Home",
+  // const womenSidebarProducts=[
+  //    {
+  //     image_url: "w-sidebar-img.png",
+  //     title: "Summer Home",
 
-    },
-    {
-      image_url: "w-sidebar-img2.png",
-      title: "Hot Merch",
-    },
-    {
-      image_url: "w-sidebar-img3.png",
-      title: "Collab Kicks",
+  //   },
+  //   {
+  //     image_url: "w-sidebar-img2.png",
+  //     title: "Hot Merch",
+  //   },
+  //   {
+  //     image_url: "w-sidebar-img3.png",
+  //     title: "Collab Kicks",
 
-    },
-    {
-      image_url: "w-sidebar-img4.png",
-      title: "Culture Code",
-    },
-    {
-      image_url: "w-sidebar-img3.png",
-      title: "T-Shirts",
-    },
-    {
-      image_url: "w-sidebar-img.png",
-      title: "Marvel",
-    },
-    {
-      image_url: "w-sidebar-img4.png",
-      title: "Relaxed-Fit",
+  //   },
+  //   {
+  //     image_url: "w-sidebar-img4.png",
+  //     title: "Culture Code",
+  //   },
+  //   {
+  //     image_url: "w-sidebar-img3.png",
+  //     title: "T-Shirts",
+  //   },
+  //   {
+  //     image_url: "w-sidebar-img.png",
+  //     title: "Marvel",
+  //   },
+  //   {
+  //     image_url: "w-sidebar-img4.png",
+  //     title: "Relaxed-Fit",
     
-    },
-    {
-      image_url: "w-sidebar-img2.png",
-      title: "Socks",
-    },
+  //   },
+  //   {
+  //     image_url: "w-sidebar-img2.png",
+  //     title: "Socks",
+  //   },
 
-  ]
+  // ]
+  
 
   const womenCategories=[
         "Trending",
@@ -107,14 +106,14 @@ function WomenPage({openCart,sidebarOpen,setSidebarOpen}) {
 
   return (
     <div className='women-page'>
-      <Sidebar isOpen={sidebarOpen} closeSidebar={()=>setSidebarOpen(false)}>
+      {/* <Sidebar isOpen={sidebarOpen} closeSidebar={()=>setSidebarOpen(false)}>
          <ProductSlider products={womenSidebarProducts} sidebar={true}/>
          <Categories cards={womenCategoriesImg} tag="women"/>
          <ProductSlider products={womenSidebarProducts}/>
 
-      </Sidebar>
+      </Sidebar> */}
      
-      <Navbar toggleSidebar={()=>setSidebarOpen(true)} cartSidebar={openCart}/>
+      <Navbar toggleSidebar={()=>setSidebarOpen(true)}/>
       <Slider className="slider1" slides={womenSlides1} />
       <Slider className="slider2" slides={womenSlides2} />
       <FeaturesBar />

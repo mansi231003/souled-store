@@ -8,31 +8,27 @@ import AddToCart from "./components/Add To cart/AddToCart";
 import FilterCollections from "./components/FilterCollections/FilterCollections";
 import CartSidebar from "./components/CartSidbar/CartSidebar";
 import Wishlist from "./components/WishlistPage/Wishlist";
-import { useState } from "react";
+// import { useState } from "react";
+import Sidebar from "./components/Sidebar/Sidebar";
 
 function App(){
-  const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [cartSidebar, setCartSidebar] = useState(false);
+  // const [sidebarOpen, setSidebarOpen] = useState(false);
   
   return(
     <>
     <Router>
-     <CartSidebar
-        sidebarOpen={cartSidebar}
-        close={() => setCartSidebar(false)}
-      />
+   <CartSidebar/>
+   <Sidebar/>
       <Routes>
-        <Route path="/" element={<MenPage  sidebarOpen={sidebarOpen}
-            setSidebarOpen={setSidebarOpen} openCart={() => setCartSidebar(true)}/>}></Route>
-        <Route path ="/womenPage" element={<WomenPage  sidebarOpen={sidebarOpen}
-            setSidebarOpen={setSidebarOpen} openCart={() => setCartSidebar(true)}/>}></Route>
-        <Route path ="/sneakersPage" element={<SneakersPage  sidebarOpen={sidebarOpen}
-            setSidebarOpen={setSidebarOpen} openCart={() => setCartSidebar(true)}/>}></Route>
-        <Route path ="/registration" element={<Registration openCart={() => setCartSidebar(true)}/>}></Route>
-        <Route path="/product/:id" element={<ProductPage openCart={() => setCartSidebar(true)}/>}></Route>
-        <Route path="/cart" element={<AddToCart openCart={() => setCartSidebar(true)}/>}></Route>
-        <Route path="/filter/:type" element={<FilterCollections openCart={() => setCartSidebar(true)}/>}></Route>
-        <Route path="/wishlist" element={<Wishlist openCart={() => setCartSidebar(true)}/>} />
+        <Route path="/" element={<MenPage/>}></Route>
+        <Route path ="/womenPage" element={<WomenPage/>}></Route>
+        <Route path ="/sneakersPage" element={<SneakersPage />}></Route>
+        <Route path ="/registration" element={<Registration/>}></Route>
+        <Route path="/product/:id" element={<ProductPage/>}></Route>
+        <Route path="/cart" element={<AddToCart/>}></Route>
+        <Route path="/filter/:type" element={<FilterCollections/>}></Route>
+        <Route path="/wishlist" element={<Wishlist/>} />
+        <Route path="/cartt" element={<CartSidebar/>} />
         
       </Routes>
     </Router>

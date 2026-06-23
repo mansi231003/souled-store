@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { loadWishlistFromCookies } from "./wishlistCookie";
 
 const initialState = {
-    items: loadWishlistFromCookies()
+    items: loadWishlistFromCookies(),
 };
 
 const wishlistSlice = createSlice({

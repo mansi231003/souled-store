@@ -1,61 +1,73 @@
 // import { useState } from "react"
 import "./Sidebar.css"
 import { useLocation, useNavigate } from "react-router-dom";
+import { closeSidebar } from "../../Redux/CartSlice/cartSlice";
+import { useSelector, useDispatch } from "react-redux";
+  import { useEffect } from "react";
+  import ProductSlider from "../Product slider/ProductSlider";
+  import Categories from "../Categories/Categories";
+import { menSidebarData,womenSidebarData,sneakersSidebarData } from "../../data/sidebarData";
+  
+export default function Sidebar() {
+    const location = useLocation();
+    const navigate = useNavigate();
+    const isOpen = useSelector(state => state.cart.isSidebarOpen);
+    const dispatch = useDispatch();
+    const type = useSelector(state => state.cart.sidebarType);
 
-export default function Sidebar({ children,isOpen,closeSidebar }) {
- const location = useLocation();
- const navigate =useNavigate();
+    const handleNavigate = (path) => {
+        navigate(path);
+        dispatch(closeSidebar())
+    };
+    let data;
 
- const handleNavigate = (path) => {
-  navigate(path);
-  // don't close sidebar
-};
+if (type === "men") data = menSidebarData;
+else if (type === "women") data = womenSidebarData;
+else if (type === "sneakers") data = sneakersSidebarData;
 
-    if (isOpen) {
-        document.body.style.overflow = 'hidden';
-    }
-    else {
-        document.body.style.overflow = "auto";
+  
 
-    }
+    useEffect(() => {
+        document.body.style.overflow = isOpen ? "hidden" : "auto";
+    }, [isOpen]);
 
     return (
         <>
 
             <div className={`${isOpen ? "w-full h-full fixed flex overflow-hidden top-0 z-[999]" : "hidden"}`}>
-                <div onClick={closeSidebar} className="fixed w-full top-0 h-full bg-[rgba(0,0,0,0.4)]"></div>
+                <div onClick={() => dispatch(closeSidebar())} className="fixed w-full top-0 h-full bg-[rgba(0,0,0,0.4)]"></div>
                 <div className="w-[500px] bg-white z-[9999] overflow-y-auto sidebar">
 
                     <div className="flex justify-between pt-[17px] pl-[14px] pr-[15px] pb-[13px]">
-                        <div className="img-container w-[80px] flex items-center"><img className="img" src="souledimg.webp" alt=""/></div>
+                        <div className="img-container w-[80px] flex items-center"><img className="img" src="souledimg.webp" alt="" /></div>
                         <div className="border border-[#158b8d] rounded-[6px] w-[200px] flex justify-center items-center pt-[13px] pb-[13px] pl-[11px] pr-[11px]">Log In/Register</div>
-                        <div onClick={closeSidebar} className="flex justify-center items-center cursor-pointer">
-                            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="black"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg>
-</div>
+                        <div onClick={() => dispatch(closeSidebar())} className="flex justify-center items-center cursor-pointer">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="black"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" /></svg>
+                        </div>
                     </div>
                     <div className="bg-[#148c8d] text-white flex justify-center items-center pt-[9px] pb-[10px] pl-[31px] pr-[29px] rounded-br-[16px] rounded-bl-[16px] gap-3">
                         <span className="text-[16px]">Earn 10% Cashback on Every App Order</span>
-                        <div className="w-[24px] h-[24px] rounded-[5px] border-[#18a7a8] border shadow-[0px_1px_2px_0px_#0b0b0b]"><img src="play-strore.png" alt=""/></div>
-                        <div className="w-[24px] h-[24px] rounded-[5px] border-[#18a7a8] border shadow-[0px_1px_2px_0px_#0b0b0b]"><img src="appstore.png" alt=""/></div>
+                        <div className="w-[24px] h-[24px] rounded-[5px] border-[#18a7a8] border shadow-[0px_1px_2px_0px_#0b0b0b]"><img src="play-strore.png" alt="" /></div>
+                        <div className="w-[24px] h-[24px] rounded-[5px] border-[#18a7a8] border shadow-[0px_1px_2px_0px_#0b0b0b]"><img src="appstore.png" alt="" /></div>
 
                     </div>
                     <div className="flex justify-between p-4 shadow-[0px_4px_4px_0px_#dce9ea]">
                         <div onClick={() => handleNavigate("/")} className={`${location.pathname === "/" ? " text-[#148c8d] font-[700]" : "text-[#8a8a8a] font-[400]"} w-full text-[17px] flex justify-center items-center cursor-pointer`}>MEN</div>
                         <div onClick={() => handleNavigate("/womenPage")} className={`${location.pathname === "/womenPage" ? " text-[#148c8d] font-[700]" : "text-[#8a8a8a] font-[400]"} w-full text-[17px] flex justify-center items-center cursor-pointer`}>WOMEN</div>
-                        <div onClick={() => handleNavigate("/sneakersPage")} className={`${location.pathname === "/sneakersPage"? " text-[#148c8d] font-[700]" : "text-[#8a8a8a] font-[400]"} w-full text-[17px] flex justify-center items-center cursor-pointer`}>SNEAKERS</div>
+                        <div onClick={() => handleNavigate("/sneakersPage")} className={`${location.pathname === "/sneakersPage" ? " text-[#148c8d] font-[700]" : "text-[#8a8a8a] font-[400]"} w-full text-[17px] flex justify-center items-center cursor-pointer`}>SNEAKERS</div>
                     </div>
 
-                    <div className="p-[16px] pb-0 slider ">{children[0]}</div>
+                    <div className="p-[16px] pb-0 slider "><ProductSlider products={data.products}/></div>
 
                     <div className="flex justify-between text-[17px] font-[700] p-4 border-t-[#e5e5e5] border-t border-dashed">Shop All<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="black"><path d="M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z" /></svg></div>
                     <div className="flex justify-between p-5 pt-0">Categories <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="black"><path d="M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z" /></svg></div>
                     <div className="category-section">
-                        {children[1]}
+                       <Categories cards={data.categories} />
                     </div>
                     <div className="flex justify-between text-[17px] font-[700] p-4 border-t-[#e5e5e5] border border-dashed">Top Wear<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="black"><path d="M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z" /></svg></div>
                     <div className="flex justify-between text-[17px] font-[700] p-4 border-t-[#e5e5e5] border border-dashed">Bottom Wear<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="black"><path d="M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z" /></svg></div>
                     <div className="flex justify-between text-[17px] font-[700] p-4 border-t-[#e5e5e5] border border-dashed">All Accessories</div>
-                    <div className="slider p-[16px] pb-0">{children[2]}</div>
+                    <div className="slider p-[16px] pb-0"><ProductSlider products={data.products}/></div>
                     <div className="flex justify-between text-[17px] font-[700] p-4 border-t-[#e5e5e5] border border-dashed">Official Merch<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="black"><path d="M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z" /></svg></div>
                     <div className="flex gap-[3px] text-[17px] font-[700] p-4 border-t-[#e5e5e5] border border-dashed">Sneakers<span className="text-red-500 text-[10px]">New Drops</span></div>
                     <div className="flex gap-[3px] text-[17px] font-[700] p-4 border-t-[#e5e5e5] border border-dashed">TSS Plus Size<span className="text-[10px]">XL,XXL&XXXL</span></div>

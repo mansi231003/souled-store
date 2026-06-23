@@ -217,3 +217,52 @@ export const sneakers = [
         ]
     }
 ];
+
+export const sneakerSidebarProducts=[
+     {
+      image_url: "newArrival-img1.png",
+      title: "Summer Home",
+
+    },
+    {
+      image_url: "newArrival-img2.png",
+      title: "Hot Merch",
+    },
+    {
+      image_url: "newArrival-img3.png",
+      title: "Collab Kicks",
+
+    },
+    {
+      image_url: "newArrival-img4.png",
+      title: "Culture Code",
+    },
+    {
+      image_url: "newArrival-img3.png",
+      title: "T-Shirts",
+    },
+    {
+      image_url: "newArrival-img4.png",
+      title: "Marvel",
+    },
+    {
+      image_url: "newArrival-img1.png",
+      title: "Relaxed-Fit",
+    
+    },
+    {
+      image_url: "newArrival-img2.png",
+      title: "Socks",
+    },
+
+  ]
+
+  export const sneakersCategoryImg = [
+    { img: "sneaker5.png" },
+    { img: "sneaker6.png" },
+    { img: "sneaker7.png" },
+    { img: "sneaker8.png" },
+    { img: "sneaker9.png" },
+    { img: "sneaker10.png" },
+
+  ]

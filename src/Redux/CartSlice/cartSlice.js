@@ -2,13 +2,41 @@ import { createSlice } from "@reduxjs/toolkit";
 import { loadCartFromCookies } from "./cookies";
 
 const initialState = {
-  items: loadCartFromCookies()
+  items: loadCartFromCookies(),
+  isCartOpen: false,
+  isSidebarOpen: false,
+  sidebarType:"men"
 };
 
 const cartSlice = createSlice({
   name: "cart",
   initialState,
   reducers: {
+
+    openSidebar: (state,action) => {
+      state.isSidebarOpen = true;
+       state.sidebarType = action.payload;
+    },
+
+    closeSidebar: (state) => {
+      state.isSidebarOpen = false;
+    },
+
+    toggleSidebar: (state) => {
+      state.isSidebarOpen = !state.isSidebarOpen;
+    },
+
+    openCart: (state) => {
+      state.isCartOpen = true;
+    },
+
+    closeCart: (state) => {
+      state.isCartOpen = false;
+    },
+
+    toggleCart: (state) => {
+      state.isCartOpen = !state.isCartOpen;
+    },
 
     addToCart: (state, action) => {
       const item = action.payload;
@@ -57,7 +85,13 @@ export const {
   addToCart,
   removeFromCart,
   updateQuantity,
-  updateSize
+  updateSize,
+  openCart,
+  closeCart,
+  toggleCart,
+  openSidebar,
+  closeSidebar,
+  toggleSidebar
 } = cartSlice.actions;
 
 export default cartSlice.reducer;

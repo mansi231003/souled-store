@@ -1,5 +1,5 @@
 import Navbar from './components/Navbar/Navbar';
-import Sidebar from './components/Sidebar/Sidebar';
+// import Sidebar from './components/Sidebar/Sidebar';
 import Heading from './components/Heading/Heading';
 import ProductSlider from './components/Product slider/ProductSlider';
 import Slider from './components/Slider/Slider';
@@ -12,7 +12,7 @@ import FeaturesBar from './components/Features bar/FeaturesBar';
 // import { useState } from 'react';
 import { menProducts } from './data/menProducts';
 
-function MenPage({ openCart, sidebarOpen, setSidebarOpen }) {
+function MenPage() {
 
   const menSlides1 = [
     { image: "man-img1.png" },
@@ -64,55 +64,55 @@ function MenPage({ openCart, sidebarOpen, setSidebarOpen }) {
     "Men Hooded T-Shirts",
   ]
 
-  const menSidebarProducts = [
-    {
-      image_url: "sidebar-img1.png",
-      title: "Summer Home",
+  // const menSidebarProducts = [
+  //   {
+  //     image_url: "sidebar-img1.png",
+  //     title: "Summer Home",
 
-    },
-    {
-      image_url: "sidebar-img2.png",
-      title: "Hot Merch",
-    },
-    {
-      image_url: "sidebar-img3.png",
-      title: "Collab Kicks",
+  //   },
+  //   {
+  //     image_url: "sidebar-img2.png",
+  //     title: "Hot Merch",
+  //   },
+  //   {
+  //     image_url: "sidebar-img3.png",
+  //     title: "Collab Kicks",
 
-    },
-    {
-      image_url: "sidebar-img4.png",
-      title: "Culture Code",
-    },
-    {
-      image_url: "sidebar-img3.png",
-      title: "T-Shirts",
-    },
-    {
-      image_url: "sidebar-img4.png",
-      title: "Marvel",
-    },
-    {
-      image_url: "sidebar-img1.png",
-      title: "Relaxed-Fit",
+  //   },
+  //   {
+  //     image_url: "sidebar-img4.png",
+  //     title: "Culture Code",
+  //   },
+  //   {
+  //     image_url: "sidebar-img3.png",
+  //     title: "T-Shirts",
+  //   },
+  //   {
+  //     image_url: "sidebar-img4.png",
+  //     title: "Marvel",
+  //   },
+  //   {
+  //     image_url: "sidebar-img1.png",
+  //     title: "Relaxed-Fit",
 
-    },
-    {
-      image_url: "sidebar-img2.png",
-      title: "Socks",
-    },
+  //   },
+  //   {
+  //     image_url: "sidebar-img2.png",
+  //     title: "Socks",
+  //   },
 
-  ]
+  // ]
 
   return (
 
     <div className='men-page'>
-      <Sidebar isOpen={sidebarOpen} closeSidebar={() => setSidebarOpen(false)}>
+      {/* <Sidebar>
         <ProductSlider products={menSidebarProducts} sidebar={true} />
         <Categories cards={menCategoriesImg} tag="men" />
         <ProductSlider products={menSidebarProducts} />
 
-      </Sidebar>
-      <Navbar toggleSidebar={() => setSidebarOpen(true)} cartSidebar={openCart} />
+      </Sidebar> */}
+      <Navbar />
       <Slider className="slider1" slides={menSlides1} />
       <Slider className="slider2" slides={menSlides2} />
       <FeaturesBar />

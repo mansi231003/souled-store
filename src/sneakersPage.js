@@ -1,5 +1,5 @@
 import Navbar from './components/Navbar/Navbar';
-import Sidebar from './components/Sidebar/Sidebar';
+// import Sidebar from './components/Sidebar/Sidebar';
 import Heading from './components/Heading/Heading';
 import ProductSlider from './components/Product slider/ProductSlider';
 import Slider from './components/Slider/Slider';
@@ -12,7 +12,7 @@ import { sneakers } from './data/sneakersProduct';
 import FeaturesBar from './components/Features bar/FeaturesBar';
 // import { useState } from 'react';
 
-function SneakersPage({openCart,sidebarOpen,setSidebarOpen}) {
+function SneakersPage({sidebarOpen,setSidebarOpen}) {
 
 
   const sneakerSlides1 = [
@@ -54,44 +54,44 @@ function SneakersPage({openCart,sidebarOpen,setSidebarOpen}) {
 
   ]
 
-  const menSidebarProducts=[
-     {
-      image_url: "newArrival-img1.png",
-      title: "Summer Home",
+  // const menSidebarProducts=[
+  //    {
+  //     image_url: "newArrival-img1.png",
+  //     title: "Summer Home",
 
-    },
-    {
-      image_url: "newArrival-img2.png",
-      title: "Hot Merch",
-    },
-    {
-      image_url: "newArrival-img3.png",
-      title: "Collab Kicks",
+  //   },
+  //   {
+  //     image_url: "newArrival-img2.png",
+  //     title: "Hot Merch",
+  //   },
+  //   {
+  //     image_url: "newArrival-img3.png",
+  //     title: "Collab Kicks",
 
-    },
-    {
-      image_url: "newArrival-img4.png",
-      title: "Culture Code",
-    },
-    {
-      image_url: "newArrival-img3.png",
-      title: "T-Shirts",
-    },
-    {
-      image_url: "newArrival-img4.png",
-      title: "Marvel",
-    },
-    {
-      image_url: "newArrival-img1.png",
-      title: "Relaxed-Fit",
+  //   },
+  //   {
+  //     image_url: "newArrival-img4.png",
+  //     title: "Culture Code",
+  //   },
+  //   {
+  //     image_url: "newArrival-img3.png",
+  //     title: "T-Shirts",
+  //   },
+  //   {
+  //     image_url: "newArrival-img4.png",
+  //     title: "Marvel",
+  //   },
+  //   {
+  //     image_url: "newArrival-img1.png",
+  //     title: "Relaxed-Fit",
     
-    },
-    {
-      image_url: "newArrival-img2.png",
-      title: "Socks",
-    },
+  //   },
+  //   {
+  //     image_url: "newArrival-img2.png",
+  //     title: "Socks",
+  //   },
 
-  ]
+  // ]
 
   const sneakersCategory=[
      "Trending",
@@ -107,14 +107,14 @@ function SneakersPage({openCart,sidebarOpen,setSidebarOpen}) {
   return (
     
     <div className='sneaker-page'>
-      <Sidebar isOpen={sidebarOpen} closeSidebar={()=>setSidebarOpen(false)}>
+      {/* <Sidebar isOpen={sidebarOpen} closeSidebar={()=>setSidebarOpen(false)}>
          <ProductSlider products={menSidebarProducts} sidebar={true}/>
          <Categories cards={sneakersCategoryImg}/>
          <ProductSlider products={menSidebarProducts}/>
 
-      </Sidebar>
+      </Sidebar> */}
      
-      <Navbar toggleSidebar={()=>setSidebarOpen(true)} cartSidebar={openCart}/>
+      <Navbar toggleSidebar={()=>setSidebarOpen(true)} />
       <Slider className="slider1" slides={sneakerSlides1} />
       <Slider className="slider2" slides={sneakerSlides2} />
       <FeaturesBar />

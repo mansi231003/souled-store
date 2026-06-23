@@ -104,6 +104,27 @@ export default function FilterCollections({ openCart }) {
         };
     }, [filterSidebar]);
 
+const [sortOption, setSortOption] = useState("");
+
+    const sortedProducts = [...products].sort((a, b) => {
+    const priceA = Number(a.variants?.[0]?.price || 0);
+    const priceB = Number(b.variants?.[0]?.price || 0);
+
+    switch (sortOption) {
+        case "az":
+            return a.title.localeCompare(b.title);
+
+        case "priceHighLow":
+            return priceB - priceA;
+
+        case "priceLowHigh":
+            return priceA - priceB;
+
+        default:
+            return 0;
+    }
+});
+
     return (
         <>
             <Navbar cartSidebar={openCart} />
@@ -111,12 +132,16 @@ export default function FilterCollections({ openCart }) {
             <div className={`${filterSidebar ? "hidden" : "w-full border p-2 sticky z-10 bg-white top-0 justify-between hidden filter-button"}`}>
                 <div onClick={() => setfilterSidebar(true)} className="p-3 h-[36px] w-[120px] flex justify-center items-center bg-black text-white rounded-[4px] top-0 cursor-pointer">Filter</div>
             </div>
+           
             <div className="flex">
                 {filterSidebar && (
                     <div className="fixed filter-overlay w-full top-0 h-full bg-[rgba(0,0,0,0.4)] z-40" onClick={() => setfilterSidebar(false)} ></div>
 
                 )}
                 <div className={`${filterSidebar ? "active" : ""} filter-section p-2 w-[400px] sticky top-[150px] bg-white h-[85vh] overflow-y-auto translate-x-0 z-50`}>
+                     {filterSidebar&&
+                            <div onClick={()=> setfilterSidebar(false)} className="w-full justify-end flex pr-3 pb-2"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="black"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg></div>
+            }
                     <div>
                         <h2 className="text-[14.5px] text-[#59595b] font-[700] pt-[12px] pb-[12px] pr-[3px] pl-[3px] border-t-[1px]">CATEGORIES</h2>
                         {/* <input className="outline-none border border-rgba(0,0,0,0.15) p-[6px] w-[95%] text-[#59595b] font-[300] text-[15px] rounded-[5px]" placeholder="Search for Categories" /> */}
@@ -191,25 +216,30 @@ export default function FilterCollections({ openCart }) {
 
                         </div>
                     </div>
-                    <div  onClick={() => setfilterSidebar(false)} className="apply-btn p-3 h-[36px] w-[140px] flex justify-center items-center bg-black absolute bottom-[-10px] left-[92px] text-white rounded-[4px] cursor-pointer">Apply</div>
+                    <div  onClick={() => setfilterSidebar(false)} className="apply-btn p-3 h-[36px] w-[140px] flex justify-center items-center bg-black absolute bottom-[16px] left-[92px] text-white rounded-[4px] cursor-pointer">Apply</div>
 
                 </div>
                 <div className="flex flex-col w-[100%] filter-collection-right-section">
                     <div className="w-full pt-[15px] text-[12px] text-[#a7a9ac] gap-1 flex">Home /<span>T-Shirts /</span></div>
-                    <div className="flex justify-between items-center pb-6">
+                    <div className="flex justify-between items-center pb-6 pr-3">
                         <div className="text-black text-[14px]">Men T-Shirts</div>
                         <div className="flex border border-[#ccc] p-[8px] rounded-[5px] text-[#58595b] text-[14.5px]">
-                            <select className="outline-none w-[220px] bg-white">
-                                <option>Selecting Sorting options</option>
-                                <option>e</option>
-                                <option>e</option>
-                            </select>
+                           <select
+    className="outline-none w-[190px] bg-white"
+    value={sortOption}
+    onChange={(e) => setSortOption(e.target.value)}
+>
+    <option value="">Select Sorting Option</option>
+    <option value="az">A to Z</option>
+    <option value="priceHighLow">Price - High to Low</option>
+    <option value="priceLowHigh">Price - Low to High</option>
+</select>
                         </div>
                     </div>
                     <div className="category-images grid grid-cols-4 gap-4">
-                        {products.map((item, index) => (
-                            <ProductCard key={index} product={item} />
-                        ))}
+                       {sortedProducts.map((item, index) => (
+    <ProductCard key={index} product={item} />
+))}
                     </div>
                 </div>
             </div>

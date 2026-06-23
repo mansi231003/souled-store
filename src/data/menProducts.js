@@ -3,7 +3,7 @@ export const menProducts = [
     {
         "product_id": "1",
         "title": "Peanut:Works Out",
-        "price_range": { "min": "700", "max": "900" },
+        "price_range": { "min":"700", "max": "900" },
         "stock": "80",
         "tags": ["men"],
         "category": ["Trending", "Cotton Linen Shirts"],
@@ -46,7 +46,7 @@ export const menProducts = [
         "title": "Casual T-Shirt",
         "tags": ["men"],
         "category": ["Trending", "Drop Cut T-Shirts"],
-        "price_range": { "min": null, "max": "500" },
+        "price_range": { "min":null, "max": "500" },
         "stock": "120",
         "image_url": "/newArrival-img2.png",
         "number_of_variants": "2",
@@ -113,7 +113,7 @@ export const menProducts = [
         "title": "Denim Jeans",
         "tags": ["men"],
         "category": ["Trending", "Hooded T-Shirts"],
-        "price_range": {"min": null,"max": "1300"},
+        "price_range": {"min":null,"max": "1300"},
         "stock": "40",
         "image_url": "/newArrival-img4.png",
         "number_of_variants": "2",
@@ -132,7 +132,7 @@ export const menProducts = [
             }
         ],
         "variants": [
-            { "id": "4a", "size": "small", "price": "1000", "stock": "15", "image_url": "/newArrival-img4.png" },
+            { "id": "4a", "size": "small", "price": "1300", "stock": "15", "image_url": "/newArrival-img4.png" },
             { "id": "4b", "size": "medium", "price": "1300", "stock": "25", "image_url": "/newArrival-img4.png" }
         ]
     },
@@ -217,3 +217,52 @@ export const menProducts = [
         ]
     }
 ];
+
+export const menCategoriesImg = [
+    { img: "men-category1.png" },
+    { img: "men-category2.png" },
+    { img: "men-category3.png" },
+    { img: "men-category4.png" },
+    { img: "men-category5.png" },
+    { img: "men-category6.png" },
+
+  ]
+
+  export const menSidebarProducts = [
+    {
+      image_url: "sidebar-img1.png",
+      title: "Summer Home",
+
+    },
+    {
+      image_url: "sidebar-img2.png",
+      title: "Hot Merch",
+    },
+    {
+      image_url: "sidebar-img3.png",
+      title: "Collab Kicks",
+
+    },
+    {
+      image_url: "sidebar-img4.png",
+      title: "Culture Code",
+    },
+    {
+      image_url: "sidebar-img3.png",
+      title: "T-Shirts",
+    },
+    {
+      image_url: "sidebar-img4.png",
+      title: "Marvel",
+    },
+    {
+      image_url: "sidebar-img1.png",
+      title: "Relaxed-Fit",
+
+    },
+    {
+      image_url: "sidebar-img2.png",
+      title: "Socks",
+    },
+
+  ]

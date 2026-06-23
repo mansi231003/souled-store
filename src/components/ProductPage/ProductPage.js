@@ -9,9 +9,8 @@ import { useSelector } from "react-redux";
 import "./ProductPage.css"
 import { allProducts } from "../../data/allProducts"
 import { Swiper, SwiperSlide } from "swiper/react"
-import {Pagination } from 'swiper/modules';
+import { Pagination } from 'swiper/modules';
 import 'swiper/css';
-
 
 export default function ProductPage({ openCart }) {
     const { id } = useParams();
@@ -43,6 +42,8 @@ export default function ProductPage({ openCart }) {
     } else {
         displayPrice = `$${product.price_range.max}`;
     }
+
+    const isOutOfStock = selectedSize && selectedColor && !selectedVariant;
 
     const dispatch = useDispatch();
 
@@ -106,11 +107,16 @@ export default function ProductPage({ openCart }) {
                 size: selectedSize,
                 color: selectedColor
             }));
-   
+
         }
 
     };
 
+    const [openSection, setOpenSection] = useState(null);
+
+    const toggleSection = (section) => {
+        setOpenSection(openSection === section ? null : section);
+    };
 
     return (
 
@@ -121,20 +127,20 @@ export default function ProductPage({ openCart }) {
                 <div className="flex gap-4 pb-6 hero-section w-full">
                     <div className="product-slider flex w-[94%]">
                         <Swiper
-                      pagination={{
-                        clickable: true
-                    }}
-                    modules={[Pagination]}
-                    slidesPerView={1}
-                    spaceBetween={10}   
-                    loop={true}
-                    >
-                    {
-                        [1,2,3,4].map((item) => (
-                           <SwiperSlide  key={item.product_id}> <img src={selectedVariant ? selectedVariant.image_url : `${product.image_url}`} alt={product.title} /></SwiperSlide>
-                        ))
-                    }
-                </Swiper>
+                            pagination={{
+                                clickable: true
+                            }}
+                            modules={[Pagination]}
+                            slidesPerView={1}
+                            spaceBetween={10}
+                            loop={true}
+                        >
+                            {
+                                [1, 2, 3, 4].map((item) => (
+                                    <SwiperSlide key={item.product_id}> <img src={selectedVariant ? selectedVariant.image_url : `${product.image_url}`} alt={product.title} /></SwiperSlide>
+                                ))
+                            }
+                        </Swiper>
 
                     </div>
                     <div className="product-images grid grid-cols-2 gap-2 w-[57%] h-max left-container">
@@ -144,7 +150,7 @@ export default function ProductPage({ openCart }) {
                         <img src={selectedVariant ? selectedVariant.image_url : `${product.image_url}`} alt={product.title} />
 
                     </div>
-                    <div className="pl-8 w-[40%] right-container">
+                    <div className="pl-8 pr-3 w-[40%] right-container">
                         <div className="flex flex-col border-b pb-3">
                             <span className="font-[700] text-[25px] text-[#58595b] h-[32px]">{product.title}</span><span className="text-[14px] font-[500] text-[#a7a9ac]">T-Shirts</span>
                         </div>
@@ -156,7 +162,7 @@ export default function ProductPage({ openCart }) {
 
                         <div className="flex gap-2 pb-3">
                             {Object.values(variantData.size.values[0]).map((val) => (
-                                <div key={val.key} onClick={() => { setSelectedSize(val.key); setSelectedColor("") }} className={`${selectedSize === val.key ? "bg-black text-white" : "bg-white text-[#58595b]"} rounded-[5px] text-[#58595b] border-[2px] border-[#ccc] flex justify-center items-center p-1 w-[45px] cursor-pointer }`}> {val.label}</div>
+                                <div key={val.key} onClick={() => { setSelectedSize(val.key); }} className={`${selectedSize === val.key ? "bg-black text-white" : "bg-white text-[#58595b]"} rounded-[5px] text-[#58595b] border-[2px] border-[#ccc] flex justify-center items-center p-1 w-[45px] cursor-pointer }`}> {val.label}</div>
                             ))}
                         </div>
                         {variantData.color && (
@@ -178,22 +184,33 @@ export default function ProductPage({ openCart }) {
                         <div className="flex gap-3 items-center pb-3">
                             <div className="text-[#58595b] text-[14px]">Quantity</div>
                             <select value={quantity} onChange={(e) => setQuantity(Number(e.target.value))}
-                                className="border border-[#ccc] rounded-[5px] p-[4px] text-[15px]">
+                                className="border outline-none bg-white border-[#ccc] rounded-[5px] p-[4px] text-[15px]">
                                 <option value={1}>01</option>
                                 <option value={2}>02</option>
                                 <option value={3}>03</option>
                             </select>
                         </div>
+                        {isOutOfStock && (
+                            <div className="text-red-500 font-semibold mb-4">Out of Stock!</div>
+                        )}
                         {error && (
                             <div className="text-[#a94442] bg-[rgb(242,222,222)] rounded-[6px] p-3 mb-4 text-[14px]">{error}</div>
                         )}
                         <div className="flex gap-2">
-                            {cartStatus === "idle" && (
+                            {!isOutOfStock && cartStatus === "idle" && (
+                                <div
+                                    onClick={handleAddToCart}
+                                    className="cart-button bg-[#ec3d25] w-[229px] text-white pt-[8px] pb-[8px] flex justify-center items-center rounded-[3px] font-[700] text-[14px] cursor-pointer"
+                                >
+                                    ADD TO CART
+                                </div>
+                            )}
+                            {/* {cartStatus === "idle" && (
                                 <div onClick={handleAddToCart}
                                     className="cart-button bg-[#ec3d25] w-[229px] text-white pt-[8px] pb-[8px] flex justify-center items-center rounded-[3px] font-[700] text-[14px] cursor-pointer">
                                     ADD TO CART
                                 </div>
-                            )}
+                            )} */}
 
                             {cartStatus === "adding" && (
                                 <div className="cart-button bg-gray-500 w-[229px] text-white pt-[8px] pb-[8px] flex justify-center items-center rounded-[3px] font-[700] text-[14px]">
@@ -212,7 +229,7 @@ export default function ProductPage({ openCart }) {
                                             <svg xmlns="http://www.w3.org/2000/svg" height="21px" viewBox="0 -960 960 960" width="20px" fill="#148c8d">
                                                 <path d="m480-120-58-52q-101-91-167-157T150-447.5Q111-500 95.5-544T80-634q0-94 63-157t157-63q52 0 99 22t81 62q34-40 81-62t99-22q94 0 157 63t63 157q0 46-15.5 90T810-447.5Q771-395 705-329T538-172l-58 52Z" />
                                             </svg>ADDED TO WISHLIST
-                                        </> :  <>
+                                        </> : <>
                                             <svg xmlns="http://www.w3.org/2000/svg" height="21px" viewBox="0 -960 960 960" width="20px" fill="#148c8d"><path d="m480-120-58-52q-101-91-167-157T150-447.5Q111-500 95.5-544T80-634q0-94 63-157t157-63q52 0 99 22t81 62q34-40 81-62t99-22q94 0 157 63t63 157q0 46-15.5 90T810-447.5Q771-395 705-329T538-172l-58 52Zm0-108q96-86 158-147.5t98-107q36-45.5 50-81t14-70.5q0-60-40-100t-100-40q-47 0-87 26.5T518-680h-76q-15-41-55-67.5T300-774q-60 0-100 40t-40 100q0 35 14 70.5t50 81q36 45.5 98 107T480-228Zm0-273Z" /></svg>
                                             ADD TO WISHLIST
                                         </>
@@ -239,9 +256,69 @@ export default function ProductPage({ openCart }) {
                             <p className="text-[13px] text-[#58595b]">This product is eligible for return or exchange under our 30-day return or exchange policy. No questions asked.</p>
                         </div>
                         <div className="border border-[rgba(0,0,0,0.125)] text-[#58595b]">
-                            <div className="flex justify-between text-[16px] border-b font-[700] p-3">Product Details<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#58595b"><path d="M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z" /></svg></div>
-                            <div className="flex justify-between text-[16px] border-b font-[700] p-3">Product Description<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#58595b"><path d="M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z" /></svg></div>
-                            <div className="flex justify-between text-[16px] font-[700] p-3">Artist's Details<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#58595b"><path d="M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z" /></svg></div>
+                            <div className="text-[16px] border-b p-3">
+                                <div className="flex justify-between font-[700] cursor-pointer">
+                                    Product Details
+                                    <svg
+                                        onClick={() => toggleSection("details")}
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        height="24px"
+                                        viewBox="0 -960 960 960"
+                                        width="24px"
+                                        fill="#58595b"
+                                    >
+                                        <path d="M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z" />
+                                    </svg>
+                                </div>
+
+                                {openSection === "details" && (
+                                    <div className="pt-2">
+                                        Charlie Brown and Snoopy are here to keep things light, breezy, and just the right amount of nostalgic. The fit says weekend, the print says instant mood boost. Style Tip: Style with light-wash jeans for a casual, feel-good look.
+                                    </div>
+                                )}
+                            </div>
+                            <div className="text-[16px] border-b p-3">
+                                <div className="flex justify-between font-[700] cursor-pointer">
+                                    Product Description
+                                    <svg
+                                        onClick={() => toggleSection("description")}
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        height="24px"
+                                        viewBox="0 -960 960 960"
+                                        width="24px"
+                                        fill="#58595b"
+                                    >
+                                        <path d="M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z" />
+                                    </svg>
+                                </div>
+
+                                {openSection === "description" && (
+                                    <div className="pt-2">
+                                        Charlie Brown and Snoopy are here to keep things light, breezy, and just the right amount of nostalgic. The fit says weekend, the print says instant mood boost. Style Tip: Style with light-wash jeans for a casual, feel-good look.
+                                    </div>
+                                )}
+                            </div>
+                            <div className="text-[16px] p-3">
+                                <div className="flex justify-between font-[700] cursor-pointer">
+                                    Artist's Details
+                                    <svg
+                                        onClick={() => toggleSection("artist")}
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        height="24px"
+                                        viewBox="0 -960 960 960"
+                                        width="24px"
+                                        fill="#58595b"
+                                    >
+                                        <path d="M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z" />
+                                    </svg>
+                                </div>
+
+                                {openSection === "artist" && (
+                                    <div className="pt-2">
+                                        Charlie Brown and Snoopy are here to keep things light, breezy, and just the right amount of nostalgic. The fit says weekend, the print says instant mood boost. Style Tip: Style with light-wash jeans for a casual, feel-good look.
+                                    </div>
+                                )}
+                            </div>
 
                         </div>
                     </div>

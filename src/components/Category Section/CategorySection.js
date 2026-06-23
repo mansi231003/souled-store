@@ -27,7 +27,7 @@ export default function CategorySection({ products, buttons }) {
 
                     ))}
                 </div>
-                <div className="category-images grid grid-cols-4 gap-4">
+                <div className="category-images grid grid-cols-4 gap-4 cursor-pointer">
                   
                     {filteredProducts.map((item) => (
                         <ProductCard

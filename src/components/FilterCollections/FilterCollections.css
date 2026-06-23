@@ -20,7 +20,7 @@
          padding: 10px;
         top:0px;
         width: 350px;
-        position: absolute;
+        position: fixed;
         height: 100%;
         transform: translateX(-3%);
     }
@@ -37,7 +37,7 @@
 
   .filter-collection-right-section .category-images{
     padding-left: 0;
-    padding-right: 0;
+    padding-right: 14px;
   }
     
 }

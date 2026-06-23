@@ -1,7 +1,11 @@
 .like{
     background-color: rgba(128,111,111,0.1);
 }
-
+.title {
+  white-space: normal;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
 @media screen and (max-width:750px) {
     .like{
         color: black;

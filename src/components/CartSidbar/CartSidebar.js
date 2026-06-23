@@ -1,13 +1,13 @@
 import { useSelector } from "react-redux";
 // import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { addToWishlist } from "../../Redux/WishlistSlice/WishlistSlice";
-import { removeFromCart, updateQuantity } from "../../Redux/CartSlice/cartSlice";
+import { removeFromCart, updateQuantity, closeCart } from "../../Redux/CartSlice/cartSlice";
 import { Link } from "react-router-dom";
 import "./CartSidebar.css"
 
-export default function CartSidebar({ sidebarOpen, close }) {
+export default function CartSidebar() {
     const cartItems = useSelector(state => state.cart.items);
     const cartTotal = cartItems.reduce((total, item) => {
         return total + Number(item.price) * item.quantity;
@@ -16,19 +16,16 @@ export default function CartSidebar({ sidebarOpen, close }) {
     const totalProducts = cartItems.length;
     const dispatch = useDispatch();
     const [removingId, setRemovingId] = useState(null);
+    const cartSidebarOpen = useSelector(state => state.cart.isCartOpen);
 
-    if (sidebarOpen) {
-        document.body.style.overflow = 'hidden';
-    }
-    else {
-        document.body.style.overflow = "auto";
-
-    }
+    useEffect(() => {
+        document.body.style.overflow = cartSidebarOpen ? "hidden" : "auto";
+    }, [cartSidebarOpen]);
 
 
     return (
         <>
-            <div className={`${sidebarOpen ? "w-full h-full fixed flex overflow-hidden top-0 z-[999]" : "hidden"}`}>
+            <div className={`${cartSidebarOpen ? "w-full h-full fixed flex overflow-hidden top-0 z-[999]" : "hidden"}`}>
                 <div className="w-[500px] cart-sidebar bg-white z-[9999] overflow-y-auto right-0 absolute h-full sidebar flex flex-col items-center">
                     {cartItems.length === 0 ? (
                         <>
@@ -37,10 +34,10 @@ export default function CartSidebar({ sidebarOpen, close }) {
                                     <img src="/emptyCart.avif" alt="emptyCart" />
                                 </div>
                                 <p className="flex justify-center text-[20px] font-[600] h-[60px] items-center">Your cart is empty!</p>
-                             <div onClick={close} className="text-white bg-[#168D8F] font-[600] flex justify-center items-center pt-[10px] pb-[10px] pl-[26px] pr-[26px] rounded-[4px] text-[15px] w-max mt-4 mb-4 cursor-pointer">
-                                Continue Shopping...
-                            </div>
-                            
+                                <div onClick={closeCart} className="text-white bg-[#168D8F] font-[600] flex justify-center items-center pt-[10px] pb-[10px] pl-[26px] pr-[26px] rounded-[4px] text-[15px] w-max mt-4 mb-4 cursor-pointer">
+                                    Continue Shopping...
+                                </div>
+
 
                             </div>
                         </>
@@ -54,7 +51,7 @@ export default function CartSidebar({ sidebarOpen, close }) {
                                             <div >{totalProducts}/{totalProducts} ITEM{totalProducts > 1 ? "S" : ""} SELECTED</div>
                                             <div className="text-[#117a7a]">(${cartTotal})</div>
                                         </div>
-                                        <div onClick={close} className=" cursor-pointer"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="black"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" /></svg></div>
+                                        <div onClick={() => dispatch(closeCart())} className=" cursor-pointer"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="black"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" /></svg></div>
                                     </div>
 
                                     {cartItems.map((item, index) => (
@@ -117,7 +114,7 @@ export default function CartSidebar({ sidebarOpen, close }) {
                                     ))}
                                 </div>
                             )}
-                            <Link to='/cart'><div onClick={close} className="text-white bg-[#168D8F] font-[600] flex justify-center items-center pt-[10px] pb-[10px] pl-[26px] pr-[26px] rounded-[4px] text-[15px] w-max mt-4 mb-4 cursor-pointer">
+                            <Link to='/cart'><div onClick={closeCart} className="text-white bg-[#168D8F] font-[600] flex justify-center items-center pt-[10px] pb-[10px] pl-[26px] pr-[26px] rounded-[4px] text-[15px] w-max mt-4 mb-4 cursor-pointer">
                                 CHECK OUT
                             </div>
                             </Link>
@@ -125,7 +122,7 @@ export default function CartSidebar({ sidebarOpen, close }) {
                         )}
                 </div>
 
-                <div onClick={close} className="fixed w-full top-0 h-full bg-[rgba(0,0,0,0.4)]"></div>
+                <div onClick={() => dispatch(closeCart())} className="fixed w-full top-0 h-full bg-[rgba(0,0,0,0.4)]"></div>
             </div>
 
         </>
