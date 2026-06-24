@@ -7,11 +7,10 @@ export default function Categories({cards=[],tag}){
     return(
         <>
         <div className="w-full flex flex-col justify-center items-center">
-            <div className="category-img grid grid-cols-3 w-[80%] gap-3">
+            <div className="category-img grid grid-cols-3 cursor-pointer w-[80%] gap-3">
               
                 {cards.map((item,index)=>(
-                    <img key={index} alt="filterImg"  onClick={() =>
-                            navigate(`/filter/${tag}`, { state: { tag } })} src={item.img}/>
+                    <img key={index} alt="filterImg" onClick={() => navigate(`/filter/${tag}`)} src={item.img}/>
                 ))}
             
             </div>

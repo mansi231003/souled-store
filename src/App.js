@@ -8,11 +8,9 @@ import AddToCart from "./components/Add To cart/AddToCart";
 import FilterCollections from "./components/FilterCollections/FilterCollections";
 import CartSidebar from "./components/CartSidbar/CartSidebar";
 import Wishlist from "./components/WishlistPage/Wishlist";
-// import { useState } from "react";
 import Sidebar from "./components/Sidebar/Sidebar";
 
 function App(){
-  // const [sidebarOpen, setSidebarOpen] = useState(false);
   
   return(
     <>

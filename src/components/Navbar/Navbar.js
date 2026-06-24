@@ -5,9 +5,7 @@ import { useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { allProducts } from "../../data/allProducts";
 import { useDispatch } from "react-redux";
-import { openCart } from "../../Redux/CartSlice/cartSlice";
-import {openSidebar } from "../../Redux/CartSlice/cartSlice";
-// import { menSidebarProducts } from "../../data/sidebarData"
+import { openCart,openSidebar } from "../../Redux/CartSlice/cartSlice";
 
 export default function Navbar() {
     const dispatch = useDispatch();
@@ -29,15 +27,15 @@ export default function Navbar() {
     );
 
 
-const handleSidebarOpen = () => {
-  if (location.pathname.includes("women")) {
-    dispatch(openSidebar("women"));
-  } else if (location.pathname.includes("sneakers")) {
-    dispatch(openSidebar("sneakers"));
-  } else {
-    dispatch(openSidebar("men"));
-  }
-};
+    const handleSidebarOpen = () => {
+        if (location.pathname.includes("women")) {
+            dispatch(openSidebar("women"));
+        } else if (location.pathname.includes("sneakers")) {
+            dispatch(openSidebar("sneakers"));
+        } else {
+            dispatch(openSidebar("men"));
+        }
+    };
     return (
         <>
             <div className="hidden offer-container bg-[#e12d2d] h-[60px] justify-between items-center text-white pl-9 pr-9 pt-6 pb-6">
@@ -56,11 +54,11 @@ const handleSidebarOpen = () => {
                     <ul className="nav-menu flex justify-between items-center gap-4 text-[18px] font-[700] w-[60%]">
                         <Link to="/"><li className={`${location.pathname === "/" || location.pathname.includes("/men") ? "nav-item" : "nav-link"}`}>MEN</li></Link>
                         <Link to="/womenPage"><li className={`${location.pathname.includes("/women") ? "nav-item" : "nav-link"}`}>WOMEN</li></Link>
-                        <Link to='/sneakersPage'><li className={`${location.pathname.includes("/sneaker")? "nav-item" : "nav-link"}`}>SNEAKERS</li></Link>
+                        <Link to='/sneakersPage'><li className={`${location.pathname.includes("/sneaker") ? "nav-item" : "nav-link"}`}>SNEAKERS</li></Link>
                     </ul>
                 </div>
 
-                <div className="img-container w-[90px] flex items-center"><img className="img" src="/souledimg.webp" alt="souled" /></div>
+                <div className="img-container w-[90px] flex items-center cursor-pointer"><Link to="/"><img className="img" src="/souledimg.webp" alt="souled" /></Link></div>
 
                 <div className="search-container flex items-center w-[40%] justify-center gap-10 pr-5">
 
@@ -101,14 +99,14 @@ const handleSidebarOpen = () => {
                                 )}
                             </div>
                         </Link>
-                        <div  onClick={() => dispatch(openCart())} className="relative nav-icon items-center cursor-pointer"><svg xmlns="http://www.w3.org/2000/svg" height="28px" viewBox="0 -960 960 960" width="28px" fill="#4b5563"><path d="M223.5-103.5Q200-127 200-160t23.5-56.5Q247-240 280-240t56.5 23.5Q360-193 360-160t-23.5 56.5Q313-80 280-80t-56.5-23.5Zm400 0Q600-127 600-160t23.5-56.5Q647-240 680-240t56.5 23.5Q760-193 760-160t-23.5 56.5Q713-80 680-80t-56.5-23.5ZM246-720l96 200h280l110-200H246Zm-38-80h590q23 0 35 20.5t1 41.5L692-482q-11 20-29.5 31T622-440H324l-44 80h480v80H280q-45 0-68-39.5t-2-78.5l54-98-144-304H40v-80h130l38 80Zm134 280h280-280Z" /></svg>
+                        <div onClick={() => dispatch(openCart())} className="relative nav-icon items-center cursor-pointer"><svg xmlns="http://www.w3.org/2000/svg" height="28px" viewBox="0 -960 960 960" width="28px" fill="#4b5563"><path d="M223.5-103.5Q200-127 200-160t23.5-56.5Q247-240 280-240t56.5 23.5Q360-193 360-160t-23.5 56.5Q313-80 280-80t-56.5-23.5Zm400 0Q600-127 600-160t23.5-56.5Q647-240 680-240t56.5 23.5Q760-193 760-160t-23.5 56.5Q713-80 680-80t-56.5-23.5ZM246-720l96 200h280l110-200H246Zm-38-80h590q23 0 35 20.5t1 41.5L692-482q-11 20-29.5 31T622-440H324l-44 80h480v80H280q-45 0-68-39.5t-2-78.5l54-98-144-304H40v-80h130l38 80Zm134 280h280-280Z" /></svg>
                             {totalQuantity > 0 && (
                                 <span className="absolute -top-2 -right-2 bg-red-500 text-white text-[10px] font-bold px-2 py-[2px] rounded-full">
                                     {totalQuantity}
                                 </span>
                             )}
                         </div>
-                        
+
                     </div>
                 </div>
 

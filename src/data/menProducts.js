@@ -234,10 +234,10 @@ export const menCategoriesImg = [
       title: "Summer Home",
 
     },
-    {
-      image_url: "sidebar-img2.png",
-      title: "Hot Merch",
-    },
+    // {
+    //   image_url: "sidebar-img2.png",
+    //   title: "Hot Merch",
+    // },
     {
       image_url: "sidebar-img3.png",
       title: "Collab Kicks",

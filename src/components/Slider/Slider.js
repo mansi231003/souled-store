@@ -2,14 +2,17 @@ import "./Slider.css"
 import { Swiper, SwiperSlide } from "swiper/react"
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
-import { Navigation, Pagination,Autoplay} from 'swiper/modules';
+import { Navigation, Pagination, Autoplay } from 'swiper/modules';
+import { useNavigate } from "react-router-dom";
 import 'swiper/css'
 
-export default function Slider({ slides = [], className }) {
+export default function Slider({ slides, className,tag }) {
+    const navigate = useNavigate();
+    
     return (
         <>
             <div className={className}>
-                <Swiper 
+                <Swiper
                     pagination={{
                         clickable: true
                     }}
@@ -17,7 +20,7 @@ export default function Slider({ slides = [], className }) {
                         nextEl: ".next-btn",
                         prevEl: ".prev-btn"
                     }}
-                    modules={[Navigation,Pagination,Autoplay]}
+                    modules={[Navigation, Pagination, Autoplay]}
                     // autoplay={{
                     //     delay:3000,
                     //     disableOnInteraction:false
@@ -25,9 +28,9 @@ export default function Slider({ slides = [], className }) {
                     loop={true}
                     slidesPerView={1}
                 >
-                    {slides.map((item) => (
-                        <SwiperSlide>
-                            <img className="w-full" src={item.image} alt=""/>
+                    {slides.map((item,index) => (
+                        <SwiperSlide key={index}>
+                            <img onClick={() => navigate(`/filter/${tag}`)} className="cursor-pointer w-full" src={item.image} alt="" />
                         </SwiperSlide>
                     ))}
 

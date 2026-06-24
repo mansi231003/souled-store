@@ -34,7 +34,7 @@ export default function CartSidebar() {
                                     <img src="/emptyCart.avif" alt="emptyCart" />
                                 </div>
                                 <p className="flex justify-center text-[20px] font-[600] h-[60px] items-center">Your cart is empty!</p>
-                                <div onClick={closeCart} className="text-white bg-[#168D8F] font-[600] flex justify-center items-center pt-[10px] pb-[10px] pl-[26px] pr-[26px] rounded-[4px] text-[15px] w-max mt-4 mb-4 cursor-pointer">
+                                <div onClick={() => dispatch(closeCart())} className="text-white bg-[#168D8F] font-[600] flex justify-center items-center pt-[10px] pb-[10px] pl-[26px] pr-[26px] rounded-[4px] text-[15px] w-max mt-4 mb-4 cursor-pointer">
                                     Continue Shopping...
                                 </div>
 

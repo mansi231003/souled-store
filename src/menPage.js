@@ -64,62 +64,19 @@ function MenPage() {
     "Men Hooded T-Shirts",
   ]
 
-  // const menSidebarProducts = [
-  //   {
-  //     image_url: "sidebar-img1.png",
-  //     title: "Summer Home",
-
-  //   },
-  //   {
-  //     image_url: "sidebar-img2.png",
-  //     title: "Hot Merch",
-  //   },
-  //   {
-  //     image_url: "sidebar-img3.png",
-  //     title: "Collab Kicks",
-
-  //   },
-  //   {
-  //     image_url: "sidebar-img4.png",
-  //     title: "Culture Code",
-  //   },
-  //   {
-  //     image_url: "sidebar-img3.png",
-  //     title: "T-Shirts",
-  //   },
-  //   {
-  //     image_url: "sidebar-img4.png",
-  //     title: "Marvel",
-  //   },
-  //   {
-  //     image_url: "sidebar-img1.png",
-  //     title: "Relaxed-Fit",
-
-  //   },
-  //   {
-  //     image_url: "sidebar-img2.png",
-  //     title: "Socks",
-  //   },
-
-  // ]
+ 
 
   return (
 
     <div className='men-page'>
-      {/* <Sidebar>
-        <ProductSlider products={menSidebarProducts} sidebar={true} />
-        <Categories cards={menCategoriesImg} tag="men" />
-        <ProductSlider products={menSidebarProducts} />
-
-      </Sidebar> */}
       <Navbar />
-      <Slider className="slider1" slides={menSlides1} />
-      <Slider className="slider2" slides={menSlides2} />
+      <Slider className="slider1" slides={menSlides1} tag="men" />
+      <Slider className="slider2" slides={menSlides2} tag="men"/>
       <FeaturesBar />
 
       <div className='collections'>
         <Heading>LATEST DROPS</Heading>
-        <Slider slides={latestDrops} />
+        <Slider slides={latestDrops} tag="men" />
       </div>
       <Heading>NEW ARRIVALS</Heading>
       <ProductSlider products={menProducts} />

@@ -1,8 +1,7 @@
-  import { menSidebarProducts } from "./menProducts"
-  import { menCategoriesImg } from "./menProducts"
-  import { womenCategoriesImg } from "./womenProducts"
-  import { womenSidebarProducts } from "./womenProducts"
+  import { menSidebarProducts,menCategoriesImg } from "./menProducts"
+  import { womenCategoriesImg,womenSidebarProducts } from "./womenProducts"
   import { sneakerSidebarProducts,sneakersCategoryImg } from "./sneakersProduct"
+
   export const menSidebarData={ 
     products: menSidebarProducts,
   categories:  menCategoriesImg

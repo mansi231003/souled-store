@@ -197,28 +197,21 @@ export default function ProductPage({ openCart }) {
                             <div className="text-[#a94442] bg-[rgb(242,222,222)] rounded-[6px] p-3 mb-4 text-[14px]">{error}</div>
                         )}
                         <div className="flex gap-2">
-                            {!isOutOfStock && cartStatus === "idle" && (
-                                <div
-                                    onClick={handleAddToCart}
-                                    className="cart-button bg-[#ec3d25] w-[229px] text-white pt-[8px] pb-[8px] flex justify-center items-center rounded-[3px] font-[700] text-[14px] cursor-pointer"
-                                >
+
+                            {cartStatus === "idle" && (
+                                <div onClick={!isOutOfStock ? handleAddToCart : undefined} className={`cart-button w-[229px] text-white pt-[8px] pb-[8px] flex justify-center items-center rounded-[3px] font-[700] text-[14px]
+        ${isOutOfStock ? "bg-red-400 cursor-not-allowed opacity-60" : "bg-[#ec3d25] cursor-pointer"}`}>
                                     ADD TO CART
                                 </div>
                             )}
-                            {/* {cartStatus === "idle" && (
-                                <div onClick={handleAddToCart}
-                                    className="cart-button bg-[#ec3d25] w-[229px] text-white pt-[8px] pb-[8px] flex justify-center items-center rounded-[3px] font-[700] text-[14px] cursor-pointer">
-                                    ADD TO CART
-                                </div>
-                            )} */}
 
                             {cartStatus === "adding" && (
-                                <div className="cart-button bg-gray-500 w-[229px] text-white pt-[8px] pb-[8px] flex justify-center items-center rounded-[3px] font-[700] text-[14px]">
+                                <div className="cursor-pointer cart-button bg-gray-500 w-[229px] text-white pt-[8px] pb-[8px] flex justify-center items-center rounded-[3px] font-[700] text-[14px]">
                                     ADDING TO CART...</div>
                             )}
 
                             {cartStatus === "added" && (
-                                <div className="cart-button bg-green-600 w-[229px] text-white pt-[8px] pb-[8px] flex justify-center items-center rounded-[3px] font-[700] text-[14px]">
+                                <div className="cursor-pointer cart-button bg-green-600 w-[229px] text-white pt-[8px] pb-[8px] flex justify-center items-center rounded-[3px] font-[700] text-[14px]">
                                     ADDED</div>
                             )}
 
@@ -246,78 +239,38 @@ export default function ProductPage({ openCart }) {
                             <i className="fa-brands fa-twitter"></i>
                             <i className="fa-brands fa-instagram"></i>
                         </div>
-                        <div className="text-[15px] font-[700] text-[#282d3f]">Delivery Details</div>
+                        {/* <div className="text-[15px] font-[700] text-[#282d3f]">Delivery Details</div>
                         <div className="border flex justify-between rounded-[6px] p-[6px] pl-[10px] pr-[10px] mt-[10px] mb-[14px]">
                             <input className="w-full outline-none text-[#58595b] font-[200] text-[15px]" placeholder="Enter Pincode" />
                             <div className="cursor-pointer text-[15px] text-[#148c8d] font-[700]">CHECK</div>
-                        </div>
+                        </div> */}
                         <div className=" flex shadow-[0px_1px_2px_rgba(0,0,0,0.2)] mb-[18px] p-[8px] gap-2">
                             <div className="flex justify-center items-center"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#58595b"><path d="M440-183v-274L200-596v274l240 139Zm80 0 240-139v-274L520-457v274Zm-80 92L160-252q-19-11-29.5-29T120-321v-318q0-22 10.5-40t29.5-29l280-161q19-11 40-11t40 11l280 161q19 11 29.5 29t10.5 40v318q0 22-10.5 40T800-252L520-91q-19 11-40 11t-40-11Zm200-528 77-44-237-137-78 45 238 136Zm-160 93 78-45-237-137-78 45 237 137Z" /></svg></div>
                             <p className="text-[13px] text-[#58595b]">This product is eligible for return or exchange under our 30-day return or exchange policy. No questions asked.</p>
                         </div>
                         <div className="border border-[rgba(0,0,0,0.125)] text-[#58595b]">
                             <div className="text-[16px] border-b p-3">
-                                <div className="flex justify-between font-[700] cursor-pointer">
-                                    Product Details
-                                    <svg
-                                        onClick={() => toggleSection("details")}
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        height="24px"
-                                        viewBox="0 -960 960 960"
-                                        width="24px"
-                                        fill="#58595b"
-                                    >
-                                        <path d="M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z" />
-                                    </svg>
+                                <div onClick={() => toggleSection("details")} className="flex justify-between font-[700] cursor-pointer">Product Details
+                                     <svg className={`transition-transform duration-300 ${openSection === "details" ? "rotate-180" : ""}`} xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="black"><path d="M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z" /></svg>
                                 </div>
-
-                                {openSection === "details" && (
-                                    <div className="pt-2">
-                                        Charlie Brown and Snoopy are here to keep things light, breezy, and just the right amount of nostalgic. The fit says weekend, the print says instant mood boost. Style Tip: Style with light-wash jeans for a casual, feel-good look.
-                                    </div>
-                                )}
+                                    <div  className={`overflow-hidden transition-all duration-300 ease-in-out ${ openSection === "details"? "max-h-[200px] opacity-100 pt-2": "max-h-0 opacity-0"}`}>Charlie Brown and Snoopy are here to keep things light, breezy, and just the right amount of nostalgic. The fit says weekend, the print says instant mood boost. Style Tip: Style with light-wash jeans for a casual, feel-good look.</div>       
                             </div>
                             <div className="text-[16px] border-b p-3">
-                                <div className="flex justify-between font-[700] cursor-pointer">
-                                    Product Description
-                                    <svg
-                                        onClick={() => toggleSection("description")}
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        height="24px"
-                                        viewBox="0 -960 960 960"
-                                        width="24px"
-                                        fill="#58595b"
-                                    >
-                                        <path d="M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z" />
-                                    </svg>
+                                <div onClick={() => toggleSection("description")} className="flex justify-between font-[700] cursor-pointer">Product Description
+                                      <svg className={`transition-transform duration-300 ${openSection === "description" ? "rotate-180" : ""}`} xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="black"><path d="M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z" /></svg>
                                 </div>
 
-                                {openSection === "description" && (
-                                    <div className="pt-2">
-                                        Charlie Brown and Snoopy are here to keep things light, breezy, and just the right amount of nostalgic. The fit says weekend, the print says instant mood boost. Style Tip: Style with light-wash jeans for a casual, feel-good look.
-                                    </div>
-                                )}
+                                    <div   className={`overflow-hidden transition-all duration-300 ease-in-out ${ openSection === "description"? "max-h-[200px] opacity-100 pt-2": "max-h-0 opacity-0"}`}>Charlie Brown and Snoopy are here to keep things light, breezy, and just the right amount of nostalgic. The fit says weekend, the print says instant mood boost. Style Tip: Style with light-wash jeans for a casual, feel-good look.</div>
+                            
                             </div>
                             <div className="text-[16px] p-3">
-                                <div className="flex justify-between font-[700] cursor-pointer">
-                                    Artist's Details
-                                    <svg
-                                        onClick={() => toggleSection("artist")}
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        height="24px"
-                                        viewBox="0 -960 960 960"
-                                        width="24px"
-                                        fill="#58595b"
-                                    >
-                                        <path d="M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z" />
-                                    </svg>
-                                </div>
-
-                                {openSection === "artist" && (
-                                    <div className="pt-2">
+                                <div onClick={() => toggleSection("artist")} className="flex justify-between font-[700] cursor-pointer">Artist's Details
+                                      <svg className={`transition-transform duration-300 ${openSection === "artist" ? "rotate-180" : ""}`} xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="black"><path d="M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z" /></svg>
+                                </div>    
+                                    <div   className={`overflow-hidden transition-all duration-300 ease-in-out ${ openSection === "artist"? "max-h-[200px] opacity-100 pt-2" : "max-h-0 opacity-0"}`}>
                                         Charlie Brown and Snoopy are here to keep things light, breezy, and just the right amount of nostalgic. The fit says weekend, the print says instant mood boost. Style Tip: Style with light-wash jeans for a casual, feel-good look.
                                     </div>
-                                )}
+                                
                             </div>
 
                         </div>

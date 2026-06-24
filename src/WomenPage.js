@@ -51,45 +51,6 @@ function WomenPage({sidebarOpen,setSidebarOpen}) {
     { image: "latestDrop-img3.png" },
 
   ]
-
-  // const womenSidebarProducts=[
-  //    {
-  //     image_url: "w-sidebar-img.png",
-  //     title: "Summer Home",
-
-  //   },
-  //   {
-  //     image_url: "w-sidebar-img2.png",
-  //     title: "Hot Merch",
-  //   },
-  //   {
-  //     image_url: "w-sidebar-img3.png",
-  //     title: "Collab Kicks",
-
-  //   },
-  //   {
-  //     image_url: "w-sidebar-img4.png",
-  //     title: "Culture Code",
-  //   },
-  //   {
-  //     image_url: "w-sidebar-img3.png",
-  //     title: "T-Shirts",
-  //   },
-  //   {
-  //     image_url: "w-sidebar-img.png",
-  //     title: "Marvel",
-  //   },
-  //   {
-  //     image_url: "w-sidebar-img4.png",
-  //     title: "Relaxed-Fit",
-    
-  //   },
-  //   {
-  //     image_url: "w-sidebar-img2.png",
-  //     title: "Socks",
-  //   },
-
-  // ]
   
 
   const womenCategories=[
@@ -106,21 +67,14 @@ function WomenPage({sidebarOpen,setSidebarOpen}) {
 
   return (
     <div className='women-page'>
-      {/* <Sidebar isOpen={sidebarOpen} closeSidebar={()=>setSidebarOpen(false)}>
-         <ProductSlider products={womenSidebarProducts} sidebar={true}/>
-         <Categories cards={womenCategoriesImg} tag="women"/>
-         <ProductSlider products={womenSidebarProducts}/>
-
-      </Sidebar> */}
-     
       <Navbar toggleSidebar={()=>setSidebarOpen(true)}/>
-      <Slider className="slider1" slides={womenSlides1} />
-      <Slider className="slider2" slides={womenSlides2} />
+      <Slider className="slider1" slides={womenSlides1} tag="women"  />
+      <Slider className="slider2" slides={womenSlides2} tag="women" />
       <FeaturesBar />
 
       <div className='collections'>
         <Heading>NEW IN:COLLLECTIONS</Heading>
-        <Slider slides={newCollections} />
+        <Slider slides={newCollections} tag="women"/>
       </div>
       <Heading>NEW ARRIVALS</Heading>
       <ProductSlider products={womenProducts} />

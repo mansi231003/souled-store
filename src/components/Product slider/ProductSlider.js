@@ -5,7 +5,6 @@ import 'swiper/css/navigation';
 import { Navigation,Pagination } from 'swiper/modules';
 import 'swiper/css';
 
-
 export default function ProductSlider({products,sidebar=false}) {
     return (
         <>
@@ -25,9 +24,9 @@ export default function ProductSlider({products,sidebar=false}) {
                     spaceBetween={10}
                     breakpoints={
                         sidebar?{
-                            0:{slidesPerView:2},
-                            380:{slidesPerView:3},
-                            500:{slidesPerView:4}
+                            0:{slidesPerView:2,slidesPerGroup:1},
+                            380:{slidesPerView:3,slidesPerGroup:1},
+                            
                         }:
                         {
                         0:{slidesPerView:2,slidesPerGroup:2},

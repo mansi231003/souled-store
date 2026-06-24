@@ -107,16 +107,9 @@ function SneakersPage({sidebarOpen,setSidebarOpen}) {
   return (
     
     <div className='sneaker-page'>
-      {/* <Sidebar isOpen={sidebarOpen} closeSidebar={()=>setSidebarOpen(false)}>
-         <ProductSlider products={menSidebarProducts} sidebar={true}/>
-         <Categories cards={sneakersCategoryImg}/>
-         <ProductSlider products={menSidebarProducts}/>
-
-      </Sidebar> */}
-     
       <Navbar toggleSidebar={()=>setSidebarOpen(true)} />
-      <Slider className="slider1" slides={sneakerSlides1} />
-      <Slider className="slider2" slides={sneakerSlides2} />
+      <Slider className="slider1" slides={sneakerSlides1} tag="sneaker" />
+      <Slider className="slider2" slides={sneakerSlides2} tag="sneaker" />
       <FeaturesBar />
 
       <div className='collections'>

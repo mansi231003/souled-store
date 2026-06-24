@@ -220,38 +220,38 @@ export const sneakers = [
 
 export const sneakerSidebarProducts=[
      {
-      image_url: "newArrival-img1.png",
+      image_url: "sidebar-img1.png",
       title: "Summer Home",
 
     },
     {
-      image_url: "newArrival-img2.png",
+      image_url: "sidebar-img3.png",
       title: "Hot Merch",
     },
     {
-      image_url: "newArrival-img3.png",
+      image_url: "sidebar-img4.png",
       title: "Collab Kicks",
 
     },
     {
-      image_url: "newArrival-img4.png",
+      image_url: "sidebar-img1.png",
       title: "Culture Code",
     },
     {
-      image_url: "newArrival-img3.png",
+      image_url: "sidebar-img3.png",
       title: "T-Shirts",
     },
     {
-      image_url: "newArrival-img4.png",
+      image_url: "sidebar-img4.png",
       title: "Marvel",
     },
     {
-      image_url: "newArrival-img1.png",
+      image_url: "sidebar-img1.png",
       title: "Relaxed-Fit",
     
     },
     {
-      image_url: "newArrival-img2.png",
+      image_url: "sidebar-img3.png",
       title: "Socks",
     },
 
