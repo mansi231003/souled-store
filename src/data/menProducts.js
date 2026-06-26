@@ -112,7 +112,7 @@ export const menProducts = [
         "product_id": "4",
         "title": "Denim Jeans",
         "tags": ["men"],
-        "category": ["Trending", "Hooded T-Shirts"],
+        "category": ["Trending", "Hooded T-Shirts","Men Hooded T-Shirts"],
         "price_range": {"min":null,"max": "1300"},
         "stock": "40",
         "image_url": "/newArrival-img4.png",
@@ -180,7 +180,7 @@ export const menProducts = [
         "product_id": "6",
         "title": "Peanuts:Works Out",
         "tags": ["men"],
-        "category":  ["Trending", "Hooded T-Shirts"],
+        "category":  ["Trending", "Hooded T-Shirts","Exclusive","Easy Fit Vests"],
         "price_range": { "min": "700", "max": "900" },
         "stock": "80",
         "image_url": "/newArrival-img1.png",
@@ -259,10 +259,6 @@ export const menCategoriesImg = [
       image_url: "sidebar-img1.png",
       title: "Relaxed-Fit",
 
-    },
-    {
-      image_url: "sidebar-img2.png",
-      title: "Socks",
     },
 
   ]

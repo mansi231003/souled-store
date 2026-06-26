@@ -1,8 +1,7 @@
-import { useState } from "react"
+import { useState,useEffect } from "react"
 import "./Sidebar.css"
 import { closeSidebar, openSidebar } from "../../Redux/CartSlice/cartSlice";
 import { useSelector, useDispatch } from "react-redux";
-import { useEffect } from "react";
 import ProductSlider from "../Product slider/ProductSlider";
 import Categories from "../Categories/Categories";
 import { menSidebarData, womenSidebarData, sneakersSidebarData } from "../../data/sidebarData";
@@ -29,10 +28,11 @@ export default function Sidebar() {
 
     const [shopAllOpen, setShopAllOpen] = useState(true);
     const [moreOpen, setMoreOpen] = useState(false);
-useEffect(() => {
-  setShopAllOpen(true);
-  setMoreOpen(false);
-}, [type]);
+    
+    useEffect(() => {
+        setShopAllOpen(true);
+        setMoreOpen(false);
+    }, [type]);
     return (
         <>
 
@@ -70,7 +70,7 @@ useEffect(() => {
                     </div>
                     <div className={`overflow-hidden transition-all duration-500 ease-in-out ${shopAllOpen ? "max-h-[2000px] opacity-100" : "max-h-0 opacity-0"}`}>
                         <div className="flex justify-between p-5 pt-0">Categories</div>
-                        <div className="category-section"><Categories cards={data.categories} /></div>
+                        <div onClick={() => dispatch(closeSidebar())} className="category-section"><Categories cards={data.categories} tag={type}/></div>
                     </div>
                     <div className="flex justify-between text-[17px] font-[700] p-4 border-t-[#e5e5e5] border border-dashed">Top Wear<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="black"><path d="M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z" /></svg></div>
                     {/* <div className="flex justify-between text-[17px] font-[700] p-4 border-t-[#e5e5e5] border border-dashed">Bottom Wear<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="black"><path d="M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z" /></svg></div> */}
@@ -91,8 +91,8 @@ useEffect(() => {
                     </svg></div>
                     <div className={`cursor-pointer overflow-hidden transition-all duration-700 ease-in-out ${moreOpen ? "max-h-[2000px] opacity-100" : "max-h-0 opacity-0"}`}>
 
-                        <Link to="registration"><div  onClick={() => dispatch(closeSidebar())} className="cursor-pointer flex justify-between p-4 border-t-[#e5e5e5] border border-dashed">My Account</div></Link>
-                        <Link to="registration"><div  onClick={() => dispatch(closeSidebar())} className="cursor-pointer flex justify-between p-4 border-t-[#e5e5e5] border border-dashed">Contact us</div></Link>
+                        <Link to="registration"><div onClick={() => dispatch(closeSidebar())} className="cursor-pointer flex justify-between p-4 border-t-[#e5e5e5] border border-dashed">My Account</div></Link>
+                        <Link to="registration"><div onClick={() => dispatch(closeSidebar())} className="cursor-pointer flex justify-between p-4 border-t-[#e5e5e5] border border-dashed">Contact us</div></Link>
                     </div>
 
                 </div>

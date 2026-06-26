@@ -29,7 +29,10 @@ export default function CartSidebar() {
                 <div className="w-[500px] cart-sidebar bg-white z-[9999] overflow-y-auto right-0 absolute h-full sidebar flex flex-col items-center">
                     {cartItems.length === 0 ? (
                         <>
+                                        <div onClick={() => dispatch(closeCart())} className=" cursor-pointer w-full p-4 justify-end flex"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="black"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" /></svg></div>
+
                             <div className="flex justify-center items-center h-full flex-col">
+                                
                                 <div>
                                     <img src="/emptyCart.avif" alt="emptyCart" />
                                 </div>
@@ -68,12 +71,30 @@ export default function CartSidebar() {
                                                         <div className="text-[#a7a9ac] ">{item.title}</div>
                                                         <div className="flex gap-2 pt-3">
                                                             <div className="size-btn font-[700] text-[13px] border border-[#e3e3e3] pl-2 rounded-[4px] text-[#58595b] w-[100px] h-[35px] flex justify-between items-center">Size: {item.size} </div>
-                                                            <div className="size-btn font-[700] text-[13px] border border-[#e3e3e3] pl-2 rounded-[4px] text-[#58595b] w-[80px] h-[35px] flex justify-between items-center">Qty:
-                                                                <select value={item.quantity} onChange={(e) => dispatch(updateQuantity({ id: item.id, quantity: Number(e.target.value) }))} className="outline-none bg-white">
-                                                                    {[1, 2, 3, 4, 5].map(q => (
-                                                                        <option key={q} value={q}>{q}</option>
-                                                                    ))}
-                                                                </select>
+                                                            <div className="size-btn font-[700] text-[13px] border border-[#e3e3e3] px-2 rounded-[4px] text-[#58595b] w-[90px] h-[35px] flex justify-between items-center">Qty:
+                                                                <div className="flex items-center w-[40px] justify-between">
+                                                                    <button onClick={() =>dispatch(updateQuantity({
+                                                                                id: item.id,quantity: Math.max(1, item.quantity - 1)}))}
+                                                                        className="">
+                                                                        -
+                                                                    </button>
+
+                                                                    <span className="">{item.quantity}</span>
+
+                                                                    <button
+                                                                        onClick={() =>
+                                                                            dispatch(updateQuantity({
+                                                                                id: item.id,
+                                                                                quantity: Math.min(
+                                                                                    Number(item.stock),
+                                                                                    item.quantity + 1
+                                                                                )
+                                                                            }))
+                                                                        }
+                                                                        className="">
+                                                                        +
+                                                                    </button>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>

@@ -1,7 +1,7 @@
 import Navbar from "../Navbar/Navbar";
 import Footer from "../Footer/Footer";
 import { useParams, useLocation } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../Redux/CartSlice/cartSlice";
 import { addToWishlist, removeFromWishlist } from "../../Redux/WishlistSlice/WishlistSlice";
@@ -12,7 +12,7 @@ import { Swiper, SwiperSlide } from "swiper/react"
 import { Pagination } from 'swiper/modules';
 import 'swiper/css';
 
-export default function ProductPage({ openCart }) {
+export default function ProductPage() {
     const { id } = useParams();
     const { state } = useLocation();
     let product = state?.product
@@ -53,7 +53,6 @@ export default function ProductPage({ openCart }) {
     );
     console.log(wishlistItems)
     const [cartStatus, setCartStatus] = useState("idle");
-    // const [wishStatus, setWishStatus] = useState("");
 
     const handleAddToCart = () => {
         if (!selectedSize) {
@@ -77,7 +76,8 @@ export default function ProductPage({ openCart }) {
                 price: selectedVariant?.price || product.price_range.max,
                 size: selectedSize,
                 color: selectedColor,
-                quantity: quantity
+                quantity,
+                stock: Number(selectedVariant?.stock || product.stock)
             }));
             setCartStatus("added");
             setTimeout(() => {
@@ -87,8 +87,11 @@ export default function ProductPage({ openCart }) {
         }, 2000);
     };
 
+    const [toast, setToast] = useState({
+        show: false,
+        message: "",
+    });
     const handleWishlist = () => {
-
         const exists = wishlistItems.find(
             item => item.product_id === product.product_id
         );
@@ -96,8 +99,11 @@ export default function ProductPage({ openCart }) {
         if (exists) {
             dispatch(removeFromWishlist(exists.id));
 
-        }
-        else {
+            setToast({
+                show: true,
+                message: "Product is removed from wishlist",
+            });
+        } else {
             dispatch(addToWishlist({
                 id: crypto.randomUUID(),
                 product_id: product.product_id,
@@ -108,20 +114,103 @@ export default function ProductPage({ openCart }) {
                 color: selectedColor
             }));
 
+            setToast({
+                show: true,
+                message: "Product is added to wishlist",
+            });
         }
 
+        setTimeout(() => {
+            setToast({
+                show: false,
+                message: "",
+            });
+        }, 2000);
     };
-
     const [openSection, setOpenSection] = useState(null);
+    const [sizeChart, setSizeChart] = useState("size");
+    const [openSizeChart, setOpenSizeChart] = useState(false);
 
     const toggleSection = (section) => {
         setOpenSection(openSection === section ? null : section);
     };
 
+    const availableStock = selectedVariant
+        ? Number(selectedVariant.stock)
+        : Number(product.stock);
+
+    useEffect(() => {
+        if (selectedVariant) {
+            setQuantity(prev =>
+                Math.min(prev, Number(selectedVariant.stock))
+            );
+        }
+    }, [selectedVariant]);
+
     return (
 
         <>
-            <Navbar cartSidebar={openCart} />
+            <Navbar />
+            <div className={`${openSizeChart ? "w-full h-full fixed flex overflow-hidden top-0 z-[999]" : "hidden"}`}>
+                <div className="w-[500px] cart-sidebar bg-white z-[9999] overflow-y-auto right-0 absolute h-full sidebar flex flex-col items-center">
+                    <div className="flex justify-between w-full p-4 shadow-[0px_4px_4px_0px_gray] font-bold text-[16px]">Size Chart-{product.title}
+                        <svg onClick={() => setOpenSizeChart(false)} className="cursor-pointer" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="black"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" /></svg>
+
+                    </div>
+                    <div className="flex p-4 justify-between w-full border-b-2 border-b-gray-200 font-bold cursor-pointer">
+                        <div onClick={() => setSizeChart("size")} className={`${sizeChart === "size" ? "text-[#148c8d]" : "text-[#909398]"}`}>Size Chart</div>
+                        <div onClick={() => setSizeChart("fit")} className={`${sizeChart === "fit" ? "text-[#148c8d]" : "text-[#909398]"}`}>Fit Guide</div>
+                        <div onClick={() => setSizeChart("measure")} className={`${sizeChart === "measure" ? "text-[#148c8d]" : "text-[#909398]"}`}>How To Measure</div>
+                    </div>
+                    {sizeChart === "size" &&
+                        <div className="w-full">
+                            <div className="flex px-5 py-3 justify-between w-full font-bold text-[15px]">
+                                <div>Size</div>
+                                <div>Length</div>
+                                <div>Shoulder</div>
+                            </div>
+                            <div className="flex w-full justify-between px-6 py-3 border-t border-t-gray-200 text-[#525964]">
+                                <div>XS</div>
+                                <div>28.5</div>
+                                <div>18.5</div>
+                            </div>
+                            <div className="flex w-full justify-between px-6 py-3 border-t border-t-gray-200 text-[#525964]">
+                                <div>S</div>
+                                <div>28.5</div>
+                                <div>19.5</div>
+                            </div>
+                            <div className="flex w-full justify-between px-6 py-3 border-t border-t-gray-200 text-[#525964]">
+                                <div>M</div>
+                                <div>29</div>
+                                <div>20.5</div>
+                            </div>
+                            <div className="flex w-full justify-between px-6 py-3 border-t border-t-gray-200 text-[#525964]">
+                                <div>L</div>
+                                <div>29.5</div>
+                                <div>21</div>
+                            </div>
+                            <div className="flex w-full justify-between px-6 py-3 border-t border-t-gray-200 text-[#525964]">
+                                <div>XL</div>
+                                <div>30.5</div>
+                                <div>21.5</div>
+                            </div>
+                        </div>
+                    }
+                    {sizeChart === "fit" &&
+                        <div>
+                            <img src="https://prod-img.thesouledstore.com/public/theSoul/storage/mobile-cms-media-prod/sizechart-images/M258F-FG-Mens-Web.jpg?w=640&dpr=2" alt="" />
+                        </div>
+                    }
+                    {sizeChart === "measure" &&
+                        <div>
+                            <img src="https://prod-img.thesouledstore.com/public/theSoul/storage/mobile-cms-media-prod/sizechart-images/M258F-Measure-Mens-Web.jpg?w=480&dpr=2" alt="" />
+                        </div>
+                    }
+                </div>
+                <div onClick={() => setOpenSizeChart(false)} className="fixed w-full top-0 h-full bg-[rgba(0,0,0,0.4)]"></div>
+
+            </div>
+
             <div className="pl-5 flex flex-col justify-center items-center product-page">
                 <div className="w-full pt-[15px] pb-[15px] text-[12px] text-[#a7a9ac] gap-1 flex">Home /<span>T-Shirts /</span><span>The Souled Store /</span><span className="text-[#58595b]">{product.title}</span></div>
                 <div className="flex gap-4 pb-6 hero-section w-full">
@@ -158,7 +247,7 @@ export default function ProductPage({ openCart }) {
                         <div className="pt-5 font-[700] text-[20px] text-[#58595b]">{displayPrice}</div>
                         <div className="text-[#888] text-[14px]">Price incl. of all taxes</div>
 
-                        <div className="pt-3 pb-3 gap-2 flex font-[700] text-[16px] text-[#58595b]">{variantData.size.label}<u className="text-[#117a7a] font-normal">SIZE CHART</u></div>
+                        <div className="pt-3 pb-3 gap-2 flex font-[700] text-[16px] text-[#58595b]">{variantData.size.label}<u onClick={() => setOpenSizeChart(true)} className="text-[#117a7a] font-normal cursor-pointer">SIZE CHART</u></div>
 
                         <div className="flex gap-2 pb-3">
                             {Object.values(variantData.size.values[0]).map((val) => (
@@ -173,7 +262,7 @@ export default function ProductPage({ openCart }) {
                                         const isAvailable = selectedSize ? availableColors.includes(val.key) : true;
 
                                         return (
-                                            <div className={`rounded-full p-[4px] border-2  ${selectedColor === val.key ? "border-black" : "border-white"}`}><div key={val.key} onClick={() => isAvailable && setSelectedColor(val.key)} style={{ backgroundColor: val.color_code }} className={`rounded-full flex justify-center items-center w-[25px] h-[25px]   ${isAvailable ? "cursor-pointer" : "opacity-30"}`}></div>
+                                            <div className={`rounded-full p-[4px] border-2  ${selectedColor === val.key ? "border-black" : "border-white"}`}><div key={val.key} onClick={() => isAvailable && setSelectedColor(val.key)} style={{ backgroundColor: val.color_code }} className={`rounded-full flex justify-center items-center w-[25px] h-[25px]   ${isAvailable ? "cursor-pointer" : "opacity-30 cursor-not-allowed"}`}></div>
                                             </div>
                                         );
                                     })}
@@ -183,12 +272,22 @@ export default function ProductPage({ openCart }) {
 
                         <div className="flex gap-3 items-center pb-3">
                             <div className="text-[#58595b] text-[14px]">Quantity</div>
-                            <select value={quantity} onChange={(e) => setQuantity(Number(e.target.value))}
-                                className="border outline-none bg-white border-[#ccc] rounded-[5px] p-[4px] text-[15px]">
-                                <option value={1}>01</option>
-                                <option value={2}>02</option>
-                                <option value={3}>03</option>
-                            </select>
+                            <div className="flex items-center border border-[#ccc] rounded-md overflow-hidden">
+                                <button onClick={() => setQuantity(prev => Math.max(1, prev - 1))}
+                                    className="pl-2 pr-1 py-1 text-lg">
+                                    -
+                                </button>
+
+                                <span className="w-[30px] text-center">
+                                    {quantity}
+                                </span>
+
+                                <button onClick={() => setQuantity(prev => Math.min(availableStock, prev + 1))}
+                                    className="pr-2 pl-1 py-1 text-lg"
+                                >
+                                    +
+                                </button>
+                            </div>
                         </div>
                         {isOutOfStock && (
                             <div className="text-red-500 font-semibold mb-4">Out of Stock!</div>
@@ -196,32 +295,32 @@ export default function ProductPage({ openCart }) {
                         {error && (
                             <div className="text-[#a94442] bg-[rgb(242,222,222)] rounded-[6px] p-3 mb-4 text-[14px]">{error}</div>
                         )}
-                        <div className="flex gap-2">
+                        <div className="flex gap-2 cart-buttons">
 
                             {cartStatus === "idle" && (
-                                <div onClick={!isOutOfStock ? handleAddToCart : undefined} className={`cart-button w-[229px] text-white pt-[8px] pb-[8px] flex justify-center items-center rounded-[3px] font-[700] text-[14px]
+                                <div onClick={!isOutOfStock ? handleAddToCart : undefined} className={`cart-btn w-[229px] text-white pt-[8px] pb-[8px] flex justify-center items-center rounded-[3px] font-[700] text-[14px]
         ${isOutOfStock ? "bg-red-400 cursor-not-allowed opacity-60" : "bg-[#ec3d25] cursor-pointer"}`}>
                                     ADD TO CART
                                 </div>
                             )}
 
                             {cartStatus === "adding" && (
-                                <div className="cursor-pointer cart-button bg-gray-500 w-[229px] text-white pt-[8px] pb-[8px] flex justify-center items-center rounded-[3px] font-[700] text-[14px]">
+                                <div className="cart-btn cursor-pointer bg-gray-500 w-[229px] text-white pt-[8px] pb-[8px] flex justify-center items-center rounded-[3px] font-[700] text-[14px]">
                                     ADDING TO CART...</div>
                             )}
 
                             {cartStatus === "added" && (
-                                <div className="cursor-pointer cart-button bg-green-600 w-[229px] text-white pt-[8px] pb-[8px] flex justify-center items-center rounded-[3px] font-[700] text-[14px]">
+                                <div className="cart-btn cursor-pointer bg-green-600 w-[229px] text-white pt-[8px] pb-[8px] flex justify-center items-center rounded-[3px] font-[700] text-[14px]">
                                     ADDED</div>
                             )}
 
-                            <div onClick={handleWishlist} className="cart-button text-[#148c8d] flex items-center w-[170px] justify-center border border-[#148c8d] h-[39px] text-[14px] cursor-pointer">
+                            <div onClick={handleWishlist} className={`cart-btn text-[#148c8d] flex items-center w-[245px] justify-center border border-[#148c8d] h-[39px] cursor-pointer ${isWishlisted ? "text-[12px]" : "text-[14px]"}`}>
                                 {
                                     isWishlisted ?
                                         <>
                                             <svg xmlns="http://www.w3.org/2000/svg" height="21px" viewBox="0 -960 960 960" width="20px" fill="#148c8d">
                                                 <path d="m480-120-58-52q-101-91-167-157T150-447.5Q111-500 95.5-544T80-634q0-94 63-157t157-63q52 0 99 22t81 62q34-40 81-62t99-22q94 0 157 63t63 157q0 46-15.5 90T810-447.5Q771-395 705-329T538-172l-58 52Z" />
-                                            </svg>ADDED TO WISHLIST
+                                            </svg>REMOVE FROM WISHLIST
                                         </> : <>
                                             <svg xmlns="http://www.w3.org/2000/svg" height="21px" viewBox="0 -960 960 960" width="20px" fill="#148c8d"><path d="m480-120-58-52q-101-91-167-157T150-447.5Q111-500 95.5-544T80-634q0-94 63-157t157-63q52 0 99 22t81 62q34-40 81-62t99-22q94 0 157 63t63 157q0 46-15.5 90T810-447.5Q771-395 705-329T538-172l-58 52Zm0-108q96-86 158-147.5t98-107q36-45.5 50-81t14-70.5q0-60-40-100t-100-40q-47 0-87 26.5T518-680h-76q-15-41-55-67.5T300-774q-60 0-100 40t-40 100q0 35 14 70.5t50 81q36 45.5 98 107T480-228Zm0-273Z" /></svg>
                                             ADD TO WISHLIST
@@ -251,31 +350,39 @@ export default function ProductPage({ openCart }) {
                         <div className="border border-[rgba(0,0,0,0.125)] text-[#58595b]">
                             <div className="text-[16px] border-b p-3">
                                 <div onClick={() => toggleSection("details")} className="flex justify-between font-[700] cursor-pointer">Product Details
-                                     <svg className={`transition-transform duration-300 ${openSection === "details" ? "rotate-180" : ""}`} xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="black"><path d="M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z" /></svg>
+                                    <svg className={`transition-transform duration-300 ${openSection === "details" ? "rotate-180" : ""}`} xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="black"><path d="M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z" /></svg>
                                 </div>
-                                    <div  className={`overflow-hidden transition-all duration-300 ease-in-out ${ openSection === "details"? "max-h-[200px] opacity-100 pt-2": "max-h-0 opacity-0"}`}>Charlie Brown and Snoopy are here to keep things light, breezy, and just the right amount of nostalgic. The fit says weekend, the print says instant mood boost. Style Tip: Style with light-wash jeans for a casual, feel-good look.</div>       
+                                <div className={`overflow-hidden transition-all duration-300 ease-in-out ${openSection === "details" ? "max-h-[200px] opacity-100 pt-2" : "max-h-0 opacity-0"}`}>Charlie Brown and Snoopy are here to keep things light, breezy, and just the right amount of nostalgic. The fit says weekend, the print says instant mood boost. Style Tip: Style with light-wash jeans for a casual, feel-good look.</div>
                             </div>
                             <div className="text-[16px] border-b p-3">
                                 <div onClick={() => toggleSection("description")} className="flex justify-between font-[700] cursor-pointer">Product Description
-                                      <svg className={`transition-transform duration-300 ${openSection === "description" ? "rotate-180" : ""}`} xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="black"><path d="M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z" /></svg>
+                                    <svg className={`transition-transform duration-300 ${openSection === "description" ? "rotate-180" : ""}`} xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="black"><path d="M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z" /></svg>
                                 </div>
 
-                                    <div   className={`overflow-hidden transition-all duration-300 ease-in-out ${ openSection === "description"? "max-h-[200px] opacity-100 pt-2": "max-h-0 opacity-0"}`}>Charlie Brown and Snoopy are here to keep things light, breezy, and just the right amount of nostalgic. The fit says weekend, the print says instant mood boost. Style Tip: Style with light-wash jeans for a casual, feel-good look.</div>
-                            
+                                <div className={`overflow-hidden transition-all duration-300 ease-in-out ${openSection === "description" ? "max-h-[200px] opacity-100 pt-2" : "max-h-0 opacity-0"}`}>Charlie Brown and Snoopy are here to keep things light, breezy, and just the right amount of nostalgic. The fit says weekend, the print says instant mood boost. Style Tip: Style with light-wash jeans for a casual, feel-good look.</div>
+
                             </div>
                             <div className="text-[16px] p-3">
                                 <div onClick={() => toggleSection("artist")} className="flex justify-between font-[700] cursor-pointer">Artist's Details
-                                      <svg className={`transition-transform duration-300 ${openSection === "artist" ? "rotate-180" : ""}`} xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="black"><path d="M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z" /></svg>
-                                </div>    
-                                    <div   className={`overflow-hidden transition-all duration-300 ease-in-out ${ openSection === "artist"? "max-h-[200px] opacity-100 pt-2" : "max-h-0 opacity-0"}`}>
-                                        Charlie Brown and Snoopy are here to keep things light, breezy, and just the right amount of nostalgic. The fit says weekend, the print says instant mood boost. Style Tip: Style with light-wash jeans for a casual, feel-good look.
-                                    </div>
-                                
+                                    <svg className={`transition-transform duration-300 ${openSection === "artist" ? "rotate-180" : ""}`} xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="black"><path d="M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z" /></svg>
+                                </div>
+                                <div className={`overflow-hidden transition-all duration-300 ease-in-out ${openSection === "artist" ? "max-h-[200px] opacity-100 pt-2" : "max-h-0 opacity-0"}`}>
+                                    Charlie Brown and Snoopy are here to keep things light, breezy, and just the right amount of nostalgic. The fit says weekend, the print says instant mood boost. Style Tip: Style with light-wash jeans for a casual, feel-good look.
+                                </div>
+
                             </div>
 
                         </div>
                     </div>
                 </div>
+            </div>
+            <div
+                className={`fixed top-14 right-5 z-[9999]
+  bg-red-500 text-white text-[15px] px-3 py-2 rounded-md shadow-md
+  transition-all duration-300 ease-out
+  ${toast.show ? "opacity-100 translate-x-0" : "opacity-0 translate-x-6"}`}
+            >
+                {toast.message}
             </div>
             <Footer />
         </>

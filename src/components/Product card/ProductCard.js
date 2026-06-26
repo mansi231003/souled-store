@@ -2,6 +2,7 @@ import "./ProductCard.css"
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { addToWishlist, removeFromWishlist } from "../../Redux/WishlistSlice/WishlistSlice";
+import { useState } from "react";
 
 export default function ProductCard({ product }) {
     const navigate = useNavigate();
@@ -10,9 +11,14 @@ export default function ProductCard({ product }) {
     const isWishlisted = wishlistItems.some(
         item => item.product_id === product.product_id
     );
-    const handleWishlist = (e) => {
+    const [toast, setToast] = useState({
+        show: false,
+        message: "",
+    });
 
+    const handleWishlist = (e) => {
         e.stopPropagation();
+
         const exists = wishlistItems.find(
             item => item.product_id === product.product_id
         );
@@ -20,24 +26,37 @@ export default function ProductCard({ product }) {
         if (exists) {
             dispatch(removeFromWishlist(exists.id));
 
-        }
-        else {
+            setToast({
+                show: true,
+                message: "Product is removed from wishlist",
+            });
+        } else {
             dispatch(addToWishlist({
                 id: crypto.randomUUID(),
                 product_id: product.product_id,
                 title: product.title,
                 image: product.image_url,
                 price: product.price_range?.min || product.price_range?.max,
-
             }));
 
+            setToast({
+                show: true,
+                message: "Product is added to wishlist",
+            });
         }
 
+        setTimeout(() => {
+            setToast({
+                show: false,
+                message: "",
+            });
+        }, 2000);
     };
+
     return (
         <>
             <div>
-                <div className="card relative" onClick={() => navigate(`/product/${product.product_id}`, { state: { product } })}>
+                <div className="card relative" onClick={() => navigate(`/product/${product.product_id}`)}>
                     <div onClick={handleWishlist} className="like absolute top-[10px] backdrop-blur-[80px] right-[10px] rounded-[50%] text-[#fff] w-[30px] h-[30px] flex justify-center items-center cursor-pointer">
                         {
                             isWishlisted ?
@@ -47,7 +66,6 @@ export default function ProductCard({ product }) {
                                     </svg>
                                 </> : <>
                                     <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="currentColor"><path d="m480-120-58-52q-101-91-167-157T150-447.5Q111-500 95.5-544T80-634q0-94 63-157t157-63q52 0 99 22t81 62q34-40 81-62t99-22q94 0 157 63t63 157q0 46-15.5 90T810-447.5Q771-395 705-329T538-172l-58 52Zm0-108q96-86 158-147.5t98-107q36-45.5 50-81t14-70.5q0-60-40-100t-100-40q-47 0-87 26.5T518-680h-76q-15-41-55-67.5T300-774q-60 0-100 40t-40 100q0 35 14 70.5t50 81q36 45.5 98 107T480-228Zm0-273Z" /></svg>
-
                                 </>
                         }
                     </div>
@@ -60,6 +78,14 @@ export default function ProductCard({ product }) {
                             : null}
                     </div>
                 </div>
+            </div>
+            <div
+                className={`fixed top-14 right-5 z-[9999]
+  bg-red-500 text-white text-[15px] px-3 py-2 rounded-md shadow-md
+  transition-all duration-300 ease-out
+  ${toast.show ? "opacity-100 translate-x-0" : "opacity-0 translate-x-6"}`}
+            >
+                {toast.message}
             </div>
         </>
     )

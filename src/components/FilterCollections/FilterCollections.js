@@ -8,35 +8,36 @@ import { menProducts } from "../../data/menProducts";
 import { womenProducts } from "../../data/womenProducts";
 import { sneakers } from "../../data/sneakersProduct";
 
-export default function FilterCollections({ openCart }) {
+export default function FilterCollections() {
     const { type } = useParams();
     const [selectedSizes, setSelectedSizes] = useState([]);
     const [priceRange, setPriceRange] = useState(null);
     const [selectedCategory, setSelectedCategory] = useState([]);
 
     const menCategories = [
-        { name: "Cotton Linen Shirts", count: 1 },
-        { name: "Drop Cut T-Shirts", count: 16 },
-        { name: "Easy Fit Vests", count: 6 },
-        { name: "Exclusive", count: 1 },
-        { name: "Hooded T-Shirts", count: 22 },
-        { name: "Men Full Sleeve T-Shirts", count: 3 },
-        { name: "Men Hooded T-Shirts", count: 1 },
-    ];
+     "Cotton Linen Shirts",
+    "Drop Cut T-Shirts",
+    "Easy Fit Vests",
+    "Exclusive",
+    "Hooded T-Shirts",
+    "Men Full Sleeve T-Shirts",
+    "Men Hooded T-Shirts",
+    ]
+
     const womenCategories = [
-        { name: "women Cotton Linen Shirts", count: 1 },
-        { name: "women Drop Cut T-Shirts", count: 16 },
-        { name: "women Easy Fit Vests", count: 6 },
-        { name: "women Exclusive", count: 1 },
-        { name: "women Hooded T-Shirts", count: 22 },
-        { name: "women Full Sleeve T-Shirts", count: 3 },
+        "women Cotton Linen Shirts",
+        "women Drop Cut T-Shirts", 
+        "women Easy Fit Vests",
+        "women Exclusive",
+        "women Hooded T-Shirts", 
+        "women Full Sleeve T-Shirts",
     ];
     const sneakerCategories = [
-        { name: "men Cotton Linen Sneakers", count: 1 },
-        { name: "men Drop Cut Sneakers", count: 16 },
-        { name: "men Easy Fit Vests", count: 6 },
-        { name: "men Exclusive", count: 1 },
-        { name: "men Hooded T-Shirts", count: 22 },
+        "men Cotton Linen Sneakers",
+        "men Drop Cut Sneakers", 
+        "men Easy Fit Vests",
+        "men Exclusive",
+        "men Hooded T-Shirts", 
 
     ];
 
@@ -61,14 +62,18 @@ export default function FilterCollections({ openCart }) {
     };
 
     let baseProducts = [];
+    let pageTitle="";
     if (type === "men") {
         baseProducts = menProducts;
+        pageTitle="Men T-shirts"
     }
     else if (type === "women") {
         baseProducts = womenProducts;
+        pageTitle="Women T-shirts"
     }
     else if (type === "sneaker") {
         baseProducts = sneakers;
+        pageTitle="Footwears"
     }
 
     const products = baseProducts.filter(product => {
@@ -130,7 +135,7 @@ export default function FilterCollections({ openCart }) {
 
     return (
         <>
-            <Navbar cartSidebar={openCart} />
+            <Navbar />
 
             <div className={`${filterSidebar ? "hidden" : "w-full border p-2 sticky z-10 bg-white top-0 justify-between hidden filter-button"}`}>
                 <div onClick={() => setfilterSidebar(true)} className="p-3 h-[36px] w-[120px] flex justify-center items-center bg-black text-white rounded-[4px] top-0 cursor-pointer">Filter</div>
@@ -153,16 +158,16 @@ export default function FilterCollections({ openCart }) {
                                 <label key={index} className="flex items-center justify-between p-1 cursor-pointer" >
                                     <div className="flex items-center gap-3">
                                         <input type="checkbox"
-                                            checked={selectedCategory.includes(item.name)}
-                                            onChange={() => handleChange(item.name)}
+                                            checked={selectedCategory.includes(item)}
+                                            onChange={() => handleChange(item)}
                                             className="w-[16px] h-[16px]" />
                                         <span className="text-gray-700 ">
-                                            {item.name}
+                                            {item}
                                         </span>
                                     </div>
-                                    <span className="text-gray-500 ">
+                                    {/* <span className="text-gray-500 ">
                                         {item.count}
-                                    </span>
+                                    </span> */}
                                 </label>
                             ))}
                         </div>
@@ -225,7 +230,7 @@ export default function FilterCollections({ openCart }) {
                 <div className="flex flex-col w-[100%] filter-collection-right-section">
                     <div className="w-full pt-[15px] text-[12px] text-[#a7a9ac] gap-1 flex">Home /<span>T-Shirts /</span></div>
                     <div className="flex justify-between items-center pb-6 pr-3">
-                        <div className="text-black text-[14px]">Men T-Shirts</div>
+                        <div className="text-black text-[14px]">{pageTitle}</div>
                         <div className="flex border border-[#ccc] p-[8px] rounded-[5px] text-[#58595b] text-[14.5px]">
                             <select
                                 className="outline-none w-[190px] bg-white"

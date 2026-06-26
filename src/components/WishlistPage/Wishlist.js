@@ -5,6 +5,7 @@ import Footer from "../Footer/Footer";
 import { useNavigate } from "react-router-dom";
 import { addToCart } from "../../Redux/CartSlice/cartSlice";
 import "./Wishlist.css"
+import { Link } from "react-router-dom";
 
 export default function Wishlist({openCart}) {
     const navigate = useNavigate();
@@ -21,7 +22,14 @@ export default function Wishlist({openCart}) {
                 <h1 className="text-[24px] text-[#58595b] font-bold pt-2 mb-5 w-[92%]">My Wishlist</h1>
 
                 {wishlistItems.length === 0 ? (
-                    <p>No items in wishlist</p>
+                    <>
+                    <img className="w-[20%] pt-3" src="https://prod-img.thesouledstore.com/static/wishList-empty-icon.png?w=576&dpr=2" alt=""/>
+                    <p className="p-3 font-bold text-[18px]">No items in wishlist</p>
+                        <Link to="/"><div className="text-white bg-[#168D8F] font-[600] flex justify-center items-center pt-[10px] pb-[10px] pl-[26px] pr-[26px] rounded-[4px] text-[15px] w-max mt-4 mb-4 cursor-pointer">
+                                                        Continue Shopping...
+                                                    </div></Link>
+
+                    </>
                 ) : (
                     <div className="wishlist-section grid grid-cols-4 gap-[20px] w-[92%]">
                         {wishlistItems.map(item => (

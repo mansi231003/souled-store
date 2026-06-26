@@ -1,5 +1,4 @@
 import Navbar from './components/Navbar/Navbar';
-// import Sidebar from './components/Sidebar/Sidebar';
 import Heading from './components/Heading/Heading';
 import ProductSlider from './components/Product slider/ProductSlider';
 import Slider from './components/Slider/Slider';
@@ -9,7 +8,6 @@ import CategorySection from './components/Category Section/CategorySection';
 import Footer from './components/Footer/Footer';
 import './App.css';
 import FeaturesBar from './components/Features bar/FeaturesBar';
-// import { useState } from 'react';
 import { menProducts } from './data/menProducts';
 
 function MenPage() {
@@ -30,12 +28,12 @@ function MenPage() {
   ]
 
   const menCategoriesImg = [
-    { img: "men-category1.png" },
-    { img: "men-category2.png" },
-    { img: "men-category3.png" },
-    { img: "men-category4.png" },
-    { img: "men-category5.png" },
-    { img: "men-category6.png" },
+    {img:"men-category1.png"},
+    {img:"men-category2.png"},
+    {img:"men-category3.png"},
+    {img:"men-category4.png"},
+    {img:"men-category5.png"},
+    {img:"men-category6.png"},
 
   ]
 

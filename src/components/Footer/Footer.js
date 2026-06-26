@@ -2,61 +2,55 @@ import { useState } from "react"
 import "./Footer.css"
 
 export default function Footer() {
-    const [hide, setHide] = useState(false)
+    const [hide, setHide] = useState(false);
+    const [showWhoWeAre, setShowWhoWeAre] = useState(false);
 
-    function toggleSection() {
-        if(hide){
-            setHide(false)
-        }
-        else{
-        setHide(true)
-        }
-    }
     return (
         <>
             <div className="footer-section">
                 <div className="heading w-full bg-red-600 h-[64px] text-white text-[30px] flex justify-center items-center">HOMEGROWN INDIAN BRAND</div>
                 <div className="heading w-full h-[80px] text-[30px] flex justify-center items-center">OVER<span className="font-bold pl-[10px] pr-[10px]">6 Million</span>Happy Customers</div>
-                    <div className="know-more bg-[#e6e7e8] hidden justify-between items-center w-full font-[700] text-[#58595b] p-[10px]">Know more about The Souled Store<i onClick={toggleSection} className={`${hide?"rotate-180 fa-solid fa-angle-up":"fa-solid fa-angle-up"}`}></i></div>
-                <div className={`${hide ? "hidden" : "bg-[#e6e7e8] w-full flex flex-col items-center justify-center gap-4"}`}>
+                <div onClick={() => setHide(!hide)} className="know-more z-[999999] bg-[#e6e7e8] hidden justify-between items-center w-full font-[700] text-[#58595b] p-[10px] cursor-pointer">Know more about The Souled Store<i className={`${hide ? "rotate-180 fa-solid fa-angle-up" : "fa-solid fa-angle-up"}`}></i></div>
+                <div className={`overflow-hidden transition-all duration-700 ease-in-out bg-[#e6e7e8] w-full flex flex-col items-center justify-center gap-4 ${hide ? "max-h-0 opacity-0" : "max-h-[3000px] opacity-100"
+                    }`}>
                     <div className="features-section w-full justify-center flex flex-col items-center">
                         <div className="features-wrap w-[100%] pt-8 flex flex-col items-center pl-[60px]">
                             <div className="features grid grid-cols-4 pb-[17px] gap-[28px] w-[95%]">
 
-                                <div className="gap-3 flex flex-col pb-3">
-                                    <div className="text-red-500 font-[700] text-[18px]">NEED HELP</div>
-                                    <div className="font-[700] text-[#58595b] text-[14px]">Contact Us</div>
-                                    <div className="font-[700] text-[#58595b] text-[14px]">Track Order</div>
-                                    <div className="font-[700] text-[#58595b] text-[14px]">Returns & Refunds</div>
-                                    <div className="font-[700] text-[#58595b] text-[14px]">FAQs</div>
-                                    <div className="font-[700] text-[#58595b] text-[14px]">My Account</div>
+                                <div className="gap-3 flex flex-col pb-3 cursor-pointer">
+                                    <div className="text-red-500 font-[700] text-[18.5px]">NEED HELP</div>
+                                    <div className="font-[700] text-[#58595b] text-[14.5px] hover:text-red-500 transition-colors">Contact Us</div>
+                                    <div className="font-[700] text-[#58595b] text-[14.5px] hover:text-red-500 transition-colors">Track Order</div>
+                                    <div className="font-[700] text-[#58595b] text-[14.5px] hover:text-red-500 transition-colors">Returns & Refunds</div>
+                                    <div className="font-[700] text-[#58595b] text-[14.5px] hover:text-red-500 transition-colors">FAQs</div>
+                                    <div className="font-[700] text-[#58595b] text-[14.5px] hover:text-red-500 transition-colors">My Account</div>
                                 </div>
 
-                                <div className="gap-3 flex flex-col pb-3">
-                                    <div className="text-red-500 font-[700] text-[18px]">COMPANY</div>
-                                    <div className="font-[700] text-[#58595b] text-[14px]">About Us</div>
-                                    <div className="font-[700] text-[#58595b] text-[14px]">Investor Relation</div>
-                                    <div className="font-[700] text-[#58595b] text-[14px]">Careers</div>
-                                    <div className="font-[700] text-[#58595b] text-[14px]">Gift Vouchers</div>
-                                    <div className="font-[700] text-[#58595b] text-[14px]">Community Initiatives</div>
+                                <div className="gap-3 flex flex-col pb-3 cursor-pointer">
+                                    <div className="text-red-500 font-[700] text-[18.5px]">COMPANY</div>
+                                    <div className="font-[700] text-[#58595b] text-[14.5px] hover:text-red-500 transition-colors">About Us</div>
+                                    <div className="font-[700] text-[#58595b] text-[14.5px] hover:text-red-500 transition-colors">Investor Relation</div>
+                                    <div className="font-[700] text-[#58595b] text-[14.5px] hover:text-red-500 transition-colors">Careers</div>
+                                    <div className="font-[700] text-[#58595b] text-[14.5px] hover:text-red-500 transition-colors">Gift Vouchers</div>
+                                    <div className="font-[700] text-[#58595b] text-[14.5px] hover:text-red-500 transition-colors">Community Initiatives</div>
                                 </div>
 
-                                <div className="gap-3 flex flex-col">
-                                    <div className="text-red-500 font-[700] text-[18px]">MORE INFO</div>
-                                    <div className="font-[700] text-[#58595b] text-[14px]">T&C</div>
-                                    <div className="font-[700] text-[#58595b] text-[14px]">Privacy Policy</div>
-                                    <div className="font-[700] text-[#58595b] text-[14px]">Sitemap</div>
-                                    <div className="font-[700] text-[#58595b] text-[14px]">Get Notified</div>
-                                    <div className="font-[700] text-[#58595b] text-[14px]">Blogs</div>
+                                <div className="gap-3 flex flex-col cursor-pointer">
+                                    <div className="text-red-500 font-[700] text-[18.5px]">MORE INFO</div>
+                                    <div className="font-[700] text-[#58595b] text-[14.5px] hover:text-red-500 transition-colors">T&C</div>
+                                    <div className="font-[700] text-[#58595b] text-[14.5px] hover:text-red-500 transition-colors">Privacy Policy</div>
+                                    <div className="font-[700] text-[#58595b] text-[14.5px] hover:text-red-500 transition-colors">Sitemap</div>
+                                    <div className="font-[700] text-[#58595b] text-[14.5px] hover:text-red-500 transition-colors">Get Notified</div>
+                                    <div className="font-[700] text-[#58595b] text-[14.5px] hover:text-red-500 transition-colors">Blogs</div>
                                 </div>
 
-                                <div className="gap-3 flex flex-col">
-                                    <div className="text-red-500 font-[700] text-[18px]">STORE NEAR ME</div>
-                                    <div className="font-[700] text-[#58595b] text-[14px]">Mumbai</div>
-                                    <div className="font-[700] text-[#58595b] text-[14px]">Pune</div>
-                                    <div className="font-[700] text-[#58595b] text-[14px]">Bangalore</div>
-                                    <div className="font-[700] text-[#58595b] text-[14px]">Hubbali</div>
-                                    <div className="font-[700] text-blue-700 text-[14px]">View More</div>
+                                <div className="gap-3 flex flex-col cursor-pointer">
+                                    <div className="text-red-500 font-[700] text-[18.5px]">STORE NEAR ME</div>
+                                    <div className="font-[700] text-[#58595b] text-[14.5px] hover:text-red-500 transition-colors">Mumbai</div>
+                                    <div className="font-[700] text-[#58595b] text-[14.5px] hover:text-red-500 transition-colors">Pune</div>
+                                    <div className="font-[700] text-[#58595b] text-[14.5px] hover:text-red-500 transition-colors">Bangalore</div>
+                                    <div className="font-[700] text-[#58595b] text-[14.5px] hover:text-red-500 transition-colors">Hubbali</div>
+                                    <div className="font-[700] text-blue-700 text-[14.5px]">View More</div>
                                 </div>
 
                             </div>
@@ -80,21 +74,29 @@ export default function Footer() {
                         <div className="border rounded-[50%] w-[35px] h-[35px] flex justify-center items-center p-2 bg-black text-white"><i className="fa-brands fa-x-twitter"></i></div>
 
                     </div>
-                    <div className="flex border border-gray-400 w-[86%] justify-between p-5 text-red-600 font-[700]">
-                        WHO WE ARE
-                        <i className="fa-solid fa-plus"></i>
+                    <div className="border border-gray-400 w-[86%] justify-between p-5">
+                        <div onClick={() => setShowWhoWeAre(!showWhoWeAre)} className="flex justify-between text-red-600 font-[700] cursor-pointer">
+                            WHO WE ARE
+                            <i className={`fa-solid ${showWhoWeAre ? "fa-minus" : "fa-plus"} flex items-center`}></i>
+                        </div>
+                        <div className={`overflow-hidden transition-all duration-700 ease-in-out text-[#58595b] text-[15.5px] w-[86%] text-justify ${showWhoWeAre? "max-h-[2000px] opacity-100 pt-4": "max-h-0 opacity-0 pt-0"}`}>
+                                The Souled Store was born out of the simple idea of loving what you do - following your soul - and, of course, our love for puns (sold/ souled). Our philosophy is just as simple- life is short, don't spend it doing something you don't like. From our products to our website, from our office culture to the way we interact with our customers, this philosophy's a part of everything we do.
+                            In June 2013, The Souled Store was founded by four people, with just a cupboard full of t-shirts (probably as big as yours). Although we've grown from cupboards to warehouses, a lot of things have remained the same. Our core values are now shared not by just four people, but by a team that's now grown to over a hundred people.
+                            The Neighbourhood Store Vibe
+                            We aspire to be your favourite, friendly neighbourhood store. We curate all your favourite designs and make them available on various products ranging from t-shirts, bags, and badges to phone covers, stickers, notebooks, and more. We're always enthusiastic and kicked about interacting with everyone- whether it's handling queries over email and social media or interacting with our fans at various events, workshops, and stalls. Why? Because we care. A recent study by our in-house, prize-winning, and totally unbiased researchers showed that visiting www.thesouledstore.com causes excessive happiness, and could increase your lifespan by up to 7.5%.
+                        </div>
                     </div>
                     <div className="payments-app-container flex w-[86%] items-center h-[25px] p-7">
                         <div className="wrapper flex items-center w-[70%]">
                             <div className="app w-[34%] text-[14px] text-[#58595b]">100% Secure Payment:</div>
-                            <div className="app w-[95%] "><img className="w-full" src="/payments-icon.png" alt=""/></div>
+                            <div className="app w-[95%] "><img className="w-full" src="/payments-icon.png" alt="" /></div>
                         </div>
                         <div className="wrapper flex items-center w-[60%] pl-2 gap-4 border border-l-gray-400">
                             <div className="text-[14px] text-[#58595b]">Shipping Partners:</div>
                             <div className="app w-[50%] flex justify-between">
                                 <div className="app w-[23%]"><img className="w-full" src="/dtdc.png" alt="" /></div>
-                                <div className="app w-[23%]"><img className="w-full" src="/delivery.png"alt="" /></div>
-                                <div className="app w-[23%]"><img className="w-full" src="/ECOM-Express.png" alt=""/></div>
+                                <div className="app w-[23%]"><img className="w-full" src="/delivery.png" alt="" /></div>
+                                <div className="app w-[23%]"><img className="w-full" src="/ECOM-Express.png" alt="" /></div>
                                 <div className="app w-[23%]"><img className="w-full" src="/XPRESS.png" alt="" /></div>
                             </div>
                         </div>

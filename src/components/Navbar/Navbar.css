@@ -70,7 +70,7 @@
         height: 30px;
     }
     .search-container {
-        width: 120px;
+        width: 150px;
     }
 
     .nav-icons {
@@ -85,7 +85,13 @@
         display: flex;
     }
 
+.mobile-search{
+    display: flex
+}
 
+.navbar-sticky .img-container{
+        top: 32%;
+    }
 }
 
 @media screen and (max-width:500px) {
@@ -98,7 +104,7 @@
     }
 
     .navbar-container {
-        height: 46px;
+        padding-right: 4px;
     }
 
     .navmenu-container {
@@ -107,7 +113,7 @@
 
     .search-container {
         padding-right: 8px;
-        width: 108px;
+        width: 124px;
     }
 
     .offer-container .button {
@@ -127,5 +133,3 @@
         width: 26px;
     }
 }
-
-@media screen and (max-width:400px) {}
