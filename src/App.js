@@ -9,12 +9,14 @@ import FilterCollections from "./components/FilterCollections/FilterCollections"
 import CartSidebar from "./components/CartSidbar/CartSidebar";
 import Wishlist from "./components/WishlistPage/Wishlist";
 import Sidebar from "./components/Sidebar/Sidebar";
+import ScrollToTop from "./components/SrcollToTop";
 
 function App(){
   
   return(
     <>
     <Router>
+    <ScrollToTop/>
    <CartSidebar/>
    <Sidebar/>
       <Routes>

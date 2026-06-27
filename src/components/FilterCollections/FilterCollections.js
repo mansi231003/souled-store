@@ -109,7 +109,7 @@ export default function FilterCollections() {
         };
     }, [filterSidebar]);
 
-    const [sortOption, setSortOption] = useState("");
+    const [sortOption, setSortOption] = useState("default");
 
     const sortedProducts = [...products].sort((a, b) => {
         const priceA = Number(a.price_range.max || 0);
@@ -165,9 +165,7 @@ export default function FilterCollections() {
                                             {item}
                                         </span>
                                     </div>
-                                    {/* <span className="text-gray-500 ">
-                                        {item.count}
-                                    </span> */}
+                                 
                                 </label>
                             ))}
                         </div>
@@ -192,8 +190,7 @@ export default function FilterCollections() {
                 ${selectedSizes.includes(size)
                                             ? "bg-black text-white"
                                             : "border-[#58595b]"
-                                        }`}
-                                >
+                                        }`}>
                                     {size}
                                 </div>
                             ))}
@@ -215,10 +212,8 @@ export default function FilterCollections() {
                                     onChange={() => setPriceRange({ min: 500, max: 1000 })} />
                                 Rs.500 - Rs.1000
                             </label>
-
                             <label className="flex items-center gap-3">
-                                <input type="radio" name="price"
-                                    onChange={() => setPriceRange({ min: 1000, max: 2000 })} />
+                                <input type="radio" name="price" onChange={() => setPriceRange({ min: 1000, max: 2000 })} />
                                 Rs.1000+
                             </label>
 
@@ -232,12 +227,8 @@ export default function FilterCollections() {
                     <div className="flex justify-between items-center pb-6 pr-3">
                         <div className="text-black text-[14px]">{pageTitle}</div>
                         <div className="flex border border-[#ccc] p-[8px] rounded-[5px] text-[#58595b] text-[14.5px]">
-                            <select
-                                className="outline-none w-[190px] bg-white"
-                                value={sortOption}
-                                onChange={(e) => setSortOption(e.target.value)}
-                            >
-                                <option value="">Select Sorting Option</option>
+                            <select className="outline-none w-[190px] bg-white" value={sortOption} onChange={(e) => setSortOption(e.target.value)}>
+                                <option value="default">Default</option>
                                 <option value="az">A to Z</option>
                                 <option value="za">Z to A</option>
                                 <option value="priceHighLow">Price - High to Low</option>

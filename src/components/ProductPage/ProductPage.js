@@ -147,6 +147,11 @@ export default function ProductPage() {
         }
     }, [selectedVariant]);
 
+    
+    useEffect(() => {
+        document.body.style.overflow = openSizeChart ? "hidden" : "auto";
+    }, [openSizeChart]);
+
     return (
 
         <>

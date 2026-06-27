@@ -25,8 +25,8 @@ export default function CartSidebar() {
 
     return (
         <>
-            <div className={`${cartSidebarOpen ? "w-full h-full fixed flex overflow-hidden top-0 z-[999]" : "hidden"}`}>
-                <div className="w-[500px] cart-sidebar bg-white z-[9999] overflow-y-auto right-0 absolute h-full sidebar flex flex-col items-center">
+            <div className={`w-full h-full fixed flex overflow-hidden top-0 z-[999]   transform transition-transform duration-500 ease-in-out ${cartSidebarOpen ? "translate-x-0" : "translate-x-full"}`}>
+                <div className={`w-[500px] cart-sidebar bg-white z-[9999] overflow-y-auto right-0 absolute h-full sidebar flex flex-col items-center`}>
                     {cartItems.length === 0 ? (
                         <>
                                         <div onClick={() => dispatch(closeCart())} className=" cursor-pointer w-full p-4 justify-end flex"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="black"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" /></svg></div>

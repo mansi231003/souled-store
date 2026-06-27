@@ -70,20 +70,15 @@ export default function Navbar() {
                     </ul>
                 </div>
 
-                <div
-                    className={`img-container ${isSticky ? "sticky-logo" : ""
-                        } w-[90px] flex items-center cursor-pointer`}
-                >
-                    <Link to="/">
-                        <img className="img" src="/souledimg.webp" alt="souled" />
-                    </Link>
+                <div className={`img-container ${isSticky ? "sticky-logo" : ""} w-[90px] flex items-center cursor-pointer`}>
+                    <Link to="/"><img className="img" src="/souledimg.webp" alt="souled" /></Link>
                 </div>
 
                 <div className="search-container flex items-center w-[40%] justify-center gap-10 pr-5">
 
                     <div className="search-box relative border text-gray-600 items-center justify-between border-black flex bg-white h-[40px] rounded-[20px] w-[60%] p-2">
                         {searchTerm && (
-                            <div className="absolute top-[45px] left-0 w-full bg-white border shadow-lg rounded-md z-50 max-h-64 overflow-y-auto">
+                            <div className="absolute top-[45px] left-0 w-full bg-white border shadow-lg rounded-md z-50 ">
                                 {filteredProducts.length > 0 ? (
                                     filteredProducts.slice(0, 5).map(product => (
                                         <Link key={product.product_id} to={`/product/${product.product_id}`} onClick={() => setSearchTerm("")}>
