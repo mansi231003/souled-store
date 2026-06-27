@@ -58,7 +58,7 @@ export default function Navbar() {
                     OPEN APP
                 </div>
             </div>
-            <div className={`navbar-container ${isSticky ? "navbar-sticky" : ""} sticky top-0 z-[1000] bg-white flex h-[70px] justify-between w-full border border-gray-300`}>
+            <div className={`navbar-container ${isSticky ? "navbar-sticky" : ""} sticky top-0 z-[9] bg-white flex h-[70px] justify-between w-full border border-gray-300`}>
                 <div className="navmenu-container flex items-center gap-12 w-[38%] justify-center">
                     <div className="nav-button w-[6%] flex items-center text-gray-500 text-[17px] cursor-pointer" onClick={handleSidebarOpen}>
                         <i className="fa fa-bars"></i>

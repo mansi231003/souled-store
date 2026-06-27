@@ -79,7 +79,7 @@ export default function Footer() {
                             WHO WE ARE
                             <i className={`fa-solid ${showWhoWeAre ? "fa-minus" : "fa-plus"} flex items-center`}></i>
                         </div>
-                        <div className={`overflow-hidden transition-all duration-700 ease-in-out text-[#58595b] text-[15.5px] w-[86%] text-justify ${showWhoWeAre? "max-h-[2000px] opacity-100 pt-4": "max-h-0 opacity-0 pt-0"}`}>
+                        <div className={`overflow-hidden transition-all duration-700 ease-in-out text-[#58595b] text-[15.5px] w-[97%] text-justify ${showWhoWeAre? "max-h-[2000px] opacity-100 pt-4": "max-h-0 opacity-0 pt-0"}`}>
                                 The Souled Store was born out of the simple idea of loving what you do - following your soul - and, of course, our love for puns (sold/ souled). Our philosophy is just as simple- life is short, don't spend it doing something you don't like. From our products to our website, from our office culture to the way we interact with our customers, this philosophy's a part of everything we do.
                             In June 2013, The Souled Store was founded by four people, with just a cupboard full of t-shirts (probably as big as yours). Although we've grown from cupboards to warehouses, a lot of things have remained the same. Our core values are now shared not by just four people, but by a team that's now grown to over a hundred people.
                             The Neighbourhood Store Vibe

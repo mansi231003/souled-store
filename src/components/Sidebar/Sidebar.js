@@ -73,7 +73,7 @@ export default function Sidebar() {
                         <div className="flex justify-between p-5 pt-0">Categories</div>
                         <div onClick={() => dispatch(closeSidebar())} className="category-section"><Categories cards={data.categories} tag={type}/></div>
                     </div>
-                    <div className="flex justify-between text-[17px] font-[700] p-4 border-t-[#e5e5e5] border border-dashed">Top Wear<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="black"><path d="M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z" /></svg></div>
+                    {/* <div className="flex justify-between text-[17px] font-[700] p-4 border-t-[#e5e5e5] border border-dashed">Top Wear<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="black"><path d="M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z" /></svg></div> */}
                     {/* <div className="flex justify-between text-[17px] font-[700] p-4 border-t-[#e5e5e5] border border-dashed">Bottom Wear<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="black"><path d="M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z" /></svg></div> */}
                     {/* <div className="flex justify-between text-[17px] font-[700] p-4 border-t-[#e5e5e5] border border-dashed">All Accessories</div> */}
                     <div className="slider p-[16px] pb-0"><ProductSlider products={data.products} sidebar /></div>

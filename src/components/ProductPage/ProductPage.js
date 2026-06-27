@@ -4,13 +4,14 @@ import { useParams, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../Redux/CartSlice/cartSlice";
-import { addToWishlist, removeFromWishlist } from "../../Redux/WishlistSlice/WishlistSlice";
-import { useSelector } from "react-redux";
+// import { addToWishlist, removeFromWishlist } from "../../Redux/WishlistSlice/WishlistSlice";
+// import { useSelector } from "react-redux";
 import "./ProductPage.css"
 import { allProducts } from "../../data/allProducts"
 import { Swiper, SwiperSlide } from "swiper/react"
 import { Pagination } from 'swiper/modules';
 import 'swiper/css';
+import useWishlist from "../handleWishlist";
 
 export default function ProductPage() {
     const { id } = useParams();
@@ -47,11 +48,11 @@ export default function ProductPage() {
 
     const dispatch = useDispatch();
 
-    const wishlistItems = useSelector(state => state.wishlist.items);
-    const isWishlisted = wishlistItems.some(
-        item => item.product_id === product.product_id
-    );
-    console.log(wishlistItems)
+    // const wishlistItems = useSelector(state => state.wishlist.items);
+    // const isWishlisted = wishlistItems.some(
+    //     item => item.product_id === product.product_id
+    // );
+    // console.log(wishlistItems)
     const [cartStatus, setCartStatus] = useState("idle");
 
     const handleAddToCart = () => {
@@ -91,42 +92,25 @@ export default function ProductPage() {
         show: false,
         message: "",
     });
+    const { toggleWishlist, isWishlisted } = useWishlist();
+
     const handleWishlist = () => {
-        const exists = wishlistItems.find(
-            item => item.product_id === product.product_id
-        );
 
-        if (exists) {
-            dispatch(removeFromWishlist(exists.id));
+        const result = toggleWishlist(product);
 
+        if (result) {
             setToast({
                 show: true,
-                message: "Product is removed from wishlist",
+                message: result.message,
             });
-        } else {
-            dispatch(addToWishlist({
-                id: crypto.randomUUID(),
-                product_id: product.product_id,
-                title: product.title,
-                image: selectedVariant?.image_url || product.image_url,
-                price: selectedVariant?.price || product.price_range.max,
-                size: selectedSize,
-                color: selectedColor
-            }));
 
-            setToast({
-                show: true,
-                message: "Product is added to wishlist",
-            });
+            setTimeout(() => {
+                setToast({ show: false, message: "" });
+            }, 2000);
         }
-
-        setTimeout(() => {
-            setToast({
-                show: false,
-                message: "",
-            });
-        }, 2000);
     };
+
+
     const [openSection, setOpenSection] = useState(null);
     const [sizeChart, setSizeChart] = useState("size");
     const [openSizeChart, setOpenSizeChart] = useState(false);
@@ -147,7 +131,7 @@ export default function ProductPage() {
         }
     }, [selectedVariant]);
 
-    
+
     useEffect(() => {
         document.body.style.overflow = openSizeChart ? "hidden" : "auto";
     }, [openSizeChart]);
@@ -321,7 +305,7 @@ export default function ProductPage() {
 
                             <div onClick={handleWishlist} className={`cart-btn text-[#148c8d] flex items-center w-[245px] justify-center border border-[#148c8d] h-[39px] cursor-pointer ${isWishlisted ? "text-[12px]" : "text-[14px]"}`}>
                                 {
-                                    isWishlisted ?
+                                    isWishlisted(product.product_id) ?
                                         <>
                                             <svg xmlns="http://www.w3.org/2000/svg" height="21px" viewBox="0 -960 960 960" width="20px" fill="#148c8d">
                                                 <path d="m480-120-58-52q-101-91-167-157T150-447.5Q111-500 95.5-544T80-634q0-94 63-157t157-63q52 0 99 22t81 62q34-40 81-62t99-22q94 0 157 63t63 157q0 46-15.5 90T810-447.5Q771-395 705-329T538-172l-58 52Z" />
@@ -382,12 +366,13 @@ export default function ProductPage() {
                 </div>
             </div>
             <div
-                className={`fixed top-14 right-5 z-[9999]
-  bg-red-500 text-white text-[15px] px-3 py-2 rounded-md shadow-md
-  transition-all duration-300 ease-out
-  ${toast.show ? "opacity-100 translate-x-0" : "opacity-0 translate-x-6"}`}
+                className={`fixed inset-0 flex items-center justify-center z-[9999]
+    transition-opacity duration-300
+    ${toast.show ? "opacity-100" : "opacity-0 pointer-events-none"}`}
             >
-                {toast.message}
+                <div className="bg-red-500 text-white px-3 py-2 rounded-md shadow-lg">
+                    {toast.message}
+                </div>
             </div>
             <Footer />
         </>

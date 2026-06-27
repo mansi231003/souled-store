@@ -12,6 +12,7 @@
     .filter-section{
         transform: translateX(-153%);
        width: 0;
+       z-index: 99999;
         transition: transform 0.4s ease;
     
     }

@@ -2,10 +2,11 @@ import { useSelector } from "react-redux";
 // import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
-import { addToWishlist } from "../../Redux/WishlistSlice/WishlistSlice";
+// import { addToWishlist } from "../../Redux/WishlistSlice/WishlistSlice";
 import { removeFromCart, updateQuantity, closeCart } from "../../Redux/CartSlice/cartSlice";
 import { Link } from "react-router-dom";
 import "./CartSidebar.css"
+import useWishlist from "../handleWishlist";
 
 export default function CartSidebar() {
     const cartItems = useSelector(state => state.cart.items);
@@ -22,17 +23,20 @@ export default function CartSidebar() {
         document.body.style.overflow = cartSidebarOpen ? "hidden" : "auto";
     }, [cartSidebarOpen]);
 
+    const { toggleWishlist, isWishlisted } = useWishlist();
+
+
 
     return (
         <>
-            <div className={`w-full h-full fixed flex overflow-hidden top-0 z-[999]   transform transition-transform duration-500 ease-in-out ${cartSidebarOpen ? "translate-x-0" : "translate-x-full"}`}>
+            <div className={`w-full h-full fixed flex overflow-hidden top-0 z-[999] transform transition-transform duration-500 ease-in-out ${cartSidebarOpen ? "translate-x-0" : "translate-x-full"}`}>
                 <div className={`w-[500px] cart-sidebar bg-white z-[9999] overflow-y-auto right-0 absolute h-full sidebar flex flex-col items-center`}>
                     {cartItems.length === 0 ? (
                         <>
-                                        <div onClick={() => dispatch(closeCart())} className=" cursor-pointer w-full p-4 justify-end flex"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="black"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" /></svg></div>
+                            <div onClick={() => dispatch(closeCart())} className=" cursor-pointer w-full p-4 justify-end flex"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="black"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" /></svg></div>
 
                             <div className="flex justify-center items-center h-full flex-col">
-                                
+
                                 <div>
                                     <img src="/emptyCart.avif" alt="emptyCart" />
                                 </div>
@@ -71,10 +75,12 @@ export default function CartSidebar() {
                                                         <div className="text-[#a7a9ac] ">{item.title}</div>
                                                         <div className="flex gap-2 pt-3">
                                                             <div className="size-btn font-[700] text-[13px] border border-[#e3e3e3] pl-2 rounded-[4px] text-[#58595b] w-[100px] h-[35px] flex justify-between items-center">Size: {item.size} </div>
+
                                                             <div className="size-btn font-[700] text-[13px] border border-[#e3e3e3] px-2 rounded-[4px] text-[#58595b] w-[90px] h-[35px] flex justify-between items-center">Qty:
                                                                 <div className="flex items-center w-[40px] justify-between">
-                                                                    <button onClick={() =>dispatch(updateQuantity({
-                                                                                id: item.id,quantity: Math.max(1, item.quantity - 1)}))}
+                                                                    <button onClick={() => dispatch(updateQuantity({
+                                                                        id: item.id, quantity: Math.max(1, item.quantity - 1)
+                                                                    }))}
                                                                         className="">
                                                                         -
                                                                     </button>
@@ -97,6 +103,11 @@ export default function CartSidebar() {
                                                                 </div>
                                                             </div>
                                                         </div>
+                                                        {item.color && (
+                                                            <div className="font-[700] w-[100px] text-[13px] border border-[#e3e3e3] px-2 rounded-[4px] text-[#58595b] h-[35px] mt-3 flex items-center">
+                                                                Color: {item.color}
+                                                            </div>
+                                                        )}
                                                     </div>
                                                 </div>
                                                 <div>
@@ -117,19 +128,14 @@ export default function CartSidebar() {
                         ${removingId === item.id ? "bg-gray-400 text-white cursor-not-allowed" : "cursor-pointer"}`} >
                                                     {removingId === item.id ? "REMOVING..." : "REMOVE"}
                                                 </div>
-                                                <div onClick={() => {
-                                                    dispatch(addToWishlist({
-                                                        id: crypto.randomUUID(),
-                                                        product_id: item.product_id,
-                                                        title: item.title,
-                                                        image: item.image,
-                                                        price: item.price,
-                                                        size: item.size,
-                                                        color: item.color,
-                                                    }));
-
-                                                    dispatch(removeFromCart(item.id));
-                                                }} className="rounded-[12px] button cursor-pointer border border-[#e3e3e3] pl-[26px] pr-[26px] pt-[8px] pb-[8px]">MOVE TO WISHLIST</div>
+                                                <div
+                                                    onClick={() => toggleWishlist(item, false)}
+                                                    className="rounded-[12px] button cursor-pointer border border-[#e3e3e3] pl-[26px] pr-[26px] pt-[8px] pb-[8px]"
+                                                >
+                                                    {isWishlisted(item.product_id)
+                                                        ? "REMOVE FROM WISHLIST"
+                                                        : "MOVE TO WISHLIST"}
+                                                </div>
                                             </div>
                                         </div>
                                     ))}

@@ -143,10 +143,10 @@ export default function FilterCollections() {
 
             <div className="flex">
                 {filterSidebar && (
-                    <div className="fixed filter-overlay w-full top-0 h-full bg-[rgba(0,0,0,0.4)] z-40" onClick={() => setfilterSidebar(false)} ></div>
+                    <div className="fixed filter-overlay w-full top-0 h-full bg-[rgba(0,0,0,0.4)] z-[99]" onClick={() => setfilterSidebar(false)} ></div>
 
                 )}
-                <div className={`${filterSidebar ? "active" : ""} filter-section p-2 w-[400px] sticky top-[150px] bg-white h-[85vh] overflow-y-auto translate-x-0 z-50`}>
+                <div className={`${filterSidebar ? "active" : ""} filter-section p-2 w-[400px] sticky top-[150px] bg-white h-[85vh] overflow-y-auto translate-x-0 z-[9]`}>
                     {filterSidebar &&
                         <div onClick={() => setfilterSidebar(false)} className="w-full justify-end flex pr-3 pb-2"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="black"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" /></svg></div>
                     }
