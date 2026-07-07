@@ -68,13 +68,13 @@ function MenPage() {
 
     <div className='men-page'>
       <Navbar />
-      <Slider className="slider1" slides={menSlides1} tag="men" />
+      <Slider className="slider1 slider" slides={menSlides1} tag="men" />
       <Slider className="slider2" slides={menSlides2} tag="men"/>
       <FeaturesBar />
 
       <div className='collections'>
         <Heading>LATEST DROPS</Heading>
-        <Slider slides={latestDrops} tag="men" />
+        <Slider className="slider" slides={latestDrops} tag="men" />
       </div>
       <Heading>NEW ARRIVALS</Heading>
       <ProductSlider products={menProducts} />

@@ -1,7 +1,5 @@
 import "./ProductCard.css"
 import { useNavigate } from "react-router-dom";
-// import { useSelector, useDispatch } from "react-redux";
-// import { addToWishlist, removeFromWishlist } from "../../Redux/WishlistSlice/WishlistSlice";
 import { useState } from "react";
 import useWishlist from "../handleWishlist";
 
@@ -12,24 +10,25 @@ export default function ProductCard({ product }) {
         message: "",
     });
 
-const { toggleWishlist, isWishlisted } = useWishlist();
+    const { toggleWishlist, isWishlisted } = useWishlist();
 
-const handleWishlist = (e) => {
-  e.stopPropagation();
+    const handleWishlist = (e) => {
+        e.stopPropagation();
 
-  const result = toggleWishlist(product);
+        const result = toggleWishlist(product);
 
-  if (result) {
-    setToast({
-      show: true,
-      message: result.message,
-    });
+        if (result) {
+            setToast({
+                show: true,
+                message: result.message,
+            });
 
-    setTimeout(() => {
-      setToast({ show: false, message: "" });
-    }, 2000);
-  }
-};
+            setTimeout(() => {
+                setToast({ show: false, message: "" });
+            }, 2000);
+        }
+    };
+    
     return (
         <>
             <div>
@@ -56,14 +55,10 @@ const handleWishlist = (e) => {
                     </div>
                 </div>
             </div>
-            <div
-                className={`fixed inset-0 flex items-center justify-center z-[9999]
-    transition-opacity duration-300
-    ${toast.show ? "opacity-100" : "opacity-0 pointer-events-none"}`}
-            >
-                <div className="bg-red-500 text-white px-3 py-2 rounded-md shadow-lg">
-                    {toast.message}
-                </div>
+            <div className={`fixed bottom-6 bg-red-500 text-white rounded-[6px] w-max left-1/2 -translate-x-1/2 z-[9999]
+  transition-all duration-300 ease-out
+  ${toast.show ? "translate-y-0  px-3 py-2" : " translate-y-12 p-0 pointer-events-none"}`}>
+                {toast.message}
             </div>
         </>
     )

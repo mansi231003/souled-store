@@ -3,6 +3,10 @@
     display: none !important;
 }
 
+.slider{
+    position: relative;
+}
+
 .swiper-button-lock {
     display: flex !important;
 }

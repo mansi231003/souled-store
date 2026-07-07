@@ -83,8 +83,6 @@ function WomenPage({sidebarOpen,setSidebarOpen}) {
       <Heading>CURATED FOR YOU</Heading>
       <Curated images={womenCuratedImages} />
       <CategorySection products={womenProducts} buttons={womenCategories}/>
-        
-
       <Footer />
     </div>
   );

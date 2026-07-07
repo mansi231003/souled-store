@@ -1,8 +1,6 @@
 import { useSelector } from "react-redux";
-// import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
-// import { addToWishlist } from "../../Redux/WishlistSlice/WishlistSlice";
 import { removeFromCart, updateQuantity, closeCart } from "../../Redux/CartSlice/cartSlice";
 import { Link } from "react-router-dom";
 import "./CartSidebar.css"
@@ -26,7 +24,6 @@ export default function CartSidebar() {
     const { toggleWishlist, isWishlisted } = useWishlist();
 
 
-
     return (
         <>
             <div className={`w-full h-full fixed flex overflow-hidden top-0 z-[999] transform transition-transform duration-500 ease-in-out ${cartSidebarOpen ? "translate-x-0" : "translate-x-full"}`}>
@@ -36,16 +33,11 @@ export default function CartSidebar() {
                             <div onClick={() => dispatch(closeCart())} className=" cursor-pointer w-full p-4 justify-end flex"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="black"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" /></svg></div>
 
                             <div className="flex justify-center items-center h-full flex-col">
-
-                                <div>
-                                    <img src="/emptyCart.avif" alt="emptyCart" />
-                                </div>
+                                <div><img src="/emptyCart.avif" alt="emptyCart" /></div>
                                 <p className="flex justify-center text-[20px] font-[600] h-[60px] items-center">Your cart is empty!</p>
                                 <div onClick={() => dispatch(closeCart())} className="text-white bg-[#168D8F] font-[600] flex justify-center items-center pt-[10px] pb-[10px] pl-[26px] pr-[26px] rounded-[4px] text-[15px] w-max mt-4 mb-4 cursor-pointer">
                                     Continue Shopping...
                                 </div>
-
-
                             </div>
                         </>
                     )

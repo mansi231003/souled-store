@@ -1,7 +1,7 @@
 
 export const womenProducts = [
     {
-        "product_id": "7",
+        "product_id": "8",
         "title": "women flower shirt",
         "tags": ["women"],
         "category": ["Trending","women Hooded T-Shirts"],
@@ -42,10 +42,10 @@ export const womenProducts = [
     },
 
     {
-        "product_id": "8",
+        "product_id": "9",
         "title": "women Casual T-Shirt",
         "tags": ["women"],
-        "category":["Trending", "women Hooded T-Shirts"],
+        "category":["Trending","women Drop Cut T-Shirts"],
         "price_range": { "min": null, "max": "500" },
         "stock": "120", // 50 + 70
         "image_url": "/women-arr2.png",
@@ -71,10 +71,10 @@ export const womenProducts = [
     },
 
     {
-        "product_id": "9",
+        "product_id": "10",
         "title": "women Sports Hoodie",
         "tags": ["women"],
-        "category":["Trending","women Easy Fit Vests"],
+        "category":["Trending","women Easy Fit Vests","women Exclusive","women Drop Cut T-Shirts"],
         "price_range": { "min": "1200", "max": "1500" },
         "stock": "50", // 20 + 30
         "image_url": "/women-arr3.png",
@@ -109,10 +109,10 @@ export const womenProducts = [
     },
 
     {
-        "product_id": "10",
+        "product_id": "11",
         "title": "Denim Jeans",
         "tags": ["women"],
-        "category": ["Trending","women Easy Fit Vests"],
+        "category": ["Trending","women Easy Fit Vests","women Drop Cut T-Shirts"],
         "price_range": { "min": null, "max": "1300" },
         "stock": "40", // 15 + 25
         "image_url": "/women-arr4.png",
@@ -138,10 +138,10 @@ export const womenProducts = [
     },
 
     {
-        "product_id": "11",
+        "product_id": "12",
         "title": "Summer Shirt",
         "tags": ["women"],
-        "category": ["Trending","women Hooded T-Shirts"],
+        "category": ["Trending","women Hooded T-Shirts","women Full Sleeve T-Shirts","women Drop Cut T-Shirts"],
         "price_range": { "min": "750", "max": "950" },
         "stock": "70", // 20 + 30
         "image_url": "/women-arr1.png",
@@ -175,7 +175,36 @@ export const womenProducts = [
             { "id": "11b", "size": "medium", "color": "yellow", "price": "800", "image_url": "/newArrival-img4.png", "stock": "30" },
             { "id": "11c", "size": "xl", "color": "yellow", "price": "950", "image_url": "/newArrival-img3.png", "stock": "20" },
         ]
-    }
+    },
+    {
+        "product_id": "13",
+        "title": "women Casual T-Shirt",
+        "tags": ["women"],
+        "category":["Trending", "women Hooded T-Shirts","women Cotton Linen Shirts"],
+        "price_range": { "min": null, "max": "500" },
+        "stock": "120", // 50 + 70
+        "image_url": "/women-arr2.png",
+        "number_of_variants": "2",
+        "variant_options": ["size"],
+        "variant_values": [
+            {
+                "size": {
+                    "label": "Select Size",
+                    "values": [
+                        {
+                            "1": { "label": "M", "key": "medium" },
+                            "2": { "label": "L", "key": "large" }
+                        }
+                    ]
+                }
+            }
+        ],
+        "variants": [
+            { "id": "8a", "size": "medium", "price": "500", " stock": "50" },
+            { "id": "8b", "size": "large", "price": "500", "stock": "70" }
+        ]
+    },
+
 ];
 
 export const womenCategoriesImg = [

@@ -74,7 +74,7 @@ export const menProducts = [
         "product_id": "3",
         "title": "Sports Hoodie",
         "tags": ["men"],
-        "category": ["Trending", "Drop Cut T-Shirts"],
+        "category": ["Trending", "Drop Cut T-Shirts","Men Full Sleeve T-Shirts"],
         "price_range": { "min": "1200", "max": "1500" },
         "stock": "50", // 20 + 30
         "image_url": "/newArrival-img3.png",
@@ -141,7 +141,7 @@ export const menProducts = [
         "product_id": "5",
         "title": "Summer Shirt",
         "tags": ["men"],
-        "category":  ["Trending","Hooded T-Shirts"],
+        "category":  ["Trending","Hooded T-Shirts","Men Full Sleeve T-Shirts"],
         "price_range": { "min": "750", "max": "950" },
         "stock": "70", // 20 + 30
         "image_url": "/newArrival-img2.png",
@@ -215,7 +215,36 @@ export const menProducts = [
             { "id": "1b", "size": "small", "color": "blue", "price": "800", "image_url": "/newArrival-img3.png", "stock": "40" },
             { "id": "1c", "size": "large", "color": "blue", "price": "900", "image_url": "/newArrival-img4.png", "stock": "20" }
         ]
-    }
+    },
+     {
+        "product_id": "7",
+        "title": "Denim Jeans",
+        "tags": ["men"],
+        "category": ["Trending", "Hooded T-Shirts","Men Hooded T-Shirts","Cotton Linen Shirts"],
+        "price_range": {"min":null,"max": "1300"},
+        "stock": "40",
+        "image_url": "/newArrival-img4.png",
+        "number_of_variants": "2",
+        "variant_options": ["size"],
+        "variant_values": [
+            {
+                "size": {
+                    "label": "Select Size",
+                    "values": [
+                        {
+                            "1": { "label": "S", "key": "small" },
+                            "2": { "label": "M", "key": "medium" }
+                        }
+                    ]
+                }
+            }
+        ],
+        "variants": [
+            { "id": "4a", "size": "small", "price": "1300", "stock": "15", "image_url": "/newArrival-img4.png" },
+            { "id": "4b", "size": "medium", "price": "1300", "stock": "25", "image_url": "/newArrival-img4.png" }
+        ]
+    },
+
 ];
 
 export const menCategoriesImg = [

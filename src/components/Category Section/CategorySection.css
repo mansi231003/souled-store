@@ -1,10 +1,6 @@
 .category-images .card .price{
     font-weight: 700;
 }
-/* 
-.category-images .card .price .icon{
-width: 18px;
-} */
 
 .scroll-hide{
     scrollbar-width: none;

@@ -4,8 +4,6 @@ import { useParams, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../Redux/CartSlice/cartSlice";
-// import { addToWishlist, removeFromWishlist } from "../../Redux/WishlistSlice/WishlistSlice";
-// import { useSelector } from "react-redux";
 import "./ProductPage.css"
 import { allProducts } from "../../data/allProducts"
 import { Swiper, SwiperSlide } from "swiper/react"
@@ -27,7 +25,6 @@ export default function ProductPage() {
     const [quantity, setQuantity] = useState(1);
     const variantData = product.variant_values[0];
 
-
     const selectedVariant = product.variants.find(v => v.size === selectedSize &&
         v.color === selectedColor
     );
@@ -48,11 +45,6 @@ export default function ProductPage() {
 
     const dispatch = useDispatch();
 
-    // const wishlistItems = useSelector(state => state.wishlist.items);
-    // const isWishlisted = wishlistItems.some(
-    //     item => item.product_id === product.product_id
-    // );
-    // console.log(wishlistItems)
     const [cartStatus, setCartStatus] = useState("idle");
 
     const handleAddToCart = () => {
@@ -137,7 +129,6 @@ export default function ProductPage() {
     }, [openSizeChart]);
 
     return (
-
         <>
             <Navbar />
             <div className={`${openSizeChart ? "w-full h-full fixed flex overflow-hidden top-0 z-[999]" : "hidden"}`}>
@@ -186,14 +177,10 @@ export default function ProductPage() {
                         </div>
                     }
                     {sizeChart === "fit" &&
-                        <div>
-                            <img src="https://prod-img.thesouledstore.com/public/theSoul/storage/mobile-cms-media-prod/sizechart-images/M258F-FG-Mens-Web.jpg?w=640&dpr=2" alt="" />
-                        </div>
+                        <div><img src="https://prod-img.thesouledstore.com/public/theSoul/storage/mobile-cms-media-prod/sizechart-images/M258F-FG-Mens-Web.jpg?w=640&dpr=2" alt="" /></div>
                     }
                     {sizeChart === "measure" &&
-                        <div>
-                            <img src="https://prod-img.thesouledstore.com/public/theSoul/storage/mobile-cms-media-prod/sizechart-images/M258F-Measure-Mens-Web.jpg?w=480&dpr=2" alt="" />
-                        </div>
+                        <div><img src="https://prod-img.thesouledstore.com/public/theSoul/storage/mobile-cms-media-prod/sizechart-images/M258F-Measure-Mens-Web.jpg?w=480&dpr=2" alt="" /></div>
                     }
                 </div>
                 <div onClick={() => setOpenSizeChart(false)} className="fixed w-full top-0 h-full bg-[rgba(0,0,0,0.4)]"></div>
@@ -219,14 +206,12 @@ export default function ProductPage() {
                                 ))
                             }
                         </Swiper>
-
                     </div>
                     <div className="product-images grid grid-cols-2 gap-2 w-[57%] h-max left-container">
                         <img src={selectedVariant ? selectedVariant.image_url : `${product.image_url}`} alt={product.title} />
                         <img src={selectedVariant ? selectedVariant.image_url : `${product.image_url}`} alt={product.title} />
                         <img src={selectedVariant ? selectedVariant.image_url : `${product.image_url}`} alt={product.title} />
                         <img src={selectedVariant ? selectedVariant.image_url : `${product.image_url}`} alt={product.title} />
-
                     </div>
                     <div className="pl-8 pr-3 w-[40%] right-container">
                         <div className="flex flex-col border-b pb-3">
@@ -267,13 +252,10 @@ export default function ProductPage() {
                                     -
                                 </button>
 
-                                <span className="w-[30px] text-center">
-                                    {quantity}
-                                </span>
+                                <span className="w-[30px] text-center">{quantity}</span>
 
                                 <button onClick={() => setQuantity(prev => Math.min(availableStock, prev + 1))}
-                                    className="pr-2 pl-1 py-1 text-lg"
-                                >
+                                    className="pr-2 pl-1 py-1 text-lg">
                                     +
                                 </button>
                             </div>
@@ -315,9 +297,7 @@ export default function ProductPage() {
                                             ADD TO WISHLIST
                                         </>
                                 }
-
                             </div>
-
                         </div>
 
                         <div className="flex items-center gap-[4px] text-[#58595b] text-[22px] mt-[18px] mb-[18px]">
@@ -358,21 +338,15 @@ export default function ProductPage() {
                                 <div className={`overflow-hidden transition-all duration-300 ease-in-out ${openSection === "artist" ? "max-h-[200px] opacity-100 pt-2" : "max-h-0 opacity-0"}`}>
                                     Charlie Brown and Snoopy are here to keep things light, breezy, and just the right amount of nostalgic. The fit says weekend, the print says instant mood boost. Style Tip: Style with light-wash jeans for a casual, feel-good look.
                                 </div>
-
                             </div>
-
                         </div>
                     </div>
                 </div>
             </div>
-            <div
-                className={`fixed inset-0 flex items-center justify-center z-[9999]
-    transition-opacity duration-300
-    ${toast.show ? "opacity-100" : "opacity-0 pointer-events-none"}`}
-            >
-                <div className="bg-red-500 text-white px-3 py-2 rounded-md shadow-lg">
-                    {toast.message}
-                </div>
+            <div className={`fixed bottom-6 bg-red-500 text-white rounded-[6px] w-max left-1/2 -translate-x-1/2 z-[9999]
+  transition-all duration-300 ease-out
+  ${toast.show ? "translate-y-0  px-3 py-2": " translate-y-12 p-0 pointer-events-none"}`}>
+                {toast.message}
             </div>
             <Footer />
         </>

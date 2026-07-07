@@ -10,7 +10,6 @@ import Footer from './components/Footer/Footer';
 import './App.css';
 import { sneakers } from './data/sneakersProduct';
 import FeaturesBar from './components/Features bar/FeaturesBar';
-// import { useState } from 'react';
 
 function SneakersPage({sidebarOpen,setSidebarOpen}) {
 
@@ -54,44 +53,6 @@ function SneakersPage({sidebarOpen,setSidebarOpen}) {
 
   ]
 
-  // const menSidebarProducts=[
-  //    {
-  //     image_url: "newArrival-img1.png",
-  //     title: "Summer Home",
-
-  //   },
-  //   {
-  //     image_url: "newArrival-img2.png",
-  //     title: "Hot Merch",
-  //   },
-  //   {
-  //     image_url: "newArrival-img3.png",
-  //     title: "Collab Kicks",
-
-  //   },
-  //   {
-  //     image_url: "newArrival-img4.png",
-  //     title: "Culture Code",
-  //   },
-  //   {
-  //     image_url: "newArrival-img3.png",
-  //     title: "T-Shirts",
-  //   },
-  //   {
-  //     image_url: "newArrival-img4.png",
-  //     title: "Marvel",
-  //   },
-  //   {
-  //     image_url: "newArrival-img1.png",
-  //     title: "Relaxed-Fit",
-    
-  //   },
-  //   {
-  //     image_url: "newArrival-img2.png",
-  //     title: "Socks",
-  //   },
-
-  // ]
 
   const sneakersCategory=[
      "Trending",

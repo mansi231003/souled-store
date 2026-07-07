@@ -1,7 +1,7 @@
 
 export const sneakers = [
     {
-        "product_id": "12",
+        "product_id": "14",
         "title": "Sneakers:Works Out",
         "price_range": { "min": "700", "max": "900" },
         "stock": "80",
@@ -42,7 +42,7 @@ export const sneakers = [
     },
 
     {
-        "product_id": "13",
+        "product_id": "15",
         "title": "Casual T-Shirt",
         "tags": ["sneaker"],
         "category":["Trending","men Cotton Linen Sneakers","men Drop Cut Sneakers"],
@@ -71,7 +71,7 @@ export const sneakers = [
     },
 
     {
-        "product_id": "14",
+        "product_id": "16",
         "title": "Sports Hoodie",
         "tags": ["sneaker"],
         "category": ["Trending","men Drop Cut Sneakers"],
@@ -109,7 +109,7 @@ export const sneakers = [
     },
 
     {
-        "product_id": "15",
+        "product_id": "17",
         "title": "Denim Jeans",
         "tags": ["sneaker"],
         "category": ["Trending","men Cotton Linen Sneakers"],
@@ -138,7 +138,7 @@ export const sneakers = [
     },
 
     {
-        "product_id": "16",
+        "product_id": "18",
         "title": "Summer Shirt",
         "tags": ["sneaker"],
         "category": ["Trending","Drop Cut T-Shirts"],
@@ -177,7 +177,7 @@ export const sneakers = [
         ]
     },
     {
-        "product_id": "17",
+        "product_id": "19",
         "title": "Peanuts:Works Out",
         "tags": ["sneaker"],
         "category": ["Trending","Easy Fit Vests"],

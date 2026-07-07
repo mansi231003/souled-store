@@ -3,12 +3,13 @@
     margin-top: 35px;
 }
 
-.prev-btn,
-.next-btn {
-    position: absolute;
-    top: 45%;
+.swiper-button-prev,
+.swiper-button-next {
+    /* position: absolute; */
+    /* top: 45%; */
+    color: white;
     filter: drop-shadow(2px 2px 4px rgba(12, 12, 12, 0.9));
-    z-index: 1;
+    /* z-index: 1; */
 
 }
 
@@ -18,8 +19,8 @@
         margin-top: -11px !important;
     }
 
-    .prev-btn,
-    .next-btn {
+    .swiper-button-prev,
+    .swiper-button-next {
         display: none;
     }
 }
