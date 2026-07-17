@@ -26,7 +26,7 @@ export default function CartSidebar() {
 
     return (
         <>
-            <div className={`w-full h-full fixed flex overflow-hidden top-0 z-[999] transform transition-transform duration-500 ease-in-out ${cartSidebarOpen ? "translate-x-0" : "translate-x-full"}`}>
+            <div className={`${cartSidebarOpen ?"w-full h-full fixed flex overflow-hidden top-0 z-[999]" : "hidden"}`}>
                 <div className={`w-[500px] cart-sidebar bg-white z-[9999] overflow-y-auto right-0 absolute h-full sidebar flex flex-col items-center`}>
                     {cartItems.length === 0 ? (
                         <>
@@ -133,7 +133,7 @@ export default function CartSidebar() {
                                     ))}
                                 </div>
                             )}
-                            <Link to='/cart'><div onClick={closeCart} className="text-white bg-[#168D8F] font-[600] flex justify-center items-center pt-[10px] pb-[10px] pl-[26px] pr-[26px] rounded-[4px] text-[15px] w-max mt-4 mb-4 cursor-pointer">
+                            <Link to='/cart'><div onClick={() => dispatch(closeCart())} className="text-white bg-[#168D8F] font-[600] flex justify-center items-center pt-[10px] pb-[10px] pl-[26px] pr-[26px] rounded-[4px] text-[15px] w-max mt-4 mb-4 cursor-pointer">
                                 CHECK OUT
                             </div>
                             </Link>

@@ -74,7 +74,7 @@ export default function Navbar() {
                     <Link to="/"><img className="img" src="/souledimg.webp" alt="souled" /></Link>
                 </div>
 
-                <div className="search-container flex items-center w-[40%] justify-center gap-10 pr-5">
+                <div className="search-container flex items-center w-[42%] justify-center gap-10 pr-5">
 
                     <div className="search-box relative border text-gray-600 items-center justify-between border-black flex bg-white h-[40px] rounded-[20px] w-[60%] p-2">
                         {searchTerm && (

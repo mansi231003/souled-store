@@ -9,8 +9,6 @@ import { useRef} from "react";
 
 export default function Slider({ slides, className,tag }) {
     const navigate = useNavigate();
-    // const prevRef = useRef(null); 
-    // const nextRef = useRef(null); 
    const swiperRef = useRef(null); 
     
     return (
@@ -22,11 +20,8 @@ export default function Slider({ slides, className,tag }) {
                     pagination={{
                         clickable: true
                     }}
-                    onSwiper={(swiper) => {                     swiperRef.current = swiper;                 }} 
-                    navigation={{
-                        // nextEl: nextRef.current,
-                        // prevEl: prevRef.current
-                    }}
+                    onSwiper={(swiper) => {swiperRef.current = swiper;}} 
+                    navigation
      
                     
                     // autoplay={{

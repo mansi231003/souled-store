@@ -37,7 +37,7 @@ export default function Sidebar() {
     return (
         <>
 
-            <div className={`w-full h-full fixed flex overflow-hidden top-0 z-[999] transform transition-transform duration-500 ease-in-out ${isOpen ? "translate-x-0" : "translate-x-[-100%]"}`}>
+            <div className={` ${isOpen ? "w-full h-full fixed flex overflow-hidden top-0 z-[999]" : "hidden"}`}>
                 <div onClick={() => dispatch(closeSidebar())} className="fixed w-full top-0 h-full bg-[rgba(0,0,0,0.4)]"></div>
                 <div className="w-[500px] bg-white z-[9999] overflow-y-auto sidebar">
 

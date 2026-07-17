@@ -132,7 +132,7 @@ export const womenProducts = [
             }
         ],
         "variants": [
-            { "id": "10a", "size": "30", "price": "1000", "stock": "15" },
+            { "id": "10a", "size": "30", "price": "1300", "stock": "15" },
             { "id": "10b", "size": "32", "price": "1300", "stock": "25" }
         ]
     },

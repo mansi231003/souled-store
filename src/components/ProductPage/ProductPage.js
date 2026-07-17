@@ -348,6 +348,7 @@ export default function ProductPage() {
   ${toast.show ? "translate-y-0  px-3 py-2": " translate-y-12 p-0 pointer-events-none"}`}>
                 {toast.message}
             </div>
+            
             <Footer />
         </>
     )

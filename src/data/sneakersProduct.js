@@ -43,7 +43,7 @@ export const sneakers = [
 
     {
         "product_id": "15",
-        "title": "Casual T-Shirt",
+        "title": "WBZ NXT: Off White",
         "tags": ["sneaker"],
         "category":["Trending","men Cotton Linen Sneakers","men Drop Cut Sneakers"],
         "price_range": { "min": null, "max": "500" },
@@ -72,7 +72,7 @@ export const sneakers = [
 
     {
         "product_id": "16",
-        "title": "Sports Hoodie",
+        "title": "Rovers:Batman",
         "tags": ["sneaker"],
         "category": ["Trending","men Drop Cut Sneakers"],
         "price_range": { "min": "1200", "max": "1500" },
@@ -110,7 +110,7 @@ export const sneakers = [
 
     {
         "product_id": "17",
-        "title": "Denim Jeans",
+        "title": "UBZ FLY:Butter Yellow",
         "tags": ["sneaker"],
         "category": ["Trending","men Cotton Linen Sneakers"],
         "price_range": { "min": null, "max": "1300" },
@@ -132,14 +132,14 @@ export const sneakers = [
             }
         ],
         "variants": [
-            { "id": "4a", "size": "30", "price": "1000", "stock": "15", "image_url": "/sneaker4.png" },
+            { "id": "4a", "size": "30", "price": "1300", "stock": "15", "image_url": "/sneaker4.png" },
             { "id": "4b", "size": "32", "price": "1300", "stock": "25", "image_url": "/sneaker4.png" }
         ]
     },
 
     {
         "product_id": "18",
-        "title": "Summer Shirt",
+        "title": "Kanso ZE:Biege",
         "tags": ["sneaker"],
         "category": ["Trending","Drop Cut T-Shirts"],
         "price_range": { "min": "750", "max": "950" },
@@ -178,7 +178,7 @@ export const sneakers = [
     },
     {
         "product_id": "19",
-        "title": "Peanuts:Works Out",
+        "title": "MACH 1",
         "tags": ["sneaker"],
         "category": ["Trending","Easy Fit Vests"],
         "price_range": { "min": "700", "max": "900" },

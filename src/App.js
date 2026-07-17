@@ -10,18 +10,18 @@ import CartSidebar from "./components/CartSidbar/CartSidebar";
 import Wishlist from "./components/WishlistPage/Wishlist";
 import Sidebar from "./components/Sidebar/Sidebar";
 import ScrollToTop from "./components/SrcollToTop";
-import UserContext from "./UserContext";
+// import UserContext from "./UserContext";
 
 function App() {
 
-  const user = { 
-    name: "John Smith", 
-    age:22
-  };
+  // const user = { 
+  //   name: "John Smith", 
+  //   age:22
+  // };
 
   return (
     <>
-    <UserContext.Provider value={user}>
+    {/* <UserContext.Provider value={user}> */}
       <Router>
         <ScrollToTop />
         <CartSidebar />
@@ -39,7 +39,7 @@ function App() {
 
         </Routes>
       </Router>
-      </UserContext.Provider>
+      {/* </UserContext.Provider> */}
     </>
   )
 }

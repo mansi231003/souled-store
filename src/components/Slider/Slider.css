@@ -5,11 +5,9 @@
 
 .swiper-button-prev,
 .swiper-button-next {
-    /* position: absolute; */
-    /* top: 45%; */
+    width: 18px;
     color: white;
     filter: drop-shadow(2px 2px 4px rgba(12, 12, 12, 0.9));
-    /* z-index: 1; */
 
 }
 
