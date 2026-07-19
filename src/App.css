@@ -1,23 +1,36 @@
-
 .slider2{
     display: none !important;
 }
 
 .slider{
     position: relative;
+    width: 100% !important;
+}
+
+.swiper {
+    width: 100%;
+}
+
+.swiper-slide {
+    width: 100%;
+}
+
+.swiper-slide img {
+    width: 100%;
+    display: block;
 }
 
 .swiper-button-lock {
     display: flex !important;
 }
+
 @media screen and (max-width:1000px) {
     .slider1{
         display: none !important;
     }
 
     .slider2{
-        display: flex !important;
+        width: 100% !important;
+        display: block !important;   /* change flex to block */
     }
-
- 
 }
